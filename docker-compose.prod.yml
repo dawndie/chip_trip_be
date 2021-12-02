@@ -1,0 +1,5 @@
+version: "3.7"
+
+services:
+  s2hand-express-ts:
+    command: npm run start:prod

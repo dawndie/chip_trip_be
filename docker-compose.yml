@@ -1,0 +1,37 @@
+version: "3.7"
+
+services:
+  # s2hand database service
+  s2hand-db:
+    image: mysql:8.0
+    volumes:
+      - s2hand-db-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_TCP_PORT: 3306
+
+  # s2hand application service
+  s2hand-express-ts:
+    image: s2hand-express-ts
+    build: .
+    restart: always
+    ports:
+      - ${APP_PORT}:${APP_PORT}
+    working_dir: /app
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    environment:
+      MYSQL_HOST: s2hand-db
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_TCP_PORT: 3306
+    depends_on:
+      - s2hand-db
+
+volumes:
+  s2hand-db-data:

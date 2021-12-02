@@ -1,0 +1,11 @@
+logs
+
+node_modules
+
+build
+
+.env
+
+public
+
+!public/sample.txt
