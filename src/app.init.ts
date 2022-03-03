@@ -1,7 +1,6 @@
 import dotenv from "dotenv";
 import path from "path";
 import { createConnection, Connection } from "typeorm";
-
 const initEnvironments = (): void => {
   dotenv.config({
     path: path.join(process.cwd(), "environments", ".env.common"),
@@ -23,6 +22,8 @@ const initMysqlConnection = async (): Promise<Connection> => {
     username: process.env.MYSQL_USER,
     password: process.env.MYSQL_PASSWORD,
     database: process.env.MYSQL_DATABASE,
+    entities: [__dirname + "/entities/*.ts"],
+    synchronize: true,
   });
   return connection;
 };
