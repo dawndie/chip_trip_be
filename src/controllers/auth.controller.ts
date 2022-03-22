@@ -35,7 +35,7 @@ class _AuthController extends BaseController {
           { expiresIn: "3h" },
         );
         if (token) {
-          return this.success(req, res)({ token });
+          return this.success(req, res)({ token, user });
         }
       }
     } catch (error) {

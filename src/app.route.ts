@@ -11,8 +11,8 @@ router.get("/", (req, res) =>
 const { error, response } = TestController;
 const { createAccount, signIn, signUp } = UserController;
 const { login } = AuthController;
-router.post("/login", login);
-router.post("/signup", createAccount);
+router.post("/auth/signin", login);
+router.post("/auth/signup", createAccount);
 
 // router.get("/user/:id", getUser);
 router.get("/error", checkJwt, error);

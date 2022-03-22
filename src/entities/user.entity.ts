@@ -19,6 +19,12 @@ export class User extends _BaseEntity {
   @Column({ name: "phone_number" })
   phoneNumber: string;
 
+  @Column({ name: "avatar" })
+  avatar: string;
+
+  @Column({ name: "address" })
+  address: string;
+
   @Column({ unique: true, name: "email" })
   email: string;
 
