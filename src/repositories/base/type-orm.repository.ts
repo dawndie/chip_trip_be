@@ -1,9 +1,10 @@
+import { _BaseEntity } from "@/base/base.entity";
 import { FindManyOptions, Repository } from "typeorm";
-import { TypeOrmEntity } from "./type-orm.entity";
+// import { TypeOrmEntity } from "./type-orm.entity";
 import { TypeOrmPaginator } from "./type-orm.type";
 
 export abstract class TypeOrmRepository<
-  E extends TypeOrmEntity,
+  E extends _BaseEntity,
 > extends Repository<E> {
   async findById(id: string): Promise<E | undefined> {
     const record = await this.findOne(id);

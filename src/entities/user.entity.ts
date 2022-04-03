@@ -19,10 +19,10 @@ export class User extends _BaseEntity {
   @Column({ name: "phone_number" })
   phoneNumber: string;
 
-  @Column({ name: "avatar" })
+  @Column({ name: "avatar", default: "" })
   avatar: string;
 
-  @Column({ name: "address" })
+  @Column({ name: "address", nullable: true })
   address: string;
 
   @Column({ unique: true, name: "email" })

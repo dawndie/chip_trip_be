@@ -12,7 +12,7 @@ export class User extends _BaseEntity {
   @Column({ name: "score" })
   score: number;
 
-  @Column({ name: "user" })
+  @Column({ name: "comment" })
   comment: string;
 
 

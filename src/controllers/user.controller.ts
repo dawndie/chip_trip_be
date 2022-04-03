@@ -47,22 +47,6 @@ class _UserController extends BaseController {
   //   return sign();
   // }
 
-  async signIn(
-    req: express.Request,
-    res: express.Response,
-    next: express.NextFunction,
-  ) {
-    console.log("SignIn");
-  }
-
-  async signUp(
-    req: express.Request,
-    res: express.Response,
-    next: express.NextFunction,
-  ) {
-    console.log("Sign up");
-  }
-
   error(
     req: express.Request,
     res: express.Response,

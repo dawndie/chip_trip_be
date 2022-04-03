@@ -20,7 +20,7 @@
     "lint": "eslint --ext .ts,.tsx src/",
     "lint:fix": "eslint --ext .ts,.tsx src/ --fix"
   },
-  "author": "tuan.daothien",
+  "author": "bang.voluong",
   "license": "ISC",
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",

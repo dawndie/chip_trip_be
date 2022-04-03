@@ -27,8 +27,8 @@ export abstract class TypeOrmEntity {
   }
 
   protected generateID(): string {
-    let bodyPart = Math.random().toString(36).substr(2, 9);
-    let tailPart = Math.random().toString(16).substr(2, 5);
+    const bodyPart = Math.random().toString(36).substr(2, 9);
+    const tailPart = Math.random().toString(16).substr(2, 5);
     return `${this.idPrefix}-${bodyPart}-${tailPart}`;
   }
 
