@@ -2,6 +2,7 @@ import express from "express";
 import { BaseController } from "../base";
 import { AppError } from "../models";
 import { User } from "../entities/user.entity";
+import { UserResponse } from "../models/userResponse.model";
 import bcrypt from "bcrypt";
 class _UserController extends BaseController {
   async createAccount(
@@ -20,7 +21,17 @@ class _UserController extends BaseController {
         phoneNumber,
       });
       await user.save();
-      return this.success(req, res)({ user });
+
+      const userResponse: UserResponse = {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        address: user.address,
+        email: user.email,
+        phoneNumber: user.phoneNumber,
+        avatar: user.avatar,
+      };
+      return this.success(req, res)({ ...userResponse });
     } catch (e) {
       next(this.getManagedError(e));
     }

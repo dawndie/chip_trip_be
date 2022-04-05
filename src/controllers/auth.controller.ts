@@ -3,6 +3,7 @@ import * as jwt from "jsonwebtoken";
 import { getRepository } from "typeorm";
 import { BaseController } from "../base";
 import { AppError } from "../models";
+import { UserResponse } from "../models/userResponse.model";
 
 // import { validate } from "class-validator";
 
@@ -23,20 +24,40 @@ class _AuthController extends BaseController {
       }
 
       const userRepository = getRepository(User);
+
       let token: string;
-      const user = await userRepository.findOneOrFail({ where: { email } });
-      if (!user.checkIfUnencryptedPasswordIsValid(password)) {
-        throw new AppError("Wrong password", 401);
-      }
+      // const user = await userRepository.findOneOrFail({ where: { email } });
+
+      const user = await userRepository
+        .createQueryBuilder("user")
+        .addSelect("user.password")
+        .where({ email: email })
+        .getOne();
       if (user) {
-        token = jwt.sign(
-          { userId: user.id, email: user.email },
-          String(process.env.JWT_SECRET),
-          { expiresIn: "3h" },
-        );
-        if (token) {
-          return this.success(req, res)({ token, user });
+        if (!user.checkIfUnencryptedPasswordIsValid(password)) {
+          throw new AppError("Wrong password", 401);
         }
+        if (user) {
+          token = jwt.sign(
+            { userId: user.id, email: user.email },
+            String(process.env.JWT_SECRET),
+            { expiresIn: "3h" },
+          );
+          if (token) {
+            const userResponse: UserResponse = {
+              id: user.id,
+              firstName: user.firstName,
+              lastName: user.lastName,
+              address: user.address,
+              email: user.email,
+              phoneNumber: user.phoneNumber,
+              avatar: user.avatar,
+            };
+            return this.success(req, res)({ token, user: { ...userResponse } });
+          }
+        }
+      } else {
+        return this.success(req, res)("Wrong login information");
       }
     } catch (error) {
       next(this.getManagedError(error));

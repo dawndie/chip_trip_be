@@ -1,12 +1,8 @@
-import { Column, Entity, ManyToOne } from "typeorm";
+import { Column, Entity } from "typeorm";
 import { _BaseEntity } from "../base/base.entity";
-import { Place } from "../entities/place.entity";
 
 @Entity({ name: "room_attributes" })
 export class RoomAttribute extends _BaseEntity {
-  @ManyToOne(() => Place, (place) => place.id)
-  place: Place;
-
   @Column({ name: "square", nullable: true })
   square: number;
 

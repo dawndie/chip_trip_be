@@ -13,7 +13,7 @@ export class User extends _BaseEntity {
   @Column({ default: true, name: "active" })
   isActive: boolean;
 
-  @Column({ name: "password" })
+  @Column({ name: "password", select: false })
   password: string;
 
   @Column({ name: "phone_number" })

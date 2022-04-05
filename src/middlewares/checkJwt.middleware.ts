@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from "express";
 import * as jwt from "jsonwebtoken";
-import { ManagedError } from "@/models";
 
 export const checkJwt = (req: Request, res: Response, next: NextFunction) => {
   let bearerToken = "";
@@ -16,6 +15,8 @@ export const checkJwt = (req: Request, res: Response, next: NextFunction) => {
     } catch (e) {
       res.send({ code: 9000, result: null, message: e });
     }
+  } else {
+    res.send({ code: 9000, result: null, message: "Invalid token" });
   }
 
   //The token is valid for 3 hour
