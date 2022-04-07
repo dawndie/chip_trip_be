@@ -11,13 +11,14 @@ router.get("/", (req, res) =>
 
 const { error, response } = TestController;
 const { createAccount } = UserController;
-const { getPlaceInformation, createPlace } = PlaceController;
+const { getPlaceInformation, getPlaceReview, createPlace } = PlaceController;
 const { login } = AuthController;
 //AUTH ROUTER
 router.post("/auth/signin", login);
 router.post("/auth/signup", createAccount);
 //PLACE ROUTER
 router.get("/place/:id", getPlaceInformation);
+router.get("/place/:id/ratings", getPlaceReview);
 router.post("/place/create", checkJwt, createPlace);
 
 router.get("/error", checkJwt, error);

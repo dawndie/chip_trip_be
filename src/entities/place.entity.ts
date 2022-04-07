@@ -6,8 +6,8 @@ import {
   JoinTable,
   JoinColumn,
   BeforeInsert,
-  AfterLoad,
   OneToOne,
+  OneToMany,
 } from "typeorm";
 import { _BaseEntity } from "../base/base.entity";
 import { User } from "../entities/user.entity";
@@ -16,6 +16,7 @@ import { Area } from "../entities/area.entity";
 import { Country } from "../entities/country.entity";
 import { SubmitStatus } from "../entities/submitStatus.entity";
 import { Amenity } from "../entities/amenity.entity";
+import { Review } from "@/entities/review.entity";
 import { PlaceType } from "../entities/placeType.entity";
 import { PolicyAttribute } from "../entities/policyAttribute.entity";
 import { RoomAttribute } from "../entities/roomAttribute.entity";
@@ -52,6 +53,9 @@ export class Place extends _BaseEntity {
   @ManyToMany(() => Amenity, (amenity) => amenity.places, { cascade: true })
   @JoinTable()
   amenities: Promise<Amenity[]>;
+
+  @OneToMany(() => Review, (review) => review.id)
+  reviews: Review[];
 
   @ManyToOne(() => PlaceType, (placeType) => placeType.id)
   @JoinColumn({ name: "place_type_id" })

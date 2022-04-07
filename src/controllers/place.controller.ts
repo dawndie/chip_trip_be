@@ -3,10 +3,9 @@ import { BaseController } from "../base";
 import { PlaceRepository } from "@/repositories/place.repository";
 import { Place } from "@/entities/place.entity";
 import { Amenity } from "@/entities/amenity.entity";
-import { Any, getCustomRepository } from "typeorm";
+import { getCustomRepository } from "typeorm";
 import { FindOneOptions } from "typeorm";
 import { APPROVED_STATUS } from "@/const/common.const";
-// import { AppError } from "../models";
 class _PlaceController extends BaseController {
   async getPlaceInformation(
     req: express.Request,
@@ -29,13 +28,17 @@ class _PlaceController extends BaseController {
         "schedulePriceAttribute",
       ],
     };
-    const result = await placeRepository.findById(parseInt(placeId), option);
-    if (result) {
-      await result.amenities;
-      console.log(result);
-      return this.success(req, res)(result);
-    } else {
-      return this.success(req, res)("Data not exists");
+    try {
+      const result = await placeRepository.findById(parseInt(placeId), option);
+      if (result) {
+        await result.amenities;
+        console.log(result);
+        return this.success(req, res)(result);
+      } else {
+        return this.success(req, res)("Data not exists");
+      }
+    } catch (error) {
+      next(this.getManagedError(error));
     }
   }
   async createPlace(
@@ -61,11 +64,21 @@ class _PlaceController extends BaseController {
     place.policyAttribute = req.body.policyAttribute;
     place.roomAttribute = req.body.roomAttribute;
     place.schedulePriceAttribute = req.body.schedulePriceAttribute;
-    const placeRepository = getCustomRepository(PlaceRepository);
-    const result = await placeRepository.manager.save(place);
+    try {
+      const placeRepository = getCustomRepository(PlaceRepository);
+      const result = await placeRepository.manager.save(place);
 
-    return this.success(req, res)(result);
+      return this.success(req, res)(result);
+    } catch (error) {
+      next(this.getManagedError(error));
+    }
   }
+
+  async getPlaceReview(
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction,
+  ) {}
 }
 
 const PlaceController = new _PlaceController("PLACE_CONTROLLER");

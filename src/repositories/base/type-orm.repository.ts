@@ -6,7 +6,10 @@ import { TypeOrmPaginator } from "./type-orm.type";
 export abstract class TypeOrmRepository<
   E extends _BaseEntity,
 > extends Repository<E> {
-  async findById(id: number, option?: FindOneOptions<E>): Promise<E | undefined> {
+  async findById(
+    id: number,
+    option?: FindOneOptions<E>,
+  ): Promise<E | undefined> {
     const record = await this.findOne(id, option);
     return record;
   }

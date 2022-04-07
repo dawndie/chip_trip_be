@@ -1,5 +1,6 @@
-import { Column, Entity } from "typeorm";
+import { Column, Entity, OneToMany } from "typeorm";
 import { _BaseEntity } from "../base/base.entity";
+import { Review } from "@/entities/review.entity";
 import bcrypt from "bcrypt";
 
 @Entity({ name: "user" })
@@ -33,6 +34,9 @@ export class User extends _BaseEntity {
     age: number;
     interest: string;
   };
+
+  @OneToMany(() => Review, (review) => review.id)
+  reviews: Review[];
 
   hashPassword() {
     this.password = bcrypt.hashSync(this.password, 10);
