@@ -6,7 +6,7 @@ import { Amenity } from "@/entities/amenity.entity";
 import { getCustomRepository } from "typeorm";
 import { FindOneOptions } from "typeorm";
 import { APPROVED_STATUS } from "@/const/common.const";
-import fs from "fs";
+// import fs from "fs";
 import AWS from "aws-sdk";
 class _PlaceController extends BaseController {
   async getPlaceInformation(
@@ -54,16 +54,9 @@ class _PlaceController extends BaseController {
     });
 
     const fileName = "D:/Chip_trip/chip_trip_be/src/controllers/logo.png";
-    const readStream = fs.readFileSync(fileName);
-    const params = {
-      Bucket: process.env.S3_BUCKET || "photostore.voluongbang", // pass your bucket name
-      Key: "photo" + "/" + "fileName.png", // file will be saved as testBucket/contacts.csv
-      Body: readStream,
-    };
-    s3.upload(params, (s3Err: any, data: any) => {
-      if (s3Err) this.getManagedError(s3Err);
-      console.log(`File uploaded successfully at ${data}`);
-    });
+    const base64Uri = req.body.dataUris;
+    const Data = Buffer.from(base64Uri, "base64");
+    // const readStream = fs.readFileSync(fileName);
 
     const amenities = req.body.amenities.map((element: number) => {
       const amenity = new Amenity();
@@ -86,6 +79,17 @@ class _PlaceController extends BaseController {
     try {
       const placeRepository = getCustomRepository(PlaceRepository);
       const result = await placeRepository.manager.save(place);
+      const placeId = result.id;
+      const params = {
+        Bucket: process.env.S3_BUCKET || "photostore.voluongbang", // pass your bucket name
+        Key: "place_photo" + "/" + String(placeId), // file will be saved as testBucket/contacts.csv
+        Body: Data,
+      };
+      s3.upload(params, (s3Err: any, data: any) => {
+        if (s3Err) this.getManagedError(s3Err);
+        console.log(`File uploaded successfully at ${data}`);
+      });
+      const s3Url = s3.getSignedUrl("putObject", params);
 
       return this.success(req, res)(result);
     } catch (error) {
