@@ -78,7 +78,17 @@ class _PlaceController extends BaseController {
     req: express.Request,
     res: express.Response,
     next: express.NextFunction,
-  ) {}
+  ) {
+    try {
+      const placeRepository = getCustomRepository(PlaceRepository);
+      const result = await placeRepository.getReviewsByRoomId(
+        parseInt(req.params.id),
+      );
+      return this.success(req, res)(result);
+    } catch (error) {
+      next(this.getManagedError(error));
+    }
+  }
 }
 
 const PlaceController = new _PlaceController("PLACE_CONTROLLER");
