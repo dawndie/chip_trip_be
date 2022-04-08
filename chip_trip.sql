@@ -1,820 +1,536 @@
-<!doctype html>
-<html lang="en" dir="ltr">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="referrer" content="no-referrer">
-  <meta name="robots" content="noindex,nofollow">
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-  <style id="cfs-style">html{display: none;}</style>
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-      <link rel="stylesheet" type="text/css" href="./themes/pmahomme/jquery/jquery-ui.css">
-    <link rel="stylesheet" type="text/css" href="js/vendor/codemirror/lib/codemirror.css?v=5.1.3">
-    <link rel="stylesheet" type="text/css" href="js/vendor/codemirror/addon/hint/show-hint.css?v=5.1.3">
-    <link rel="stylesheet" type="text/css" href="js/vendor/codemirror/addon/lint/lint.css?v=5.1.3">
-    <link rel="stylesheet" type="text/css" href="./themes/pmahomme/css/theme.css?v=5.1.3&nocache=1300502700ltr&server=1">
-    <link rel="stylesheet" type="text/css" href="./themes/pmahomme/css/printview.css?v=5.1.3" media="print" id="printcss">
-    <title>localhost / 127.0.0.1 | phpMyAdmin 5.1.3</title>
-    <script data-cfasync="false" type="text/javascript" src="js/vendor/jquery/jquery.min.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/vendor/jquery/jquery-migrate.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/vendor/sprintf.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/dist/ajax.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/dist/keyhandler.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/vendor/bootstrap/bootstrap.bundle.min.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/vendor/jquery/jquery-ui.min.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/vendor/js.cookie.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/vendor/jquery/jquery.mousewheel.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/vendor/jquery/jquery.validate.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/vendor/jquery/jquery-ui-timepicker-addon.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/vendor/jquery/jquery.ba-hashchange-2.0.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/vendor/jquery/jquery.debounce-1.0.6.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/dist/menu_resizer.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/dist/cross_framing_protection.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/dist/rte.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/messages.php?l=en&v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/dist/config.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/dist/doclinks.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/dist/functions.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/dist/navigation.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/dist/indexes.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/dist/common.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/dist/page_settings.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/dist/export_output.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/vendor/codemirror/lib/codemirror.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/vendor/codemirror/mode/sql/sql.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/vendor/codemirror/addon/runmode/runmode.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/vendor/codemirror/addon/hint/show-hint.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/vendor/codemirror/addon/hint/sql-hint.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/vendor/codemirror/addon/lint/lint.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/dist/codemirror/addon/lint/sql-lint.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/vendor/tracekit.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/dist/error_report.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/dist/drag_drop_import.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/dist/shortcuts_handler.js?v=5.1.3"></script>
-  <script data-cfasync="false" type="text/javascript" src="js/dist/console.js?v=5.1.3"></script>
+-- MariaDB dump 10.19  Distrib 10.4.24-MariaDB, for Win64 (AMD64)
+--
+-- Host: localhost    Database: chip_trip
+-- ------------------------------------------------------
+-- Server version	10.4.24-MariaDB
 
-<script data-cfasync="false" type="text/javascript">
-// <![CDATA[
-CommonParams.setAll({common_query:"",opendb_url:"index.php?route=/database/structure",lang:"en",server:"1",table:"",db:"",token:"474440682d222f4c333f496a413e3e6c",text_dir:"ltr",show_databases_navigation_as_tree:true,pma_text_default_tab:"Browse",pma_text_left_default_tab:"Structure",pma_text_left_default_tab2:false,LimitChars:"50",pftext:"",confirm:true,LoginCookieValidity:"1440",session_gc_maxlifetime:"1440",logged_in:true,is_https:false,rootPath:"/phpmyadmin/",arg_separator:"&",PMA_VERSION:"5.1.3",auth_type:"config",user:"root"});
-var firstDayOfCalendar = '0';
-var themeImagePath = '.\/themes\/pmahomme\/img\/';
-var mysqlDocTemplate = '.\/url.php\u003Furl\u003Dhttps\u00253A\u00252F\u00252Fdev.mysql.com\u00252Fdoc\u00252Frefman\u00252F8.0\u00252Fen\u00252F\u002525s.html';
-var maxInputVars = 1000;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-if ($.datepicker) {
-  $.datepicker.regional[''].closeText = 'Done';
-  $.datepicker.regional[''].prevText = 'Prev';
-  $.datepicker.regional[''].nextText = 'Next';
-  $.datepicker.regional[''].currentText = 'Today';
-  $.datepicker.regional[''].monthNames = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
-  $.datepicker.regional[''].monthNamesShort = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
-  $.datepicker.regional[''].dayNames = [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-  ];
-  $.datepicker.regional[''].dayNamesShort = [
-    'Sun',
-    'Mon',
-    'Tue',
-    'Wed',
-    'Thu',
-    'Fri',
-    'Sat',
-  ];
-  $.datepicker.regional[''].dayNamesMin = [
-    'Su',
-    'Mo',
-    'Tu',
-    'We',
-    'Th',
-    'Fr',
-    'Sa',
-  ];
-  $.datepicker.regional[''].weekHeader = 'Wk';
-  $.datepicker.regional[''].showMonthAfterYear = false;
-  $.datepicker.regional[''].yearSuffix = '';
-  $.extend($.datepicker._defaults, $.datepicker.regional['']);
-}
+--
+-- Table structure for table `amenity`
+--
 
-if ($.timepicker) {
-  $.timepicker.regional[''].timeText = 'Time';
-  $.timepicker.regional[''].hourText = 'Hour';
-  $.timepicker.regional[''].minuteText = 'Minute';
-  $.timepicker.regional[''].secondText = 'Second';
-  $.extend($.timepicker._defaults, $.timepicker.regional['']);
-}
+DROP TABLE IF EXISTS `amenity`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `amenity` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `create_at` datetime(6) NOT NULL DEFAULT current_timestamp(6),
+  `updated_at` datetime(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-function extendingValidatorMessages () {
-  $.extend($.validator.messages, {
-    required: 'This\u0020field\u0020is\u0020required',
-    remote: 'Please\u0020fix\u0020this\u0020field',
-    email: 'Please\u0020enter\u0020a\u0020valid\u0020email\u0020address',
-    url: 'Please\u0020enter\u0020a\u0020valid\u0020URL',
-    date: 'Please\u0020enter\u0020a\u0020valid\u0020date',
-    dateISO: 'Please\u0020enter\u0020a\u0020valid\u0020date\u0020\u0028\u0020ISO\u0020\u0029',
-    number: 'Please\u0020enter\u0020a\u0020valid\u0020number',
-    creditcard: 'Please\u0020enter\u0020a\u0020valid\u0020credit\u0020card\u0020number',
-    digits: 'Please\u0020enter\u0020only\u0020digits',
-    equalTo: 'Please\u0020enter\u0020the\u0020same\u0020value\u0020again',
-    maxlength: $.validator.format('Please\u0020enter\u0020no\u0020more\u0020than\u0020\u007B0\u007D\u0020characters'),
-    minlength: $.validator.format('Please\u0020enter\u0020at\u0020least\u0020\u007B0\u007D\u0020characters'),
-    rangelength: $.validator.format('Please\u0020enter\u0020a\u0020value\u0020between\u0020\u007B0\u007D\u0020and\u0020\u007B1\u007D\u0020characters\u0020long'),
-    range: $.validator.format('Please\u0020enter\u0020a\u0020value\u0020between\u0020\u007B0\u007D\u0020and\u0020\u007B1\u007D'),
-    max: $.validator.format('Please\u0020enter\u0020a\u0020value\u0020less\u0020than\u0020or\u0020equal\u0020to\u0020\u007B0\u007D'),
-    min: $.validator.format('Please\u0020enter\u0020a\u0020value\u0020greater\u0020than\u0020or\u0020equal\u0020to\u0020\u007B0\u007D'),
-    validationFunctionForDateTime: $.validator.format('Please\u0020enter\u0020a\u0020valid\u0020date\u0020or\u0020time'),
-    validationFunctionForHex: $.validator.format('Please\u0020enter\u0020a\u0020valid\u0020HEX\u0020input'),
-    validationFunctionForMd5: $.validator.format('This\u0020column\u0020can\u0020not\u0020contain\u0020a\u002032\u0020chars\u0020value'),
-    validationFunctionForAesDesEncrypt: $.validator.format('These\u0020functions\u0020are\u0020meant\u0020to\u0020return\u0020a\u0020binary\u0020result\u003B\u0020to\u0020avoid\u0020inconsistent\u0020results\u0020you\u0020should\u0020store\u0020it\u0020in\u0020a\u0020BINARY,\u0020VARBINARY,\u0020or\u0020BLOB\u0020column.')
-  });
-}
+--
+-- Dumping data for table `amenity`
+--
 
-ConsoleEnterExecutes=false
+LOCK TABLES `amenity` WRITE;
+/*!40000 ALTER TABLE `amenity` DISABLE KEYS */;
+INSERT INTO `amenity` VALUES (1,'2022-04-05 09:22:30.214733','2022-04-05 09:22:30.214733','Máy giặt'),(2,'2022-04-05 09:22:30.223530','2022-04-05 09:22:30.223530','Tủ lạnh'),(3,'2022-04-05 09:22:30.230193','2022-04-05 09:22:30.230193','Bồn tắm'),(4,'2022-04-05 09:22:30.235195','2022-04-05 09:22:30.235195','Bể Bơi');
+/*!40000 ALTER TABLE `amenity` ENABLE KEYS */;
+UNLOCK TABLES;
 
-AJAX.scriptHandler
-  .add('vendor/jquery/jquery.min.js', 0)
-  .add('vendor/jquery/jquery-migrate.js', 0)
-  .add('vendor/sprintf.js', 1)
-  .add('ajax.js', 0)
-  .add('keyhandler.js', 1)
-  .add('vendor/bootstrap/bootstrap.bundle.min.js', 1)
-  .add('vendor/jquery/jquery-ui.min.js', 0)
-  .add('vendor/js.cookie.js', 1)
-  .add('vendor/jquery/jquery.mousewheel.js', 0)
-  .add('vendor/jquery/jquery.validate.js', 0)
-  .add('vendor/jquery/jquery-ui-timepicker-addon.js', 0)
-  .add('vendor/jquery/jquery.ba-hashchange-2.0.js', 0)
-  .add('vendor/jquery/jquery.debounce-1.0.6.js', 0)
-  .add('menu_resizer.js', 1)
-  .add('cross_framing_protection.js', 0)
-  .add('rte.js', 1)
-  .add('messages.php', 0)
-  .add('config.js', 1)
-  .add('doclinks.js', 1)
-  .add('functions.js', 1)
-  .add('navigation.js', 1)
-  .add('indexes.js', 1)
-  .add('common.js', 1)
-  .add('page_settings.js', 1)
-  .add('export_output.js', 1)
-  .add('vendor/codemirror/lib/codemirror.js', 0)
-  .add('vendor/codemirror/mode/sql/sql.js', 0)
-  .add('vendor/codemirror/addon/runmode/runmode.js', 0)
-  .add('vendor/codemirror/addon/hint/show-hint.js', 0)
-  .add('vendor/codemirror/addon/hint/sql-hint.js', 0)
-  .add('vendor/codemirror/addon/lint/lint.js', 0)
-  .add('codemirror/addon/lint/sql-lint.js', 0)
-  .add('vendor/tracekit.js', 1)
-  .add('error_report.js', 1)
-  .add('drag_drop_import.js', 1)
-  .add('shortcuts_handler.js', 1)
-  .add('console.js', 1)
-;
-$(function() {
-        AJAX.fireOnload('vendor/sprintf.js');
-        AJAX.fireOnload('keyhandler.js');
-      AJAX.fireOnload('vendor/bootstrap/bootstrap.bundle.min.js');
-        AJAX.fireOnload('vendor/js.cookie.js');
-                AJAX.fireOnload('menu_resizer.js');
-        AJAX.fireOnload('rte.js');
-        AJAX.fireOnload('config.js');
-      AJAX.fireOnload('doclinks.js');
-      AJAX.fireOnload('functions.js');
-      AJAX.fireOnload('navigation.js');
-      AJAX.fireOnload('indexes.js');
-      AJAX.fireOnload('common.js');
-      AJAX.fireOnload('page_settings.js');
-      AJAX.fireOnload('export_output.js');
-                    AJAX.fireOnload('vendor/tracekit.js');
-      AJAX.fireOnload('error_report.js');
-      AJAX.fireOnload('drag_drop_import.js');
-      AJAX.fireOnload('shortcuts_handler.js');
-      AJAX.fireOnload('console.js');
-  });
-// ]]>
-</script>
+--
+-- Table structure for table `area`
+--
 
-  <noscript><style>html{display:block}</style></noscript>
-</head>
-<body>
-    <div id="pma_navigation" data-config-navigation-width="521">
-    <div id="pma_navigation_resizer"></div>
-    <div id="pma_navigation_collapser"></div>
-    <div id="pma_navigation_content">
-      <div id="pma_navigation_header">
+DROP TABLE IF EXISTS `area`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `area` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `create_at` datetime(6) NOT NULL DEFAULT current_timestamp(6),
+  `updated_at` datetime(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
+  `name` varchar(255) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `cityId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_f335d449f3c45e450239b293b06` (`cityId`),
+  CONSTRAINT `FK_f335d449f3c45e450239b293b06` FOREIGN KEY (`cityId`) REFERENCES `city` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=974 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-                  <div id="pmalogo">
-                          <a href="index.php">
-                                      <img id="imgpmalogo" src="./themes/pmahomme/img/logo_left.png" alt="phpMyAdmin">
-                                      </a>
-                      </div>
-        
-        <div id="navipanellinks">
-          <a href="index.php?route=/" title="Home"><img src="themes/dot.gif" title="Home" alt="Home" class="icon ic_b_home"></a>
+--
+-- Dumping data for table `area`
+--
 
-                      <a class="logout disableAjax" href="index.php?route=/logout" title="Empty session data"><img src="themes/dot.gif" title="Empty session data" alt="Empty session data" class="icon ic_s_loggoff"></a>
-          
-          <a href="./doc/html/index.html" title="phpMyAdmin documentation" target="_blank" rel="noopener noreferrer"><img src="themes/dot.gif" title="phpMyAdmin documentation" alt="phpMyAdmin documentation" class="icon ic_b_docs"></a>
+LOCK TABLES `area` WRITE;
+/*!40000 ALTER TABLE `area` DISABLE KEYS */;
+INSERT INTO `area` VALUES (1,'2022-04-04 10:47:29.790565','2022-04-04 10:47:29.790565','Quận Ba Đình','Quận',1),(2,'2022-04-04 10:47:29.797195','2022-04-04 10:47:29.797195','Quận Hoàn Kiếm','Quận',1),(3,'2022-04-04 10:47:29.799733','2022-04-04 10:47:29.799733','Quận Tây Hồ','Quận',1),(4,'2022-04-04 10:47:29.802155','2022-04-04 10:47:29.802155','Quận Long Biên','Quận',1),(5,'2022-04-04 10:47:29.804492','2022-04-04 10:47:29.804492','Quận Cầu Giấy','Quận',1),(6,'2022-04-04 10:47:29.806717','2022-04-04 10:47:29.806717','Quận Đống Đa','Quận',1),(7,'2022-04-04 10:47:29.809015','2022-04-04 10:47:29.809015','Quận Hai Bà Trưng','Quận',1),(8,'2022-04-04 10:47:29.811162','2022-04-04 10:47:29.811162','Quận Hoàng Mai','Quận',1),(9,'2022-04-04 10:47:29.813353','2022-04-04 10:47:29.813353','Quận Thanh Xuân','Quận',1),(16,'2022-04-04 10:47:29.815547','2022-04-04 10:47:29.815547','Huyện Sóc Sơn','Huyện',1),(17,'2022-04-04 10:47:29.817783','2022-04-04 10:47:29.817783','Huyện Đông Anh','Huyện',1),(18,'2022-04-04 10:47:29.820051','2022-04-04 10:47:29.820051','Huyện Gia Lâm','Huyện',1),(19,'2022-04-04 10:47:29.822182','2022-04-04 10:47:29.822182','Quận Nam Từ Liêm','Quận',1),(20,'2022-04-04 10:47:29.824439','2022-04-04 10:47:29.824439','Huyện Thanh Trì','Huyện',1),(21,'2022-04-04 10:47:29.826642','2022-04-04 10:47:29.826642','Quận Bắc Từ Liêm','Quận',1),(24,'2022-04-04 10:47:29.828872','2022-04-04 10:47:29.828872','Thành phố Hà Giang','Thành phố',2),(26,'2022-04-04 10:47:29.831114','2022-04-04 10:47:29.831114','Huyện Đồng Văn','Huyện',2),(27,'2022-04-04 10:47:29.833460','2022-04-04 10:47:29.833460','Huyện Mèo Vạc','Huyện',2),(28,'2022-04-04 10:47:29.835607','2022-04-04 10:47:29.835607','Huyện Yên Minh','Huyện',2),(29,'2022-04-04 10:47:29.837853','2022-04-04 10:47:29.837853','Huyện Quản Bạ','Huyện',2),(30,'2022-04-04 10:47:29.840336','2022-04-04 10:47:29.840336','Huyện Vị Xuyên','Huyện',2),(31,'2022-04-04 10:47:29.842838','2022-04-04 10:47:29.842838','Huyện Bắc Mê','Huyện',2),(32,'2022-04-04 10:47:29.845433','2022-04-04 10:47:29.845433','Huyện Hoàng Su Phì','Huyện',2),(33,'2022-04-04 10:47:29.848034','2022-04-04 10:47:29.848034','Huyện Xín Mần','Huyện',2),(34,'2022-04-04 10:47:29.850502','2022-04-04 10:47:29.850502','Huyện Bắc Quang','Huyện',2),(35,'2022-04-04 10:47:29.853021','2022-04-04 10:47:29.853021','Huyện Quang Bình','Huyện',2),(40,'2022-04-04 10:47:29.855616','2022-04-04 10:47:29.855616','Thành phố Cao Bằng','Thành phố',4),(42,'2022-04-04 10:47:29.858207','2022-04-04 10:47:29.858207','Huyện Bảo Lâm','Huyện',4),(43,'2022-04-04 10:47:29.860457','2022-04-04 10:47:29.860457','Huyện Bảo Lạc','Huyện',4),(44,'2022-04-04 10:47:29.862688','2022-04-04 10:47:29.862688','Huyện Thông Nông','Huyện',4),(45,'2022-04-04 10:47:29.864928','2022-04-04 10:47:29.864928','Huyện Hà Quảng','Huyện',4),(46,'2022-04-04 10:47:29.867183','2022-04-04 10:47:29.867183','Huyện Trà Lĩnh','Huyện',4),(47,'2022-04-04 10:47:29.869441','2022-04-04 10:47:29.869441','Huyện Trùng Khánh','Huyện',4),(48,'2022-04-04 10:47:29.871778','2022-04-04 10:47:29.871778','Huyện Hạ Lang','Huyện',4),(49,'2022-04-04 10:47:29.874038','2022-04-04 10:47:29.874038','Huyện Quảng Uyên','Huyện',4),(50,'2022-04-04 10:47:29.876237','2022-04-04 10:47:29.876237','Huyện Phục Hoà','Huyện',4),(51,'2022-04-04 10:47:29.878419','2022-04-04 10:47:29.878419','Huyện Hoà An','Huyện',4),(52,'2022-04-04 10:47:29.880599','2022-04-04 10:47:29.880599','Huyện Nguyên Bình','Huyện',4),(53,'2022-04-04 10:47:29.882893','2022-04-04 10:47:29.882893','Huyện Thạch An','Huyện',4),(58,'2022-04-04 10:47:29.885292','2022-04-04 10:47:29.885292','Thành Phố Bắc Kạn','Thành phố',6),(60,'2022-04-04 10:47:29.887627','2022-04-04 10:47:29.887627','Huyện Pác Nặm','Huyện',6),(61,'2022-04-04 10:47:29.889892','2022-04-04 10:47:29.889892','Huyện Ba Bể','Huyện',6),(62,'2022-04-04 10:47:29.892179','2022-04-04 10:47:29.892179','Huyện Ngân Sơn','Huyện',6),(63,'2022-04-04 10:47:29.894455','2022-04-04 10:47:29.894455','Huyện Bạch Thông','Huyện',6),(64,'2022-04-04 10:47:29.896706','2022-04-04 10:47:29.896706','Huyện Chợ Đồn','Huyện',6),(65,'2022-04-04 10:47:29.898948','2022-04-04 10:47:29.898948','Huyện Chợ Mới','Huyện',6),(66,'2022-04-04 10:47:29.901347','2022-04-04 10:47:29.901347','Huyện Na Rì','Huyện',6),(70,'2022-04-04 10:47:29.903749','2022-04-04 10:47:29.903749','Thành phố Tuyên Quang','Thành phố',8),(71,'2022-04-04 10:47:29.906080','2022-04-04 10:47:29.906080','Huyện Lâm Bình','Huyện',8),(72,'2022-04-04 10:47:29.908239','2022-04-04 10:47:29.908239','Huyện Nà Hang','Huyện',8),(73,'2022-04-04 10:47:29.910434','2022-04-04 10:47:29.910434','Huyện Chiêm Hóa','Huyện',8),(74,'2022-04-04 10:47:29.912727','2022-04-04 10:47:29.912727','Huyện Hàm Yên','Huyện',8),(75,'2022-04-04 10:47:29.914960','2022-04-04 10:47:29.914960','Huyện Yên Sơn','Huyện',8),(76,'2022-04-04 10:47:29.917303','2022-04-04 10:47:29.917303','Huyện Sơn Dương','Huyện',8),(80,'2022-04-04 10:47:29.919712','2022-04-04 10:47:29.919712','Thành phố Lào Cai','Thành phố',10),(82,'2022-04-04 10:47:29.922098','2022-04-04 10:47:29.922098','Huyện Bát Xát','Huyện',10),(83,'2022-04-04 10:47:29.924374','2022-04-04 10:47:29.924374','Huyện Mường Khương','Huyện',10),(84,'2022-04-04 10:47:29.926678','2022-04-04 10:47:29.926678','Huyện Si Ma Cai','Huyện',10),(85,'2022-04-04 10:47:29.929032','2022-04-04 10:47:29.929032','Huyện Bắc Hà','Huyện',10),(86,'2022-04-04 10:47:29.931334','2022-04-04 10:47:29.931334','Huyện Bảo Thắng','Huyện',10),(87,'2022-04-04 10:47:29.933600','2022-04-04 10:47:29.933600','Huyện Bảo Yên','Huyện',10),(88,'2022-04-04 10:47:29.935863','2022-04-04 10:47:29.935863','Huyện Sa Pa','Huyện',10),(89,'2022-04-04 10:47:29.938059','2022-04-04 10:47:29.938059','Huyện Văn Bàn','Huyện',10),(94,'2022-04-04 10:47:29.940248','2022-04-04 10:47:29.940248','Thành phố Điện Biên Phủ','Thành phố',11),(95,'2022-04-04 10:47:29.942453','2022-04-04 10:47:29.942453','Thị Xã Mường Lay','Thị xã',11),(96,'2022-04-04 10:47:29.944710','2022-04-04 10:47:29.944710','Huyện Mường Nhé','Huyện',11),(97,'2022-04-04 10:47:29.946940','2022-04-04 10:47:29.946940','Huyện Mường Chà','Huyện',11),(98,'2022-04-04 10:47:29.949293','2022-04-04 10:47:29.949293','Huyện Tủa Chùa','Huyện',11),(99,'2022-04-04 10:47:29.951676','2022-04-04 10:47:29.951676','Huyện Tuần Giáo','Huyện',11),(100,'2022-04-04 10:47:29.953896','2022-04-04 10:47:29.953896','Huyện Điện Biên','Huyện',11),(101,'2022-04-04 10:47:29.956093','2022-04-04 10:47:29.956093','Huyện Điện Biên Đông','Huyện',11),(102,'2022-04-04 10:47:29.958510','2022-04-04 10:47:29.958510','Huyện Mường Ảng','Huyện',11),(103,'2022-04-04 10:47:29.960822','2022-04-04 10:47:29.960822','Huyện Nậm Pồ','Huyện',11),(105,'2022-04-04 10:47:29.963042','2022-04-04 10:47:29.963042','Thành phố Lai Châu','Thành phố',12),(106,'2022-04-04 10:47:29.965242','2022-04-04 10:47:29.965242','Huyện Tam Đường','Huyện',12),(107,'2022-04-04 10:47:29.967594','2022-04-04 10:47:29.967594','Huyện Mường Tè','Huyện',12),(108,'2022-04-04 10:47:29.969798','2022-04-04 10:47:29.969798','Huyện Sìn Hồ','Huyện',12),(109,'2022-04-04 10:47:29.971974','2022-04-04 10:47:29.971974','Huyện Phong Thổ','Huyện',12),(110,'2022-04-04 10:47:29.974165','2022-04-04 10:47:29.974165','Huyện Than Uyên','Huyện',12),(111,'2022-04-04 10:47:29.976345','2022-04-04 10:47:29.976345','Huyện Tân Uyên','Huyện',12),(112,'2022-04-04 10:47:29.978527','2022-04-04 10:47:29.978527','Huyện Nậm Nhùn','Huyện',12),(116,'2022-04-04 10:47:29.980828','2022-04-04 10:47:29.980828','Thành phố Sơn La','Thành phố',14),(118,'2022-04-04 10:47:29.983052','2022-04-04 10:47:29.983052','Huyện Quỳnh Nhai','Huyện',14),(119,'2022-04-04 10:47:29.985319','2022-04-04 10:47:29.985319','Huyện Thuận Châu','Huyện',14),(120,'2022-04-04 10:47:29.987661','2022-04-04 10:47:29.987661','Huyện Mường La','Huyện',14),(121,'2022-04-04 10:47:29.989838','2022-04-04 10:47:29.989838','Huyện Bắc Yên','Huyện',14),(122,'2022-04-04 10:47:29.992046','2022-04-04 10:47:29.992046','Huyện Phù Yên','Huyện',14),(123,'2022-04-04 10:47:29.994262','2022-04-04 10:47:29.994262','Huyện Mộc Châu','Huyện',14),(124,'2022-04-04 10:47:29.996505','2022-04-04 10:47:29.996505','Huyện Yên Châu','Huyện',14),(125,'2022-04-04 10:47:29.998672','2022-04-04 10:47:29.998672','Huyện Mai Sơn','Huyện',14),(126,'2022-04-04 10:47:30.001033','2022-04-04 10:47:30.001033','Huyện Sông Mã','Huyện',14),(127,'2022-04-04 10:47:30.003299','2022-04-04 10:47:30.003299','Huyện Sốp Cộp','Huyện',14),(128,'2022-04-04 10:47:30.005476','2022-04-04 10:47:30.005476','Huyện Vân Hồ','Huyện',14),(132,'2022-04-04 10:47:30.007665','2022-04-04 10:47:30.007665','Thành phố Yên Bái','Thành phố',15),(133,'2022-04-04 10:47:30.009860','2022-04-04 10:47:30.009860','Thị xã Nghĩa Lộ','Thị xã',15),(135,'2022-04-04 10:47:30.012028','2022-04-04 10:47:30.012028','Huyện Lục Yên','Huyện',15),(136,'2022-04-04 10:47:30.014173','2022-04-04 10:47:30.014173','Huyện Văn Yên','Huyện',15),(137,'2022-04-04 10:47:30.016499','2022-04-04 10:47:30.016499','Huyện Mù Căng Chải','Huyện',15),(138,'2022-04-04 10:47:30.018689','2022-04-04 10:47:30.018689','Huyện Trấn Yên','Huyện',15),(139,'2022-04-04 10:47:30.020853','2022-04-04 10:47:30.020853','Huyện Trạm Tấu','Huyện',15),(140,'2022-04-04 10:47:30.023018','2022-04-04 10:47:30.023018','Huyện Văn Chấn','Huyện',15),(141,'2022-04-04 10:47:30.025199','2022-04-04 10:47:30.025199','Huyện Yên Bình','Huyện',15),(148,'2022-04-04 10:47:30.027370','2022-04-04 10:47:30.027370','Thành phố Hòa Bình','Thành phố',17),(150,'2022-04-04 10:47:30.029529','2022-04-04 10:47:30.029529','Huyện Đà Bắc','Huyện',17),(151,'2022-04-04 10:47:30.031741','2022-04-04 10:47:30.031741','Huyện Kỳ Sơn','Huyện',17),(152,'2022-04-04 10:47:30.033970','2022-04-04 10:47:30.033970','Huyện Lương Sơn','Huyện',17),(153,'2022-04-04 10:47:30.036145','2022-04-04 10:47:30.036145','Huyện Kim Bôi','Huyện',17),(154,'2022-04-04 10:47:30.038323','2022-04-04 10:47:30.038323','Huyện Cao Phong','Huyện',17),(155,'2022-04-04 10:47:30.040513','2022-04-04 10:47:30.040513','Huyện Tân Lạc','Huyện',17),(156,'2022-04-04 10:47:30.042715','2022-04-04 10:47:30.042715','Huyện Mai Châu','Huyện',17),(157,'2022-04-04 10:47:30.045039','2022-04-04 10:47:30.045039','Huyện Lạc Sơn','Huyện',17),(158,'2022-04-04 10:47:30.047216','2022-04-04 10:47:30.047216','Huyện Yên Thủy','Huyện',17),(159,'2022-04-04 10:47:30.049378','2022-04-04 10:47:30.049378','Huyện Lạc Thủy','Huyện',17),(164,'2022-04-04 10:47:30.051554','2022-04-04 10:47:30.051554','Thành phố Thái Nguyên','Thành phố',19),(165,'2022-04-04 10:47:30.053751','2022-04-04 10:47:30.053751','Thành phố Sông Công','Thành phố',19),(167,'2022-04-04 10:47:30.056257','2022-04-04 10:47:30.056257','Huyện Định Hóa','Huyện',19),(168,'2022-04-04 10:47:30.058750','2022-04-04 10:47:30.058750','Huyện Phú Lương','Huyện',19),(169,'2022-04-04 10:47:30.061361','2022-04-04 10:47:30.061361','Huyện Đồng Hỷ','Huyện',19),(170,'2022-04-04 10:47:30.063927','2022-04-04 10:47:30.063927','Huyện Võ Nhai','Huyện',19),(171,'2022-04-04 10:47:30.066486','2022-04-04 10:47:30.066486','Huyện Đại Từ','Huyện',19),(172,'2022-04-04 10:47:30.069096','2022-04-04 10:47:30.069096','Thị xã Phổ Yên','Thị xã',19),(173,'2022-04-04 10:47:30.071960','2022-04-04 10:47:30.071960','Huyện Phú Bình','Huyện',19),(178,'2022-04-04 10:47:30.074590','2022-04-04 10:47:30.074590','Thành phố Lạng Sơn','Thành phố',20),(180,'2022-04-04 10:47:30.076878','2022-04-04 10:47:30.076878','Huyện Tràng Định','Huyện',20),(181,'2022-04-04 10:47:30.079141','2022-04-04 10:47:30.079141','Huyện Bình Gia','Huyện',20),(182,'2022-04-04 10:47:30.081360','2022-04-04 10:47:30.081360','Huyện Văn Lãng','Huyện',20),(183,'2022-04-04 10:47:30.083713','2022-04-04 10:47:30.083713','Huyện Cao Lộc','Huyện',20),(184,'2022-04-04 10:47:30.086019','2022-04-04 10:47:30.086019','Huyện Văn Quan','Huyện',20),(185,'2022-04-04 10:47:30.088232','2022-04-04 10:47:30.088232','Huyện Bắc Sơn','Huyện',20),(186,'2022-04-04 10:47:30.090504','2022-04-04 10:47:30.090504','Huyện Hữu Lũng','Huyện',20),(187,'2022-04-04 10:47:30.092696','2022-04-04 10:47:30.092696','Huyện Chi Lăng','Huyện',20),(188,'2022-04-04 10:47:30.094922','2022-04-04 10:47:30.094922','Huyện Lộc Bình','Huyện',20),(189,'2022-04-04 10:47:30.097150','2022-04-04 10:47:30.097150','Huyện Đình Lập','Huyện',20),(193,'2022-04-04 10:47:30.099410','2022-04-04 10:47:30.099410','Thành phố Hạ Long','Thành phố',22),(194,'2022-04-04 10:47:30.101865','2022-04-04 10:47:30.101865','Thành phố Móng Cái','Thành phố',22),(195,'2022-04-04 10:47:30.104314','2022-04-04 10:47:30.104314','Thành phố Cẩm Phả','Thành phố',22),(196,'2022-04-04 10:47:30.106550','2022-04-04 10:47:30.106550','Thành phố Uông Bí','Thành phố',22),(198,'2022-04-04 10:47:30.108778','2022-04-04 10:47:30.108778','Huyện Bình Liêu','Huyện',22),(199,'2022-04-04 10:47:30.111020','2022-04-04 10:47:30.111020','Huyện Tiên Yên','Huyện',22),(200,'2022-04-04 10:47:30.113259','2022-04-04 10:47:30.113259','Huyện Đầm Hà','Huyện',22),(201,'2022-04-04 10:47:30.115439','2022-04-04 10:47:30.115439','Huyện Hải Hà','Huyện',22),(202,'2022-04-04 10:47:30.117840','2022-04-04 10:47:30.117840','Huyện Ba Chẽ','Huyện',22),(203,'2022-04-04 10:47:30.120211','2022-04-04 10:47:30.120211','Huyện Vân Đồn','Huyện',22),(204,'2022-04-04 10:47:30.122441','2022-04-04 10:47:30.122441','Huyện Hoành Bồ','Huyện',22),(205,'2022-04-04 10:47:30.124633','2022-04-04 10:47:30.124633','Thị xã Đông Triều','Thị xã',22),(206,'2022-04-04 10:47:30.126890','2022-04-04 10:47:30.126890','Thị xã Quảng Yên','Thị xã',22),(207,'2022-04-04 10:47:30.129170','2022-04-04 10:47:30.129170','Huyện Cô Tô','Huyện',22),(213,'2022-04-04 10:47:30.131461','2022-04-04 10:47:30.131461','Thành phố Bắc Giang','Thành phố',24),(215,'2022-04-04 10:47:30.133725','2022-04-04 10:47:30.133725','Huyện Yên Thế','Huyện',24),(216,'2022-04-04 10:47:30.136014','2022-04-04 10:47:30.136014','Huyện Tân Yên','Huyện',24),(217,'2022-04-04 10:47:30.138270','2022-04-04 10:47:30.138270','Huyện Lạng Giang','Huyện',24),(218,'2022-04-04 10:47:30.140482','2022-04-04 10:47:30.140482','Huyện Lục Nam','Huyện',24),(219,'2022-04-04 10:47:30.142681','2022-04-04 10:47:30.142681','Huyện Lục Ngạn','Huyện',24),(220,'2022-04-04 10:47:30.144887','2022-04-04 10:47:30.144887','Huyện Sơn Động','Huyện',24),(221,'2022-04-04 10:47:30.147083','2022-04-04 10:47:30.147083','Huyện Yên Dũng','Huyện',24),(222,'2022-04-04 10:47:30.149284','2022-04-04 10:47:30.149284','Huyện Việt Yên','Huyện',24),(223,'2022-04-04 10:47:30.151522','2022-04-04 10:47:30.151522','Huyện Hiệp Hòa','Huyện',24),(227,'2022-04-04 10:47:30.153721','2022-04-04 10:47:30.153721','Thành phố Việt Trì','Thành phố',25),(228,'2022-04-04 10:47:30.155895','2022-04-04 10:47:30.155895','Thị xã Phú Thọ','Thị xã',25),(230,'2022-04-04 10:47:30.158106','2022-04-04 10:47:30.158106','Huyện Đoan Hùng','Huyện',25),(231,'2022-04-04 10:47:30.160311','2022-04-04 10:47:30.160311','Huyện Hạ Hoà','Huyện',25),(232,'2022-04-04 10:47:30.162549','2022-04-04 10:47:30.162549','Huyện Thanh Ba','Huyện',25),(233,'2022-04-04 10:47:30.164757','2022-04-04 10:47:30.164757','Huyện Phù Ninh','Huyện',25),(234,'2022-04-04 10:47:30.166965','2022-04-04 10:47:30.166965','Huyện Yên Lập','Huyện',25),(235,'2022-04-04 10:47:30.169193','2022-04-04 10:47:30.169193','Huyện Cẩm Khê','Huyện',25),(236,'2022-04-04 10:47:30.171450','2022-04-04 10:47:30.171450','Huyện Tam Nông','Huyện',25),(237,'2022-04-04 10:47:30.173600','2022-04-04 10:47:30.173600','Huyện Lâm Thao','Huyện',25),(238,'2022-04-04 10:47:30.175785','2022-04-04 10:47:30.175785','Huyện Thanh Sơn','Huyện',25),(239,'2022-04-04 10:47:30.177964','2022-04-04 10:47:30.177964','Huyện Thanh Thuỷ','Huyện',25),(240,'2022-04-04 10:47:30.180205','2022-04-04 10:47:30.180205','Huyện Tân Sơn','Huyện',25),(243,'2022-04-04 10:47:30.182391','2022-04-04 10:47:30.182391','Thành phố Vĩnh Yên','Thành phố',26),(244,'2022-04-04 10:47:30.184652','2022-04-04 10:47:30.184652','Thị xã Phúc Yên','Thị xã',26),(246,'2022-04-04 10:47:30.186876','2022-04-04 10:47:30.186876','Huyện Lập Thạch','Huyện',26),(247,'2022-04-04 10:47:30.189063','2022-04-04 10:47:30.189063','Huyện Tam Dương','Huyện',26),(248,'2022-04-04 10:47:30.191269','2022-04-04 10:47:30.191269','Huyện Tam Đảo','Huyện',26),(249,'2022-04-04 10:47:30.193448','2022-04-04 10:47:30.193448','Huyện Bình Xuyên','Huyện',26),(250,'2022-04-04 10:47:30.195638','2022-04-04 10:47:30.195638','Huyện Mê Linh','Huyện',1),(251,'2022-04-04 10:47:30.197850','2022-04-04 10:47:30.197850','Huyện Yên Lạc','Huyện',26),(252,'2022-04-04 10:47:30.200118','2022-04-04 10:47:30.200118','Huyện Vĩnh Tường','Huyện',26),(253,'2022-04-04 10:47:30.202494','2022-04-04 10:47:30.202494','Huyện Sông Lô','Huyện',26),(256,'2022-04-04 10:47:30.204679','2022-04-04 10:47:30.204679','Thành phố Bắc Ninh','Thành phố',27),(258,'2022-04-04 10:47:30.206909','2022-04-04 10:47:30.206909','Huyện Yên Phong','Huyện',27),(259,'2022-04-04 10:47:30.209165','2022-04-04 10:47:30.209165','Huyện Quế Võ','Huyện',27),(260,'2022-04-04 10:47:30.211364','2022-04-04 10:47:30.211364','Huyện Tiên Du','Huyện',27),(261,'2022-04-04 10:47:30.213533','2022-04-04 10:47:30.213533','Thị xã Từ Sơn','Thị xã',27),(262,'2022-04-04 10:47:30.215730','2022-04-04 10:47:30.215730','Huyện Thuận Thành','Huyện',27),(263,'2022-04-04 10:47:30.218092','2022-04-04 10:47:30.218092','Huyện Gia Bình','Huyện',27),(264,'2022-04-04 10:47:30.220321','2022-04-04 10:47:30.220321','Huyện Lương Tài','Huyện',27),(268,'2022-04-04 10:47:30.222520','2022-04-04 10:47:30.222520','Quận Hà Đông','Quận',1),(269,'2022-04-04 10:47:30.224720','2022-04-04 10:47:30.224720','Thị xã Sơn Tây','Thị xã',1),(271,'2022-04-04 10:47:30.226906','2022-04-04 10:47:30.226906','Huyện Ba Vì','Huyện',1),(272,'2022-04-04 10:47:30.229098','2022-04-04 10:47:30.229098','Huyện Phúc Thọ','Huyện',1),(273,'2022-04-04 10:47:30.231282','2022-04-04 10:47:30.231282','Huyện Đan Phượng','Huyện',1),(274,'2022-04-04 10:47:30.233536','2022-04-04 10:47:30.233536','Huyện Hoài Đức','Huyện',1),(275,'2022-04-04 10:47:30.235933','2022-04-04 10:47:30.235933','Huyện Quốc Oai','Huyện',1),(276,'2022-04-04 10:47:30.238167','2022-04-04 10:47:30.238167','Huyện Thạch Thất','Huyện',1),(277,'2022-04-04 10:47:30.240353','2022-04-04 10:47:30.240353','Huyện Chương Mỹ','Huyện',1),(278,'2022-04-04 10:47:30.242578','2022-04-04 10:47:30.242578','Huyện Thanh Oai','Huyện',1),(279,'2022-04-04 10:47:30.244777','2022-04-04 10:47:30.244777','Huyện Thường Tín','Huyện',1),(280,'2022-04-04 10:47:30.246976','2022-04-04 10:47:30.246976','Huyện Phú Xuyên','Huyện',1),(281,'2022-04-04 10:47:30.249164','2022-04-04 10:47:30.249164','Huyện Ứng Hòa','Huyện',1),(282,'2022-04-04 10:47:30.251450','2022-04-04 10:47:30.251450','Huyện Mỹ Đức','Huyện',1),(288,'2022-04-04 10:47:30.253700','2022-04-04 10:47:30.253700','Thành phố Hải Dương','Thành phố',30),(290,'2022-04-04 10:47:30.255965','2022-04-04 10:47:30.255965','Thị xã Chí Linh','Thị xã',30),(291,'2022-04-04 10:47:30.258185','2022-04-04 10:47:30.258185','Huyện Nam Sách','Huyện',30),(292,'2022-04-04 10:47:30.260386','2022-04-04 10:47:30.260386','Huyện Kinh Môn','Huyện',30),(293,'2022-04-04 10:47:30.262595','2022-04-04 10:47:30.262595','Huyện Kim Thành','Huyện',30),(294,'2022-04-04 10:47:30.264818','2022-04-04 10:47:30.264818','Huyện Thanh Hà','Huyện',30),(295,'2022-04-04 10:47:30.267042','2022-04-04 10:47:30.267042','Huyện Cẩm Giàng','Huyện',30),(296,'2022-04-04 10:47:30.269598','2022-04-04 10:47:30.269598','Huyện Bình Giang','Huyện',30),(297,'2022-04-04 10:47:30.272120','2022-04-04 10:47:30.272120','Huyện Gia Lộc','Huyện',30),(298,'2022-04-04 10:47:30.274767','2022-04-04 10:47:30.274767','Huyện Tứ Kỳ','Huyện',30),(299,'2022-04-04 10:47:30.277265','2022-04-04 10:47:30.277265','Huyện Ninh Giang','Huyện',30),(300,'2022-04-04 10:47:30.279776','2022-04-04 10:47:30.279776','Huyện Thanh Miện','Huyện',30),(303,'2022-04-04 10:47:30.282318','2022-04-04 10:47:30.282318','Quận Hồng Bàng','Quận',31),(304,'2022-04-04 10:47:30.285817','2022-04-04 10:47:30.285817','Quận Ngô Quyền','Quận',31),(305,'2022-04-04 10:47:30.288463','2022-04-04 10:47:30.288463','Quận Lê Chân','Quận',31),(306,'2022-04-04 10:47:30.290694','2022-04-04 10:47:30.290694','Quận Hải An','Quận',31),(307,'2022-04-04 10:47:30.292869','2022-04-04 10:47:30.292869','Quận Kiến An','Quận',31),(308,'2022-04-04 10:47:30.295039','2022-04-04 10:47:30.295039','Quận Đồ Sơn','Quận',31),(309,'2022-04-04 10:47:30.297264','2022-04-04 10:47:30.297264','Quận Dương Kinh','Quận',31),(311,'2022-04-04 10:47:30.299489','2022-04-04 10:47:30.299489','Huyện Thuỷ Nguyên','Huyện',31),(312,'2022-04-04 10:47:30.301949','2022-04-04 10:47:30.301949','Huyện An Dương','Huyện',31),(313,'2022-04-04 10:47:30.304636','2022-04-04 10:47:30.304636','Huyện An Lão','Huyện',31),(314,'2022-04-04 10:47:30.307084','2022-04-04 10:47:30.307084','Huyện Kiến Thuỵ','Huyện',31),(315,'2022-04-04 10:47:30.309424','2022-04-04 10:47:30.309424','Huyện Tiên Lãng','Huyện',31),(316,'2022-04-04 10:47:30.311640','2022-04-04 10:47:30.311640','Huyện Vĩnh Bảo','Huyện',31),(317,'2022-04-04 10:47:30.313845','2022-04-04 10:47:30.313845','Huyện Cát Hải','Huyện',31),(318,'2022-04-04 10:47:30.316085','2022-04-04 10:47:30.316085','Huyện Bạch Long Vĩ','Huyện',31),(323,'2022-04-04 10:47:30.318366','2022-04-04 10:47:30.318366','Thành phố Hưng Yên','Thành phố',33),(325,'2022-04-04 10:47:30.320634','2022-04-04 10:47:30.320634','Huyện Văn Lâm','Huyện',33),(326,'2022-04-04 10:47:30.322837','2022-04-04 10:47:30.322837','Huyện Văn Giang','Huyện',33),(327,'2022-04-04 10:47:30.324991','2022-04-04 10:47:30.324991','Huyện Yên Mỹ','Huyện',33),(328,'2022-04-04 10:47:30.327202','2022-04-04 10:47:30.327202','Huyện Mỹ Hào','Huyện',33),(329,'2022-04-04 10:47:30.329414','2022-04-04 10:47:30.329414','Huyện Ân Thi','Huyện',33),(330,'2022-04-04 10:47:30.331654','2022-04-04 10:47:30.331654','Huyện Khoái Châu','Huyện',33),(331,'2022-04-04 10:47:30.333919','2022-04-04 10:47:30.333919','Huyện Kim Động','Huyện',33),(332,'2022-04-04 10:47:30.336178','2022-04-04 10:47:30.336178','Huyện Tiên Lữ','Huyện',33),(333,'2022-04-04 10:47:30.338428','2022-04-04 10:47:30.338428','Huyện Phù Cừ','Huyện',33),(336,'2022-04-04 10:47:30.340670','2022-04-04 10:47:30.340670','Thành phố Thái Bình','Thành phố',34),(338,'2022-04-04 10:47:30.342855','2022-04-04 10:47:30.342855','Huyện Quỳnh Phụ','Huyện',34),(339,'2022-04-04 10:47:30.345091','2022-04-04 10:47:30.345091','Huyện Hưng Hà','Huyện',34),(340,'2022-04-04 10:47:30.347270','2022-04-04 10:47:30.347270','Huyện Đông Hưng','Huyện',34),(341,'2022-04-04 10:47:30.349480','2022-04-04 10:47:30.349480','Huyện Thái Thụy','Huyện',34),(342,'2022-04-04 10:47:30.351784','2022-04-04 10:47:30.351784','Huyện Tiền Hải','Huyện',34),(343,'2022-04-04 10:47:30.354068','2022-04-04 10:47:30.354068','Huyện Kiến Xương','Huyện',34),(344,'2022-04-04 10:47:30.356325','2022-04-04 10:47:30.356325','Huyện Vũ Thư','Huyện',34),(347,'2022-04-04 10:47:30.358480','2022-04-04 10:47:30.358480','Thành phố Phủ Lý','Thành phố',35),(349,'2022-04-04 10:47:30.360688','2022-04-04 10:47:30.360688','Huyện Duy Tiên','Huyện',35),(350,'2022-04-04 10:47:30.362844','2022-04-04 10:47:30.362844','Huyện Kim Bảng','Huyện',35),(351,'2022-04-04 10:47:30.365025','2022-04-04 10:47:30.365025','Huyện Thanh Liêm','Huyện',35),(352,'2022-04-04 10:47:30.367276','2022-04-04 10:47:30.367276','Huyện Bình Lục','Huyện',35),(353,'2022-04-04 10:47:30.369520','2022-04-04 10:47:30.369520','Huyện Lý Nhân','Huyện',35),(356,'2022-04-04 10:47:30.371740','2022-04-04 10:47:30.371740','Thành phố Nam Định','Thành phố',36),(358,'2022-04-04 10:47:30.373904','2022-04-04 10:47:30.373904','Huyện Mỹ Lộc','Huyện',36),(359,'2022-04-04 10:47:30.376077','2022-04-04 10:47:30.376077','Huyện Vụ Bản','Huyện',36),(360,'2022-04-04 10:47:30.378275','2022-04-04 10:47:30.378275','Huyện Ý Yên','Huyện',36),(361,'2022-04-04 10:47:30.380439','2022-04-04 10:47:30.380439','Huyện Nghĩa Hưng','Huyện',36),(362,'2022-04-04 10:47:30.382711','2022-04-04 10:47:30.382711','Huyện Nam Trực','Huyện',36),(363,'2022-04-04 10:47:30.385203','2022-04-04 10:47:30.385203','Huyện Trực Ninh','Huyện',36),(364,'2022-04-04 10:47:30.387485','2022-04-04 10:47:30.387485','Huyện Xuân Trường','Huyện',36),(365,'2022-04-04 10:47:30.389705','2022-04-04 10:47:30.389705','Huyện Giao Thủy','Huyện',36),(366,'2022-04-04 10:47:30.391865','2022-04-04 10:47:30.391865','Huyện Hải Hậu','Huyện',36),(369,'2022-04-04 10:47:30.394045','2022-04-04 10:47:30.394045','Thành phố Ninh Bình','Thành phố',37),(370,'2022-04-04 10:47:30.396204','2022-04-04 10:47:30.396204','Thành phố Tam Điệp','Thành phố',37),(372,'2022-04-04 10:47:30.398388','2022-04-04 10:47:30.398388','Huyện Nho Quan','Huyện',37),(373,'2022-04-04 10:47:30.400783','2022-04-04 10:47:30.400783','Huyện Gia Viễn','Huyện',37),(374,'2022-04-04 10:47:30.403057','2022-04-04 10:47:30.403057','Huyện Hoa Lư','Huyện',37),(375,'2022-04-04 10:47:30.405235','2022-04-04 10:47:30.405235','Huyện Yên Khánh','Huyện',37),(376,'2022-04-04 10:47:30.407463','2022-04-04 10:47:30.407463','Huyện Kim Sơn','Huyện',37),(377,'2022-04-04 10:47:30.409691','2022-04-04 10:47:30.409691','Huyện Yên Mô','Huyện',37),(380,'2022-04-04 10:47:30.411883','2022-04-04 10:47:30.411883','Thành phố Thanh Hóa','Thành phố',38),(381,'2022-04-04 10:47:30.414082','2022-04-04 10:47:30.414082','Thị xã Bỉm Sơn','Thị xã',38),(382,'2022-04-04 10:47:30.416289','2022-04-04 10:47:30.416289','Thị xã Sầm Sơn','Thị xã',38),(384,'2022-04-04 10:47:30.418561','2022-04-04 10:47:30.418561','Huyện Mường Lát','Huyện',38),(385,'2022-04-04 10:47:30.420766','2022-04-04 10:47:30.420766','Huyện Quan Hóa','Huyện',38),(386,'2022-04-04 10:47:30.422920','2022-04-04 10:47:30.422920','Huyện Bá Thước','Huyện',38),(387,'2022-04-04 10:47:30.425124','2022-04-04 10:47:30.425124','Huyện Quan Sơn','Huyện',38),(388,'2022-04-04 10:47:30.427288','2022-04-04 10:47:30.427288','Huyện Lang Chánh','Huyện',38),(389,'2022-04-04 10:47:30.429435','2022-04-04 10:47:30.429435','Huyện Ngọc Lặc','Huyện',38),(390,'2022-04-04 10:47:30.431636','2022-04-04 10:47:30.431636','Huyện Cẩm Thủy','Huyện',38),(391,'2022-04-04 10:47:30.433889','2022-04-04 10:47:30.433889','Huyện Thạch Thành','Huyện',38),(392,'2022-04-04 10:47:30.436101','2022-04-04 10:47:30.436101','Huyện Hà Trung','Huyện',38),(393,'2022-04-04 10:47:30.438266','2022-04-04 10:47:30.438266','Huyện Vĩnh Lộc','Huyện',38),(394,'2022-04-04 10:47:30.440468','2022-04-04 10:47:30.440468','Huyện Yên Định','Huyện',38),(395,'2022-04-04 10:47:30.442644','2022-04-04 10:47:30.442644','Huyện Thọ Xuân','Huyện',38),(396,'2022-04-04 10:47:30.444817','2022-04-04 10:47:30.444817','Huyện Thường Xuân','Huyện',38),(397,'2022-04-04 10:47:30.447022','2022-04-04 10:47:30.447022','Huyện Triệu Sơn','Huyện',38),(398,'2022-04-04 10:47:30.449226','2022-04-04 10:47:30.449226','Huyện Thiệu Hóa','Huyện',38),(399,'2022-04-04 10:47:30.451509','2022-04-04 10:47:30.451509','Huyện Hoằng Hóa','Huyện',38),(400,'2022-04-04 10:47:30.453717','2022-04-04 10:47:30.453717','Huyện Hậu Lộc','Huyện',38),(401,'2022-04-04 10:47:30.455946','2022-04-04 10:47:30.455946','Huyện Nga Sơn','Huyện',38),(402,'2022-04-04 10:47:30.458123','2022-04-04 10:47:30.458123','Huyện Như Xuân','Huyện',38),(403,'2022-04-04 10:47:30.460317','2022-04-04 10:47:30.460317','Huyện Như Thanh','Huyện',38),(404,'2022-04-04 10:47:30.462504','2022-04-04 10:47:30.462504','Huyện Nông Cống','Huyện',38),(405,'2022-04-04 10:47:30.464719','2022-04-04 10:47:30.464719','Huyện Đông Sơn','Huyện',38),(406,'2022-04-04 10:47:30.466915','2022-04-04 10:47:30.466915','Huyện Quảng Xương','Huyện',38),(407,'2022-04-04 10:47:30.469173','2022-04-04 10:47:30.469173','Huyện Tĩnh Gia','Huyện',38),(412,'2022-04-04 10:47:30.471404','2022-04-04 10:47:30.471404','Thành phố Vinh','Thành phố',40),(413,'2022-04-04 10:47:30.473589','2022-04-04 10:47:30.473589','Thị xã Cửa Lò','Thị xã',40),(414,'2022-04-04 10:47:30.475744','2022-04-04 10:47:30.475744','Thị xã Thái Hoà','Thị xã',40),(415,'2022-04-04 10:47:30.477908','2022-04-04 10:47:30.477908','Huyện Quế Phong','Huyện',40),(416,'2022-04-04 10:47:30.480081','2022-04-04 10:47:30.480081','Huyện Quỳ Châu','Huyện',40),(417,'2022-04-04 10:47:30.482584','2022-04-04 10:47:30.482584','Huyện Kỳ Sơn','Huyện',40),(418,'2022-04-04 10:47:30.485117','2022-04-04 10:47:30.485117','Huyện Tương Dương','Huyện',40),(419,'2022-04-04 10:47:30.487658','2022-04-04 10:47:30.487658','Huyện Nghĩa Đàn','Huyện',40),(420,'2022-04-04 10:47:30.490159','2022-04-04 10:47:30.490159','Huyện Quỳ Hợp','Huyện',40),(421,'2022-04-04 10:47:30.492658','2022-04-04 10:47:30.492658','Huyện Quỳnh Lưu','Huyện',40),(422,'2022-04-04 10:47:30.495155','2022-04-04 10:47:30.495155','Huyện Con Cuông','Huyện',40),(423,'2022-04-04 10:47:30.497648','2022-04-04 10:47:30.497648','Huyện Tân Kỳ','Huyện',40),(424,'2022-04-04 10:47:30.500243','2022-04-04 10:47:30.500243','Huyện Anh Sơn','Huyện',40),(425,'2022-04-04 10:47:30.502591','2022-04-04 10:47:30.502591','Huyện Diễn Châu','Huyện',40),(426,'2022-04-04 10:47:30.504846','2022-04-04 10:47:30.504846','Huyện Yên Thành','Huyện',40),(427,'2022-04-04 10:47:30.507015','2022-04-04 10:47:30.507015','Huyện Đô Lương','Huyện',40),(428,'2022-04-04 10:47:30.509186','2022-04-04 10:47:30.509186','Huyện Thanh Chương','Huyện',40),(429,'2022-04-04 10:47:30.511339','2022-04-04 10:47:30.511339','Huyện Nghi Lộc','Huyện',40),(430,'2022-04-04 10:47:30.513507','2022-04-04 10:47:30.513507','Huyện Nam Đàn','Huyện',40),(431,'2022-04-04 10:47:30.516093','2022-04-04 10:47:30.516093','Huyện Hưng Nguyên','Huyện',40),(432,'2022-04-04 10:47:30.518347','2022-04-04 10:47:30.518347','Thị xã Hoàng Mai','Thị xã',40),(436,'2022-04-04 10:47:30.520555','2022-04-04 10:47:30.520555','Thành phố Hà Tĩnh','Thành phố',42),(437,'2022-04-04 10:47:30.522743','2022-04-04 10:47:30.522743','Thị xã Hồng Lĩnh','Thị xã',42),(439,'2022-04-04 10:47:30.524944','2022-04-04 10:47:30.524944','Huyện Hương Sơn','Huyện',42),(440,'2022-04-04 10:47:30.527087','2022-04-04 10:47:30.527087','Huyện Đức Thọ','Huyện',42),(441,'2022-04-04 10:47:30.529263','2022-04-04 10:47:30.529263','Huyện Vũ Quang','Huyện',42),(442,'2022-04-04 10:47:30.531490','2022-04-04 10:47:30.531490','Huyện Nghi Xuân','Huyện',42),(443,'2022-04-04 10:47:30.533737','2022-04-04 10:47:30.533737','Huyện Can Lộc','Huyện',42),(444,'2022-04-04 10:47:30.535941','2022-04-04 10:47:30.535941','Huyện Hương Khê','Huyện',42),(445,'2022-04-04 10:47:30.538124','2022-04-04 10:47:30.538124','Huyện Thạch Hà','Huyện',42),(446,'2022-04-04 10:47:30.540304','2022-04-04 10:47:30.540304','Huyện Cẩm Xuyên','Huyện',42),(447,'2022-04-04 10:47:30.542480','2022-04-04 10:47:30.542480','Huyện Kỳ Anh','Huyện',42),(448,'2022-04-04 10:47:30.544633','2022-04-04 10:47:30.544633','Huyện Lộc Hà','Huyện',42),(449,'2022-04-04 10:47:30.546978','2022-04-04 10:47:30.546978','Thị xã Kỳ Anh','Thị xã',42),(450,'2022-04-04 10:47:30.549228','2022-04-04 10:47:30.549228','Thành Phố Đồng Hới','Thành phố',44),(452,'2022-04-04 10:47:30.551524','2022-04-04 10:47:30.551524','Huyện Minh Hóa','Huyện',44),(453,'2022-04-04 10:47:30.553742','2022-04-04 10:47:30.553742','Huyện Tuyên Hóa','Huyện',44),(454,'2022-04-04 10:47:30.555897','2022-04-04 10:47:30.555897','Huyện Quảng Trạch','Thị xã',44),(455,'2022-04-04 10:47:30.558087','2022-04-04 10:47:30.558087','Huyện Bố Trạch','Huyện',44),(456,'2022-04-04 10:47:30.560273','2022-04-04 10:47:30.560273','Huyện Quảng Ninh','Huyện',44),(457,'2022-04-04 10:47:30.562483','2022-04-04 10:47:30.562483','Huyện Lệ Thủy','Huyện',44),(458,'2022-04-04 10:47:30.564662','2022-04-04 10:47:30.564662','Thị xã Ba Đồn','Huyện',44),(461,'2022-04-04 10:47:30.566892','2022-04-04 10:47:30.566892','Thành phố Đông Hà','Thành phố',45),(462,'2022-04-04 10:47:30.569087','2022-04-04 10:47:30.569087','Thị xã Quảng Trị','Thị xã',45),(464,'2022-04-04 10:47:30.571275','2022-04-04 10:47:30.571275','Huyện Vĩnh Linh','Huyện',45),(465,'2022-04-04 10:47:30.573456','2022-04-04 10:47:30.573456','Huyện Hướng Hóa','Huyện',45),(466,'2022-04-04 10:47:30.575678','2022-04-04 10:47:30.575678','Huyện Gio Linh','Huyện',45),(467,'2022-04-04 10:47:30.577894','2022-04-04 10:47:30.577894','Huyện Đa Krông','Huyện',45),(468,'2022-04-04 10:47:30.580119','2022-04-04 10:47:30.580119','Huyện Cam Lộ','Huyện',45),(469,'2022-04-04 10:47:30.582306','2022-04-04 10:47:30.582306','Huyện Triệu Phong','Huyện',45),(470,'2022-04-04 10:47:30.584982','2022-04-04 10:47:30.584982','Huyện Hải Lăng','Huyện',45),(471,'2022-04-04 10:47:30.587345','2022-04-04 10:47:30.587345','Huyện Cồn Cỏ','Huyện',45),(474,'2022-04-04 10:47:30.589525','2022-04-04 10:47:30.589525','Thành phố Huế','Thành phố',46),(476,'2022-04-04 10:47:30.591705','2022-04-04 10:47:30.591705','Huyện Phong Điền','Huyện',46),(477,'2022-04-04 10:47:30.593911','2022-04-04 10:47:30.593911','Huyện Quảng Điền','Huyện',46),(478,'2022-04-04 10:47:30.596086','2022-04-04 10:47:30.596086','Huyện Phú Vang','Huyện',46),(479,'2022-04-04 10:47:30.598277','2022-04-04 10:47:30.598277','Thị xã Hương Thủy','Thị xã',46),(480,'2022-04-04 10:47:30.600543','2022-04-04 10:47:30.600543','Thị xã Hương Trà','Thị xã',46),(481,'2022-04-04 10:47:30.602764','2022-04-04 10:47:30.602764','Huyện A Lưới','Huyện',46),(482,'2022-04-04 10:47:30.604938','2022-04-04 10:47:30.604938','Huyện Phú Lộc','Huyện',46),(483,'2022-04-04 10:47:30.607090','2022-04-04 10:47:30.607090','Huyện Nam Đông','Huyện',46),(490,'2022-04-04 10:47:30.609320','2022-04-04 10:47:30.609320','Quận Liên Chiểu','Quận',48),(491,'2022-04-04 10:47:30.611521','2022-04-04 10:47:30.611521','Quận Thanh Khê','Quận',48),(492,'2022-04-04 10:47:30.613721','2022-04-04 10:47:30.613721','Quận Hải Châu','Quận',48),(493,'2022-04-04 10:47:30.616001','2022-04-04 10:47:30.616001','Quận Sơn Trà','Quận',48),(494,'2022-04-04 10:47:30.618189','2022-04-04 10:47:30.618189','Quận Ngũ Hành Sơn','Quận',48),(495,'2022-04-04 10:47:30.620401','2022-04-04 10:47:30.620401','Quận Cẩm Lệ','Quận',48),(497,'2022-04-04 10:47:30.622566','2022-04-04 10:47:30.622566','Huyện Hòa Vang','Huyện',48),(498,'2022-04-04 10:47:30.624748','2022-04-04 10:47:30.624748','Huyện Hoàng Sa','Huyện',48),(502,'2022-04-04 10:47:30.626956','2022-04-04 10:47:30.626956','Thành phố Tam Kỳ','Thành phố',49),(503,'2022-04-04 10:47:30.629167','2022-04-04 10:47:30.629167','Thành phố Hội An','Thành phố',49),(504,'2022-04-04 10:47:30.631457','2022-04-04 10:47:30.631457','Huyện Tây Giang','Huyện',49),(505,'2022-04-04 10:47:30.633648','2022-04-04 10:47:30.633648','Huyện Đông Giang','Huyện',49),(506,'2022-04-04 10:47:30.635853','2022-04-04 10:47:30.635853','Huyện Đại Lộc','Huyện',49),(507,'2022-04-04 10:47:30.638026','2022-04-04 10:47:30.638026','Thị xã Điện Bàn','Thị xã',49),(508,'2022-04-04 10:47:30.640199','2022-04-04 10:47:30.640199','Huyện Duy Xuyên','Huyện',49),(509,'2022-04-04 10:47:30.642386','2022-04-04 10:47:30.642386','Huyện Quế Sơn','Huyện',49),(510,'2022-04-04 10:47:30.644554','2022-04-04 10:47:30.644554','Huyện Nam Giang','Huyện',49),(511,'2022-04-04 10:47:30.646725','2022-04-04 10:47:30.646725','Huyện Phước Sơn','Huyện',49),(512,'2022-04-04 10:47:30.648889','2022-04-04 10:47:30.648889','Huyện Hiệp Đức','Huyện',49),(513,'2022-04-04 10:47:30.651030','2022-04-04 10:47:30.651030','Huyện Thăng Bình','Huyện',49),(514,'2022-04-04 10:47:30.653178','2022-04-04 10:47:30.653178','Huyện Tiên Phước','Huyện',49),(515,'2022-04-04 10:47:30.655372','2022-04-04 10:47:30.655372','Huyện Bắc Trà My','Huyện',49),(516,'2022-04-04 10:47:30.657586','2022-04-04 10:47:30.657586','Huyện Nam Trà My','Huyện',49),(517,'2022-04-04 10:47:30.659813','2022-04-04 10:47:30.659813','Huyện Núi Thành','Huyện',49),(518,'2022-04-04 10:47:30.661971','2022-04-04 10:47:30.661971','Huyện Phú Ninh','Huyện',49),(519,'2022-04-04 10:47:30.664184','2022-04-04 10:47:30.664184','Huyện Nông Sơn','Huyện',49),(522,'2022-04-04 10:47:30.666379','2022-04-04 10:47:30.666379','Thành phố Quảng Ngãi','Thành phố',51),(524,'2022-04-04 10:47:30.668550','2022-04-04 10:47:30.668550','Huyện Bình Sơn','Huyện',51),(525,'2022-04-04 10:47:30.670737','2022-04-04 10:47:30.670737','Huyện Trà Bồng','Huyện',51),(526,'2022-04-04 10:47:30.672897','2022-04-04 10:47:30.672897','Huyện Tây Trà','Huyện',51),(527,'2022-04-04 10:47:30.675112','2022-04-04 10:47:30.675112','Huyện Sơn Tịnh','Huyện',51),(528,'2022-04-04 10:47:30.677633','2022-04-04 10:47:30.677633','Huyện Tư Nghĩa','Huyện',51),(529,'2022-04-04 10:47:30.680155','2022-04-04 10:47:30.680155','Huyện Sơn Hà','Huyện',51),(530,'2022-04-04 10:47:30.682646','2022-04-04 10:47:30.682646','Huyện Sơn Tây','Huyện',51),(531,'2022-04-04 10:47:30.685131','2022-04-04 10:47:30.685131','Huyện Minh Long','Huyện',51),(532,'2022-04-04 10:47:30.687636','2022-04-04 10:47:30.687636','Huyện Nghĩa Hành','Huyện',51),(533,'2022-04-04 10:47:30.690135','2022-04-04 10:47:30.690135','Huyện Mộ Đức','Huyện',51),(534,'2022-04-04 10:47:30.692684','2022-04-04 10:47:30.692684','Huyện Đức Phổ','Huyện',51),(535,'2022-04-04 10:47:30.695352','2022-04-04 10:47:30.695352','Huyện Ba Tơ','Huyện',51),(536,'2022-04-04 10:47:30.697655','2022-04-04 10:47:30.697655','Huyện Lý Sơn','Huyện',51),(540,'2022-04-04 10:47:30.699958','2022-04-04 10:47:30.699958','Thành phố Qui Nhơn','Thành phố',52),(542,'2022-04-04 10:47:30.702309','2022-04-04 10:47:30.702309','Huyện An Lão','Huyện',52),(543,'2022-04-04 10:47:30.704607','2022-04-04 10:47:30.704607','Huyện Hoài Nhơn','Huyện',52),(544,'2022-04-04 10:47:30.706933','2022-04-04 10:47:30.706933','Huyện Hoài Ân','Huyện',52),(545,'2022-04-04 10:47:30.709246','2022-04-04 10:47:30.709246','Huyện Phù Mỹ','Huyện',52),(546,'2022-04-04 10:47:30.711599','2022-04-04 10:47:30.711599','Huyện Vĩnh Thạnh','Huyện',52),(547,'2022-04-04 10:47:30.714019','2022-04-04 10:47:30.714019','Huyện Tây Sơn','Huyện',52),(548,'2022-04-04 10:47:30.716368','2022-04-04 10:47:30.716368','Huyện Phù Cát','Huyện',52),(549,'2022-04-04 10:47:30.718609','2022-04-04 10:47:30.718609','Thị xã An Nhơn','Thị xã',52),(550,'2022-04-04 10:47:30.720845','2022-04-04 10:47:30.720845','Huyện Tuy Phước','Huyện',52),(551,'2022-04-04 10:47:30.723064','2022-04-04 10:47:30.723064','Huyện Vân Canh','Huyện',52),(555,'2022-04-04 10:47:30.725242','2022-04-04 10:47:30.725242','Thành phố Tuy Hoà','Thành phố',54),(557,'2022-04-04 10:47:30.727437','2022-04-04 10:47:30.727437','Thị xã Sông Cầu','Thị xã',54),(558,'2022-04-04 10:47:30.729613','2022-04-04 10:47:30.729613','Huyện Đồng Xuân','Huyện',54),(559,'2022-04-04 10:47:30.731799','2022-04-04 10:47:30.731799','Huyện Tuy An','Huyện',54),(560,'2022-04-04 10:47:30.734029','2022-04-04 10:47:30.734029','Huyện Sơn Hòa','Huyện',54),(561,'2022-04-04 10:47:30.736287','2022-04-04 10:47:30.736287','Huyện Sông Hinh','Huyện',54),(562,'2022-04-04 10:47:30.738514','2022-04-04 10:47:30.738514','Huyện Tây Hoà','Huyện',54),(563,'2022-04-04 10:47:30.740802','2022-04-04 10:47:30.740802','Huyện Phú Hoà','Huyện',54),(564,'2022-04-04 10:47:30.742998','2022-04-04 10:47:30.742998','Huyện Đông Hòa','Huyện',54),(568,'2022-04-04 10:47:30.745181','2022-04-04 10:47:30.745181','Thành phố Nha Trang','Thành phố',56),(569,'2022-04-04 10:47:30.747412','2022-04-04 10:47:30.747412','Thành phố Cam Ranh','Thành phố',56),(570,'2022-04-04 10:47:30.749633','2022-04-04 10:47:30.749633','Huyện Cam Lâm','Huyện',56),(571,'2022-04-04 10:47:30.751854','2022-04-04 10:47:30.751854','Huyện Vạn Ninh','Huyện',56),(572,'2022-04-04 10:47:30.754059','2022-04-04 10:47:30.754059','Thị xã Ninh Hòa','Thị xã',56),(573,'2022-04-04 10:47:30.756242','2022-04-04 10:47:30.756242','Huyện Khánh Vĩnh','Huyện',56),(574,'2022-04-04 10:47:30.758412','2022-04-04 10:47:30.758412','Huyện Diên Khánh','Huyện',56),(575,'2022-04-04 10:47:30.760613','2022-04-04 10:47:30.760613','Huyện Khánh Sơn','Huyện',56),(576,'2022-04-04 10:47:30.762809','2022-04-04 10:47:30.762809','Huyện Trường Sa','Huyện',56),(582,'2022-04-04 10:47:30.765073','2022-04-04 10:47:30.765073','Thành phố Phan Rang-Tháp Chàm','Thành phố',58),(584,'2022-04-04 10:47:30.767386','2022-04-04 10:47:30.767386','Huyện Bác Ái','Huyện',58),(585,'2022-04-04 10:47:30.769728','2022-04-04 10:47:30.769728','Huyện Ninh Sơn','Huyện',58),(586,'2022-04-04 10:47:30.771903','2022-04-04 10:47:30.771903','Huyện Ninh Hải','Huyện',58),(587,'2022-04-04 10:47:30.774053','2022-04-04 10:47:30.774053','Huyện Ninh Phước','Huyện',58),(588,'2022-04-04 10:47:30.776342','2022-04-04 10:47:30.776342','Huyện Thuận Bắc','Huyện',58),(589,'2022-04-04 10:47:30.778608','2022-04-04 10:47:30.778608','Huyện Thuận Nam','Huyện',58),(593,'2022-04-04 10:47:30.780874','2022-04-04 10:47:30.780874','Thành phố Phan Thiết','Thành phố',60),(594,'2022-04-04 10:47:30.783214','2022-04-04 10:47:30.783214','Thị xã La Gi','Thị xã',60),(595,'2022-04-04 10:47:30.789349','2022-04-04 10:47:30.789349','Huyện Tuy Phong','Huyện',60),(596,'2022-04-04 10:47:30.792686','2022-04-04 10:47:30.792686','Huyện Bắc Bình','Huyện',60),(597,'2022-04-04 10:47:30.795332','2022-04-04 10:47:30.795332','Huyện Hàm Thuận Bắc','Huyện',60),(598,'2022-04-04 10:47:30.798023','2022-04-04 10:47:30.798023','Huyện Hàm Thuận Nam','Huyện',60),(599,'2022-04-04 10:47:30.800994','2022-04-04 10:47:30.800994','Huyện Tánh Linh','Huyện',60),(600,'2022-04-04 10:47:30.804060','2022-04-04 10:47:30.804060','Huyện Đức Linh','Huyện',60),(601,'2022-04-04 10:47:30.806492','2022-04-04 10:47:30.806492','Huyện Hàm Tân','Huyện',60),(602,'2022-04-04 10:47:30.808867','2022-04-04 10:47:30.808867','Huyện Phú Quí','Huyện',60),(608,'2022-04-04 10:47:30.811191','2022-04-04 10:47:30.811191','Thành phố Kon Tum','Thành phố',62),(610,'2022-04-04 10:47:30.813537','2022-04-04 10:47:30.813537','Huyện Đắk Glei','Huyện',62),(611,'2022-04-04 10:47:30.815847','2022-04-04 10:47:30.815847','Huyện Ngọc Hồi','Huyện',62),(612,'2022-04-04 10:47:30.818242','2022-04-04 10:47:30.818242','Huyện Đắk Tô','Huyện',62),(613,'2022-04-04 10:47:30.820723','2022-04-04 10:47:30.820723','Huyện Kon Plông','Huyện',62),(614,'2022-04-04 10:47:30.823031','2022-04-04 10:47:30.823031','Huyện Kon Rẫy','Huyện',62),(615,'2022-04-04 10:47:30.825249','2022-04-04 10:47:30.825249','Huyện Đắk Hà','Huyện',62),(616,'2022-04-04 10:47:30.827413','2022-04-04 10:47:30.827413','Huyện Sa Thầy','Huyện',62),(617,'2022-04-04 10:47:30.829570','2022-04-04 10:47:30.829570','Huyện Tu Mơ Rông','Huyện',62),(618,'2022-04-04 10:47:30.831745','2022-04-04 10:47:30.831745','Huyện Ia H\' Drai','Huyện',62),(622,'2022-04-04 10:47:30.833909','2022-04-04 10:47:30.833909','Thành phố Pleiku','Thành phố',64),(623,'2022-04-04 10:47:30.836090','2022-04-04 10:47:30.836090','Thị xã An Khê','Thị xã',64),(624,'2022-04-04 10:47:30.838238','2022-04-04 10:47:30.838238','Thị xã Ayun Pa','Thị xã',64),(625,'2022-04-04 10:47:30.840459','2022-04-04 10:47:30.840459','Huyện KBang','Huyện',64),(626,'2022-04-04 10:47:30.842654','2022-04-04 10:47:30.842654','Huyện Đăk Đoa','Huyện',64),(627,'2022-04-04 10:47:30.844870','2022-04-04 10:47:30.844870','Huyện Chư Păh','Huyện',64),(628,'2022-04-04 10:47:30.847309','2022-04-04 10:47:30.847309','Huyện Ia Grai','Huyện',64),(629,'2022-04-04 10:47:30.849558','2022-04-04 10:47:30.849558','Huyện Mang Yang','Huyện',64),(630,'2022-04-04 10:47:30.851807','2022-04-04 10:47:30.851807','Huyện Kông Chro','Huyện',64),(631,'2022-04-04 10:47:30.854047','2022-04-04 10:47:30.854047','Huyện Đức Cơ','Huyện',64),(632,'2022-04-04 10:47:30.856226','2022-04-04 10:47:30.856226','Huyện Chư Prông','Huyện',64),(633,'2022-04-04 10:47:30.858422','2022-04-04 10:47:30.858422','Huyện Chư Sê','Huyện',64),(634,'2022-04-04 10:47:30.860608','2022-04-04 10:47:30.860608','Huyện Đăk Pơ','Huyện',64),(635,'2022-04-04 10:47:30.862778','2022-04-04 10:47:30.862778','Huyện Ia Pa','Huyện',64),(637,'2022-04-04 10:47:30.865108','2022-04-04 10:47:30.865108','Huyện Krông Pa','Huyện',64),(638,'2022-04-04 10:47:30.867460','2022-04-04 10:47:30.867460','Huyện Phú Thiện','Huyện',64),(639,'2022-04-04 10:47:30.869768','2022-04-04 10:47:30.869768','Huyện Chư Pưh','Huyện',64),(643,'2022-04-04 10:47:30.871951','2022-04-04 10:47:30.871951','Thành phố Buôn Ma Thuột','Thành phố',66),(644,'2022-04-04 10:47:30.874278','2022-04-04 10:47:30.874278','Thị Xã Buôn Hồ','Thị xã',66),(645,'2022-04-04 10:47:30.876557','2022-04-04 10:47:30.876557','Huyện Ea H\'leo','Huyện',66),(646,'2022-04-04 10:47:30.878857','2022-04-04 10:47:30.878857','Huyện Ea Súp','Huyện',66),(647,'2022-04-04 10:47:30.881185','2022-04-04 10:47:30.881185','Huyện Buôn Đôn','Huyện',66),(648,'2022-04-04 10:47:30.883419','2022-04-04 10:47:30.883419','Huyện Cư M\'gar','Huyện',66),(649,'2022-04-04 10:47:30.885754','2022-04-04 10:47:30.885754','Huyện Krông Búk','Huyện',66),(650,'2022-04-04 10:47:30.888052','2022-04-04 10:47:30.888052','Huyện Krông Năng','Huyện',66),(651,'2022-04-04 10:47:30.890344','2022-04-04 10:47:30.890344','Huyện Ea Kar','Huyện',66),(652,'2022-04-04 10:47:30.892513','2022-04-04 10:47:30.892513','Huyện M\'Đrắk','Huyện',66),(653,'2022-04-04 10:47:30.894800','2022-04-04 10:47:30.894800','Huyện Krông Bông','Huyện',66),(654,'2022-04-04 10:47:30.897101','2022-04-04 10:47:30.897101','Huyện Krông Pắc','Huyện',66),(655,'2022-04-04 10:47:30.899401','2022-04-04 10:47:30.899401','Huyện Krông A Na','Huyện',66),(656,'2022-04-04 10:47:30.901846','2022-04-04 10:47:30.901846','Huyện Lắk','Huyện',66),(657,'2022-04-04 10:47:30.904208','2022-04-04 10:47:30.904208','Huyện Cư Kuin','Huyện',66),(660,'2022-04-04 10:47:30.906506','2022-04-04 10:47:30.906506','Thị xã Gia Nghĩa','Thị xã',67),(661,'2022-04-04 10:47:30.908799','2022-04-04 10:47:30.908799','Huyện Đăk Glong','Huyện',67),(662,'2022-04-04 10:47:30.910963','2022-04-04 10:47:30.910963','Huyện Cư Jút','Huyện',67),(663,'2022-04-04 10:47:30.913107','2022-04-04 10:47:30.913107','Huyện Đắk Mil','Huyện',67),(664,'2022-04-04 10:47:30.915253','2022-04-04 10:47:30.915253','Huyện Krông Nô','Huyện',67),(665,'2022-04-04 10:47:30.917453','2022-04-04 10:47:30.917453','Huyện Đắk Song','Huyện',67),(666,'2022-04-04 10:47:30.919664','2022-04-04 10:47:30.919664','Huyện Đắk R\'Lấp','Huyện',67),(667,'2022-04-04 10:47:30.921831','2022-04-04 10:47:30.921831','Huyện Tuy Đức','Huyện',67),(672,'2022-04-04 10:47:30.924007','2022-04-04 10:47:30.924007','Thành phố Đà Lạt','Thành phố',68),(673,'2022-04-04 10:47:30.926187','2022-04-04 10:47:30.926187','Thành phố Bảo Lộc','Thành phố',68),(674,'2022-04-04 10:47:30.928377','2022-04-04 10:47:30.928377','Huyện Đam Rông','Huyện',68),(675,'2022-04-04 10:47:30.930552','2022-04-04 10:47:30.930552','Huyện Lạc Dương','Huyện',68),(676,'2022-04-04 10:47:30.932865','2022-04-04 10:47:30.932865','Huyện Lâm Hà','Huyện',68),(677,'2022-04-04 10:47:30.935196','2022-04-04 10:47:30.935196','Huyện Đơn Dương','Huyện',68),(678,'2022-04-04 10:47:30.937422','2022-04-04 10:47:30.937422','Huyện Đức Trọng','Huyện',68),(679,'2022-04-04 10:47:30.939630','2022-04-04 10:47:30.939630','Huyện Di Linh','Huyện',68),(680,'2022-04-04 10:47:30.941801','2022-04-04 10:47:30.941801','Huyện Bảo Lâm','Huyện',68),(681,'2022-04-04 10:47:30.944105','2022-04-04 10:47:30.944105','Huyện Đạ Huoai','Huyện',68),(682,'2022-04-04 10:47:30.946339','2022-04-04 10:47:30.946339','Huyện Đạ Tẻh','Huyện',68),(683,'2022-04-04 10:47:30.948659','2022-04-04 10:47:30.948659','Huyện Cát Tiên','Huyện',68),(688,'2022-04-04 10:47:30.950858','2022-04-04 10:47:30.950858','Thị xã Phước Long','Thị xã',70),(689,'2022-04-04 10:47:30.953066','2022-04-04 10:47:30.953066','Thị xã Đồng Xoài','Thị xã',70),(690,'2022-04-04 10:47:30.955273','2022-04-04 10:47:30.955273','Thị xã Bình Long','Thị xã',70),(691,'2022-04-04 10:47:30.957484','2022-04-04 10:47:30.957484','Huyện Bù Gia Mập','Huyện',70),(692,'2022-04-04 10:47:30.959665','2022-04-04 10:47:30.959665','Huyện Lộc Ninh','Huyện',70),(693,'2022-04-04 10:47:30.961867','2022-04-04 10:47:30.961867','Huyện Bù Đốp','Huyện',70),(694,'2022-04-04 10:47:30.964102','2022-04-04 10:47:30.964102','Huyện Hớn Quản','Huyện',70),(695,'2022-04-04 10:47:30.966331','2022-04-04 10:47:30.966331','Huyện Đồng Phú','Huyện',70),(696,'2022-04-04 10:47:30.968512','2022-04-04 10:47:30.968512','Huyện Bù Đăng','Huyện',70),(697,'2022-04-04 10:47:30.970686','2022-04-04 10:47:30.970686','Huyện Chơn Thành','Huyện',70),(698,'2022-04-04 10:47:30.972894','2022-04-04 10:47:30.972894','Huyện Phú Riềng','Huyện',70),(703,'2022-04-04 10:47:30.975052','2022-04-04 10:47:30.975052','Thành phố Tây Ninh','Thành phố',72),(705,'2022-04-04 10:47:30.977243','2022-04-04 10:47:30.977243','Huyện Tân Biên','Huyện',72),(706,'2022-04-04 10:47:30.979401','2022-04-04 10:47:30.979401','Huyện Tân Châu','Huyện',72),(707,'2022-04-04 10:47:30.981587','2022-04-04 10:47:30.981587','Huyện Dương Minh Châu','Huyện',72),(708,'2022-04-04 10:47:30.983806','2022-04-04 10:47:30.983806','Huyện Châu Thành','Huyện',72),(709,'2022-04-04 10:47:30.986118','2022-04-04 10:47:30.986118','Huyện Hòa Thành','Huyện',72),(710,'2022-04-04 10:47:30.988376','2022-04-04 10:47:30.988376','Huyện Gò Dầu','Huyện',72),(711,'2022-04-04 10:47:30.990564','2022-04-04 10:47:30.990564','Huyện Bến Cầu','Huyện',72),(712,'2022-04-04 10:47:30.992744','2022-04-04 10:47:30.992744','Huyện Trảng Bàng','Huyện',72),(718,'2022-04-04 10:47:30.994950','2022-04-04 10:47:30.994950','Thành phố Thủ Dầu Một','Thành phố',74),(719,'2022-04-04 10:47:30.997958','2022-04-04 10:47:30.997958','Huyện Bàu Bàng','Huyện',74),(720,'2022-04-04 10:47:31.000519','2022-04-04 10:47:31.000519','Huyện Dầu Tiếng','Huyện',74),(721,'2022-04-04 10:47:31.003085','2022-04-04 10:47:31.003085','Thị xã Bến Cát','Thị xã',74),(722,'2022-04-04 10:47:31.005583','2022-04-04 10:47:31.005583','Huyện Phú Giáo','Huyện',74),(723,'2022-04-04 10:47:31.008075','2022-04-04 10:47:31.008075','Thị xã Tân Uyên','Thị xã',74),(724,'2022-04-04 10:47:31.010598','2022-04-04 10:47:31.010598','Thị xã Dĩ An','Thị xã',74),(725,'2022-04-04 10:47:31.013139','2022-04-04 10:47:31.013139','Thị xã Thuận An','Thị xã',74),(726,'2022-04-04 10:47:31.015699','2022-04-04 10:47:31.015699','Huyện Bắc Tân Uyên','Huyện',74),(731,'2022-04-04 10:47:31.017956','2022-04-04 10:47:31.017956','Thành phố Biên Hòa','Thành phố',75),(732,'2022-04-04 10:47:31.020413','2022-04-04 10:47:31.020413','Thị xã Long Khánh','Thị xã',75),(734,'2022-04-04 10:47:31.022713','2022-04-04 10:47:31.022713','Huyện Tân Phú','Huyện',75),(735,'2022-04-04 10:47:31.024910','2022-04-04 10:47:31.024910','Huyện Vĩnh Cửu','Huyện',75),(736,'2022-04-04 10:47:31.027127','2022-04-04 10:47:31.027127','Huyện Định Quán','Huyện',75),(737,'2022-04-04 10:47:31.029310','2022-04-04 10:47:31.029310','Huyện Trảng Bom','Huyện',75),(738,'2022-04-04 10:47:31.031485','2022-04-04 10:47:31.031485','Huyện Thống Nhất','Huyện',75),(739,'2022-04-04 10:47:31.033710','2022-04-04 10:47:31.033710','Huyện Cẩm Mỹ','Huyện',75),(740,'2022-04-04 10:47:31.035894','2022-04-04 10:47:31.035894','Huyện Long Thành','Huyện',75),(741,'2022-04-04 10:47:31.038052','2022-04-04 10:47:31.038052','Huyện Xuân Lộc','Huyện',75),(742,'2022-04-04 10:47:31.040187','2022-04-04 10:47:31.040187','Huyện Nhơn Trạch','Huyện',75),(747,'2022-04-04 10:47:31.042330','2022-04-04 10:47:31.042330','Thành phố Vũng Tàu','Thành phố',77),(748,'2022-04-04 10:47:31.044478','2022-04-04 10:47:31.044478','Thành phố Bà Rịa','Thành phố',77),(750,'2022-04-04 10:47:31.046656','2022-04-04 10:47:31.046656','Huyện Châu Đức','Huyện',77),(751,'2022-04-04 10:47:31.048868','2022-04-04 10:47:31.048868','Huyện Xuyên Mộc','Huyện',77),(752,'2022-04-04 10:47:31.051040','2022-04-04 10:47:31.051040','Huyện Long Điền','Huyện',77),(753,'2022-04-04 10:47:31.053191','2022-04-04 10:47:31.053191','Huyện Đất Đỏ','Huyện',77),(754,'2022-04-04 10:47:31.055381','2022-04-04 10:47:31.055381','Huyện Tân Thành','Huyện',77),(755,'2022-04-04 10:47:31.057554','2022-04-04 10:47:31.057554','Huyện Côn Đảo','Huyện',77),(760,'2022-04-04 10:47:31.059731','2022-04-04 10:47:31.059731','Quận 1','Quận',79),(761,'2022-04-04 10:47:31.061881','2022-04-04 10:47:31.061881','Quận 12','Quận',79),(762,'2022-04-04 10:47:31.064009','2022-04-04 10:47:31.064009','Quận Thủ Đức','Quận',79),(763,'2022-04-04 10:47:31.066193','2022-04-04 10:47:31.066193','Quận 9','Quận',79),(764,'2022-04-04 10:47:31.068363','2022-04-04 10:47:31.068363','Quận Gò Vấp','Quận',79),(765,'2022-04-04 10:47:31.070537','2022-04-04 10:47:31.070537','Quận Bình Thạnh','Quận',79),(766,'2022-04-04 10:47:31.072707','2022-04-04 10:47:31.072707','Quận Tân Bình','Quận',79),(767,'2022-04-04 10:47:31.074880','2022-04-04 10:47:31.074880','Quận Tân Phú','Quận',79),(768,'2022-04-04 10:47:31.077086','2022-04-04 10:47:31.077086','Quận Phú Nhuận','Quận',79),(769,'2022-04-04 10:47:31.079255','2022-04-04 10:47:31.079255','Quận 2','Quận',79),(770,'2022-04-04 10:47:31.081409','2022-04-04 10:47:31.081409','Quận 3','Quận',79),(771,'2022-04-04 10:47:31.083593','2022-04-04 10:47:31.083593','Quận 10','Quận',79),(772,'2022-04-04 10:47:31.085770','2022-04-04 10:47:31.085770','Quận 11','Quận',79),(773,'2022-04-04 10:47:31.087948','2022-04-04 10:47:31.087948','Quận 4','Quận',79),(774,'2022-04-04 10:47:31.090074','2022-04-04 10:47:31.090074','Quận 5','Quận',79),(775,'2022-04-04 10:47:31.092225','2022-04-04 10:47:31.092225','Quận 6','Quận',79),(776,'2022-04-04 10:47:31.094403','2022-04-04 10:47:31.094403','Quận 8','Quận',79),(777,'2022-04-04 10:47:31.096573','2022-04-04 10:47:31.096573','Quận Bình Tân','Quận',79),(778,'2022-04-04 10:47:31.098765','2022-04-04 10:47:31.098765','Quận 7','Quận',79),(783,'2022-04-04 10:47:31.101007','2022-04-04 10:47:31.101007','Huyện Củ Chi','Huyện',79),(784,'2022-04-04 10:47:31.103268','2022-04-04 10:47:31.103268','Huyện Hóc Môn','Huyện',79),(785,'2022-04-04 10:47:31.105461','2022-04-04 10:47:31.105461','Huyện Bình Chánh','Huyện',79),(786,'2022-04-04 10:47:31.107676','2022-04-04 10:47:31.107676','Huyện Nhà Bè','Huyện',79),(787,'2022-04-04 10:47:31.109835','2022-04-04 10:47:31.109835','Huyện Cần Giờ','Huyện',79),(794,'2022-04-04 10:47:31.112035','2022-04-04 10:47:31.112035','Thành phố Tân An','Thành phố',80),(795,'2022-04-04 10:47:31.114212','2022-04-04 10:47:31.114212','Thị xã Kiến Tường','Thị xã',80),(796,'2022-04-04 10:47:31.116410','2022-04-04 10:47:31.116410','Huyện Tân Hưng','Huyện',80),(797,'2022-04-04 10:47:31.118651','2022-04-04 10:47:31.118651','Huyện Vĩnh Hưng','Huyện',80),(798,'2022-04-04 10:47:31.120864','2022-04-04 10:47:31.120864','Huyện Mộc Hóa','Huyện',80),(799,'2022-04-04 10:47:31.123030','2022-04-04 10:47:31.123030','Huyện Tân Thạnh','Huyện',80),(800,'2022-04-04 10:47:31.125244','2022-04-04 10:47:31.125244','Huyện Thạnh Hóa','Huyện',80),(801,'2022-04-04 10:47:31.127416','2022-04-04 10:47:31.127416','Huyện Đức Huệ','Huyện',80),(802,'2022-04-04 10:47:31.129610','2022-04-04 10:47:31.129610','Huyện Đức Hòa','Huyện',80),(803,'2022-04-04 10:47:31.131816','2022-04-04 10:47:31.131816','Huyện Bến Lức','Huyện',80),(804,'2022-04-04 10:47:31.134018','2022-04-04 10:47:31.134018','Huyện Thủ Thừa','Huyện',80),(805,'2022-04-04 10:47:31.136237','2022-04-04 10:47:31.136237','Huyện Tân Trụ','Huyện',80),(806,'2022-04-04 10:47:31.138440','2022-04-04 10:47:31.138440','Huyện Cần Đước','Huyện',80),(807,'2022-04-04 10:47:31.140644','2022-04-04 10:47:31.140644','Huyện Cần Giuộc','Huyện',80),(808,'2022-04-04 10:47:31.142823','2022-04-04 10:47:31.142823','Huyện Châu Thành','Huyện',80),(815,'2022-04-04 10:47:31.144979','2022-04-04 10:47:31.144979','Thành phố Mỹ Tho','Thành phố',82),(816,'2022-04-04 10:47:31.147259','2022-04-04 10:47:31.147259','Thị xã Gò Công','Thị xã',82),(817,'2022-04-04 10:47:31.149494','2022-04-04 10:47:31.149494','Thị xã Cai Lậy','Huyện',82),(818,'2022-04-04 10:47:31.151726','2022-04-04 10:47:31.151726','Huyện Tân Phước','Huyện',82),(819,'2022-04-04 10:47:31.153902','2022-04-04 10:47:31.153902','Huyện Cái Bè','Huyện',82),(820,'2022-04-04 10:47:31.156049','2022-04-04 10:47:31.156049','Huyện Cai Lậy','Thị xã',82),(821,'2022-04-04 10:47:31.158214','2022-04-04 10:47:31.158214','Huyện Châu Thành','Huyện',82),(822,'2022-04-04 10:47:31.160390','2022-04-04 10:47:31.160390','Huyện Chợ Gạo','Huyện',82),(823,'2022-04-04 10:47:31.162601','2022-04-04 10:47:31.162601','Huyện Gò Công Tây','Huyện',82),(824,'2022-04-04 10:47:31.164822','2022-04-04 10:47:31.164822','Huyện Gò Công Đông','Huyện',82),(825,'2022-04-04 10:47:31.167043','2022-04-04 10:47:31.167043','Huyện Tân Phú Đông','Huyện',82),(829,'2022-04-04 10:47:31.169265','2022-04-04 10:47:31.169265','Thành phố Bến Tre','Thành phố',83),(831,'2022-04-04 10:47:31.171440','2022-04-04 10:47:31.171440','Huyện Châu Thành','Huyện',83),(832,'2022-04-04 10:47:31.173639','2022-04-04 10:47:31.173639','Huyện Chợ Lách','Huyện',83),(833,'2022-04-04 10:47:31.175810','2022-04-04 10:47:31.175810','Huyện Mỏ Cày Nam','Huyện',83),(834,'2022-04-04 10:47:31.178015','2022-04-04 10:47:31.178015','Huyện Giồng Trôm','Huyện',83),(835,'2022-04-04 10:47:31.180194','2022-04-04 10:47:31.180194','Huyện Bình Đại','Huyện',83),(836,'2022-04-04 10:47:31.182399','2022-04-04 10:47:31.182399','Huyện Ba Tri','Huyện',83),(837,'2022-04-04 10:47:31.184564','2022-04-04 10:47:31.184564','Huyện Thạnh Phú','Huyện',83),(838,'2022-04-04 10:47:31.186880','2022-04-04 10:47:31.186880','Huyện Mỏ Cày Bắc','Huyện',83),(842,'2022-04-04 10:47:31.189106','2022-04-04 10:47:31.189106','Thành phố Trà Vinh','Thành phố',84),(844,'2022-04-04 10:47:31.191297','2022-04-04 10:47:31.191297','Huyện Càng Long','Huyện',84),(845,'2022-04-04 10:47:31.193454','2022-04-04 10:47:31.193454','Huyện Cầu Kè','Huyện',84),(846,'2022-04-04 10:47:31.195594','2022-04-04 10:47:31.195594','Huyện Tiểu Cần','Huyện',84),(847,'2022-04-04 10:47:31.197818','2022-04-04 10:47:31.197818','Huyện Châu Thành','Huyện',84),(848,'2022-04-04 10:47:31.200088','2022-04-04 10:47:31.200088','Huyện Cầu Ngang','Huyện',84),(849,'2022-04-04 10:47:31.202370','2022-04-04 10:47:31.202370','Huyện Trà Cú','Huyện',84),(850,'2022-04-04 10:47:31.204573','2022-04-04 10:47:31.204573','Huyện Duyên Hải','Huyện',84),(851,'2022-04-04 10:47:31.206747','2022-04-04 10:47:31.206747','Thị xã Duyên Hải','Thị xã',84),(855,'2022-04-04 10:47:31.208954','2022-04-04 10:47:31.208954','Thành phố Vĩnh Long','Thành phố',86),(857,'2022-04-04 10:47:31.211465','2022-04-04 10:47:31.211465','Huyện Long Hồ','Huyện',86),(858,'2022-04-04 10:47:31.214100','2022-04-04 10:47:31.214100','Huyện Mang Thít','Huyện',86),(859,'2022-04-04 10:47:31.216698','2022-04-04 10:47:31.216698','Huyện  Vũng Liêm','Huyện',86),(860,'2022-04-04 10:47:31.219269','2022-04-04 10:47:31.219269','Huyện Tam Bình','Huyện',86),(861,'2022-04-04 10:47:31.221797','2022-04-04 10:47:31.221797','Thị xã Bình Minh','Thị xã',86),(862,'2022-04-04 10:47:31.224323','2022-04-04 10:47:31.224323','Huyện Trà Ôn','Huyện',86),(863,'2022-04-04 10:47:31.226560','2022-04-04 10:47:31.226560','Huyện Bình Tân','Huyện',86),(866,'2022-04-04 10:47:31.228761','2022-04-04 10:47:31.228761','Thành phố Cao Lãnh','Thành phố',87),(867,'2022-04-04 10:47:31.231001','2022-04-04 10:47:31.231001','Thành phố Sa Đéc','Thành phố',87),(868,'2022-04-04 10:47:31.233199','2022-04-04 10:47:31.233199','Thị xã Hồng Ngự','Thị xã',87),(869,'2022-04-04 10:47:31.235433','2022-04-04 10:47:31.235433','Huyện Tân Hồng','Huyện',87),(870,'2022-04-04 10:47:31.237584','2022-04-04 10:47:31.237584','Huyện Hồng Ngự','Huyện',87),(871,'2022-04-04 10:47:31.239796','2022-04-04 10:47:31.239796','Huyện Tam Nông','Huyện',87),(872,'2022-04-04 10:47:31.241934','2022-04-04 10:47:31.241934','Huyện Tháp Mười','Huyện',87),(873,'2022-04-04 10:47:31.244086','2022-04-04 10:47:31.244086','Huyện Cao Lãnh','Huyện',87),(874,'2022-04-04 10:47:31.246274','2022-04-04 10:47:31.246274','Huyện Thanh Bình','Huyện',87),(875,'2022-04-04 10:47:31.248548','2022-04-04 10:47:31.248548','Huyện Lấp Vò','Huyện',87),(876,'2022-04-04 10:47:31.250765','2022-04-04 10:47:31.250765','Huyện Lai Vung','Huyện',87),(877,'2022-04-04 10:47:31.252937','2022-04-04 10:47:31.252937','Huyện Châu Thành','Huyện',87),(883,'2022-04-04 10:47:31.255127','2022-04-04 10:47:31.255127','Thành phố Long Xuyên','Thành phố',89),(884,'2022-04-04 10:47:31.257334','2022-04-04 10:47:31.257334','Thành phố Châu Đốc','Thành phố',89),(886,'2022-04-04 10:47:31.259521','2022-04-04 10:47:31.259521','Huyện An Phú','Huyện',89),(887,'2022-04-04 10:47:31.261708','2022-04-04 10:47:31.261708','Thị xã Tân Châu','Thị xã',89),(888,'2022-04-04 10:47:31.263858','2022-04-04 10:47:31.263858','Huyện Phú Tân','Huyện',89),(889,'2022-04-04 10:47:31.266029','2022-04-04 10:47:31.266029','Huyện Châu Phú','Huyện',89),(890,'2022-04-04 10:47:31.268234','2022-04-04 10:47:31.268234','Huyện Tịnh Biên','Huyện',89),(891,'2022-04-04 10:47:31.270398','2022-04-04 10:47:31.270398','Huyện Tri Tôn','Huyện',89),(892,'2022-04-04 10:47:31.272656','2022-04-04 10:47:31.272656','Huyện Châu Thành','Huyện',89),(893,'2022-04-04 10:47:31.274899','2022-04-04 10:47:31.274899','Huyện Chợ Mới','Huyện',89),(894,'2022-04-04 10:47:31.277100','2022-04-04 10:47:31.277100','Huyện Thoại Sơn','Huyện',89),(899,'2022-04-04 10:47:31.279285','2022-04-04 10:47:31.279285','Thành phố Rạch Giá','Thành phố',91),(900,'2022-04-04 10:47:31.281502','2022-04-04 10:47:31.281502','Thị xã Hà Tiên','Thị xã',91),(902,'2022-04-04 10:47:31.283737','2022-04-04 10:47:31.283737','Huyện Kiên Lương','Huyện',91),(903,'2022-04-04 10:47:31.286053','2022-04-04 10:47:31.286053','Huyện Hòn Đất','Huyện',91),(904,'2022-04-04 10:47:31.288244','2022-04-04 10:47:31.288244','Huyện Tân Hiệp','Huyện',91),(905,'2022-04-04 10:47:31.290438','2022-04-04 10:47:31.290438','Huyện Châu Thành','Huyện',91),(906,'2022-04-04 10:47:31.292662','2022-04-04 10:47:31.292662','Huyện Giồng Riềng','Huyện',91),(907,'2022-04-04 10:47:31.294875','2022-04-04 10:47:31.294875','Huyện Gò Quao','Huyện',91),(908,'2022-04-04 10:47:31.297038','2022-04-04 10:47:31.297038','Huyện An Biên','Huyện',91),(909,'2022-04-04 10:47:31.299234','2022-04-04 10:47:31.299234','Huyện An Minh','Huyện',91),(910,'2022-04-04 10:47:31.301718','2022-04-04 10:47:31.301718','Huyện Vĩnh Thuận','Huyện',91),(911,'2022-04-04 10:47:31.304001','2022-04-04 10:47:31.304001','Huyện Phú Quốc','Huyện',91),(912,'2022-04-04 10:47:31.306180','2022-04-04 10:47:31.306180','Huyện Kiên Hải','Huyện',91),(913,'2022-04-04 10:47:31.308372','2022-04-04 10:47:31.308372','Huyện U Minh Thượng','Huyện',91),(914,'2022-04-04 10:47:31.310612','2022-04-04 10:47:31.310612','Huyện Giang Thành','Huyện',91),(916,'2022-04-04 10:47:31.312864','2022-04-04 10:47:31.312864','Quận Ninh Kiều','Quận',92),(917,'2022-04-04 10:47:31.315102','2022-04-04 10:47:31.315102','Quận Ô Môn','Quận',92),(918,'2022-04-04 10:47:31.317623','2022-04-04 10:47:31.317623','Quận Bình Thuỷ','Quận',92),(919,'2022-04-04 10:47:31.320085','2022-04-04 10:47:31.320085','Quận Cái Răng','Quận',92),(923,'2022-04-04 10:47:31.322344','2022-04-04 10:47:31.322344','Quận Thốt Nốt','Quận',92),(924,'2022-04-04 10:47:31.324583','2022-04-04 10:47:31.324583','Huyện Vĩnh Thạnh','Huyện',92),(925,'2022-04-04 10:47:31.326808','2022-04-04 10:47:31.326808','Huyện Cờ Đỏ','Huyện',92),(926,'2022-04-04 10:47:31.328981','2022-04-04 10:47:31.328981','Huyện Phong Điền','Huyện',92),(927,'2022-04-04 10:47:31.331177','2022-04-04 10:47:31.331177','Huyện Thới Lai','Huyện',92),(930,'2022-04-04 10:47:31.333526','2022-04-04 10:47:31.333526','Thành phố Vị Thanh','Thành phố',93),(931,'2022-04-04 10:47:31.335790','2022-04-04 10:47:31.335790','Thị xã Ngã Bảy','Thị xã',93),(932,'2022-04-04 10:47:31.337963','2022-04-04 10:47:31.337963','Huyện Châu Thành A','Huyện',93),(933,'2022-04-04 10:47:31.340135','2022-04-04 10:47:31.340135','Huyện Châu Thành','Huyện',93),(934,'2022-04-04 10:47:31.342310','2022-04-04 10:47:31.342310','Huyện Phụng Hiệp','Huyện',93),(935,'2022-04-04 10:47:31.344494','2022-04-04 10:47:31.344494','Huyện Vị Thuỷ','Huyện',93),(936,'2022-04-04 10:47:31.346672','2022-04-04 10:47:31.346672','Huyện Long Mỹ','Huyện',93),(937,'2022-04-04 10:47:31.348850','2022-04-04 10:47:31.348850','Thị xã Long Mỹ','Thị xã',93),(941,'2022-04-04 10:47:31.351046','2022-04-04 10:47:31.351046','Thành phố Sóc Trăng','Thành phố',94),(942,'2022-04-04 10:47:31.353242','2022-04-04 10:47:31.353242','Huyện Châu Thành','Huyện',94),(943,'2022-04-04 10:47:31.355413','2022-04-04 10:47:31.355413','Huyện Kế Sách','Huyện',94),(944,'2022-04-04 10:47:31.357572','2022-04-04 10:47:31.357572','Huyện Mỹ Tú','Huyện',94),(945,'2022-04-04 10:47:31.359740','2022-04-04 10:47:31.359740','Huyện Cù Lao Dung','Huyện',94),(946,'2022-04-04 10:47:31.361936','2022-04-04 10:47:31.361936','Huyện Long Phú','Huyện',94),(947,'2022-04-04 10:47:31.364130','2022-04-04 10:47:31.364130','Huyện Mỹ Xuyên','Huyện',94),(948,'2022-04-04 10:47:31.366396','2022-04-04 10:47:31.366396','Thị xã Ngã Năm','Thị xã',94),(949,'2022-04-04 10:47:31.368651','2022-04-04 10:47:31.368651','Huyện Thạnh Trị','Huyện',94),(950,'2022-04-04 10:47:31.370879','2022-04-04 10:47:31.370879','Thị xã Vĩnh Châu','Thị xã',94),(951,'2022-04-04 10:47:31.373161','2022-04-04 10:47:31.373161','Huyện Trần Đề','Huyện',94),(954,'2022-04-04 10:47:31.375361','2022-04-04 10:47:31.375361','Thành phố Bạc Liêu','Thành phố',95),(956,'2022-04-04 10:47:31.377654','2022-04-04 10:47:31.377654','Huyện Hồng Dân','Huyện',95),(957,'2022-04-04 10:47:31.379840','2022-04-04 10:47:31.379840','Huyện Phước Long','Huyện',95),(958,'2022-04-04 10:47:31.382138','2022-04-04 10:47:31.382138','Huyện Vĩnh Lợi','Huyện',95),(959,'2022-04-04 10:47:31.384347','2022-04-04 10:47:31.384347','Thị xã Giá Rai','Thị xã',95),(960,'2022-04-04 10:47:31.386657','2022-04-04 10:47:31.386657','Huyện Đông Hải','Huyện',95),(961,'2022-04-04 10:47:31.388895','2022-04-04 10:47:31.388895','Huyện Hoà Bình','Huyện',95),(964,'2022-04-04 10:47:31.391087','2022-04-04 10:47:31.391087','Thành phố Cà Mau','Thành phố',96),(966,'2022-04-04 10:47:31.393418','2022-04-04 10:47:31.393418','Huyện U Minh','Huyện',96),(967,'2022-04-04 10:47:31.395666','2022-04-04 10:47:31.395666','Huyện Thới Bình','Huyện',96),(968,'2022-04-04 10:47:31.397878','2022-04-04 10:47:31.397878','Huyện Trần Văn Thời','Huyện',96),(969,'2022-04-04 10:47:31.400167','2022-04-04 10:47:31.400167','Huyện Cái Nước','Huyện',96),(970,'2022-04-04 10:47:31.402426','2022-04-04 10:47:31.402426','Huyện Đầm Dơi','Huyện',96),(971,'2022-04-04 10:47:31.404705','2022-04-04 10:47:31.404705','Huyện Năm Căn','Huyện',96),(972,'2022-04-04 10:47:31.406893','2022-04-04 10:47:31.406893','Huyện Phú Tân','Huyện',96),(973,'2022-04-04 10:47:31.409018','2022-04-04 10:47:31.409018','Huyện Ngọc Hiển','Huyện',96);
+/*!40000 ALTER TABLE `area` ENABLE KEYS */;
+UNLOCK TABLES;
 
-          <a href="./url.php?url=https%3A%2F%2Fmariadb.com%2Fkb%2Fen%2Fdocumentation%2F" title="MariaDB Documentation" target="_blank" rel="noopener noreferrer"><img src="themes/dot.gif" title="MariaDB Documentation" alt="MariaDB Documentation" class="icon ic_b_sqlhelp"></a>
+--
+-- Table structure for table `booking`
+--
 
-          <a id="pma_navigation_settings_icon" href="#" title="Navigation panel settings"><img src="themes/dot.gif" title="Navigation panel settings" alt="Navigation panel settings" class="icon ic_s_cog"></a>
+DROP TABLE IF EXISTS `booking`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `booking` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `create_at` datetime(6) NOT NULL DEFAULT current_timestamp(6),
+  `updated_at` datetime(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
+  `start_date` datetime NOT NULL,
+  `end_date` datetime NOT NULL,
+  `status` int(11) NOT NULL,
+  `num_of_people` int(11) NOT NULL,
+  `price` int(11) NOT NULL,
+  `coupon` varchar(255) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `place_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `IDX_1ceec356159eb1e7a812f9fdc9` (`place_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-          <a id="pma_navigation_reload" href="#" title="Reload navigation panel"><img src="themes/dot.gif" title="Reload navigation panel" alt="Reload navigation panel" class="icon ic_s_reload"></a>
-        </div>
+--
+-- Dumping data for table `booking`
+--
 
-        
-        <img src="themes/dot.gif" title="Loading…" alt="Loading…" style="visibility: hidden; display:none" class="icon ic_ajax_clock_small throbber">
-      </div>
-      <div id="pma_navigation_tree" class="list_container synced highlight autoexpand">
+LOCK TABLES `booking` WRITE;
+/*!40000 ALTER TABLE `booking` DISABLE KEYS */;
+/*!40000 ALTER TABLE `booking` ENABLE KEYS */;
+UNLOCK TABLES;
 
-  <div class="pma_quick_warp"><div class="drop_list"><button title="Recent tables" class="drop_button btn">Recent</button><ul id="pma_recent_list"><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=chip_trip&table=policy_attributes">`chip_trip`.`policy_attributes`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=chip_trip&table=schedule_price_attributes">`chip_trip`.`schedule_price_attributes`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=chip_trip&table=room_type">`chip_trip`.`room_type`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=chip_trip&table=place_amenities_amenity">`chip_trip`.`place_amenities_amenity`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=chip_trip&table=amenity">`chip_trip`.`amenity`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=chip_trip&table=place">`chip_trip`.`place`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=chip_trip&table=room_attributes">`chip_trip`.`room_attributes`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=chip_trip&table=city">`chip_trip`.`city`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=chip_trip&table=coupon">`chip_trip`.`coupon`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=chip_trip&table=area">`chip_trip`.`area`</a></li></ul></div><div class="drop_list"><button title="Favorite tables" class="drop_button btn">Favorites</button><ul id="pma_favorite_list"><li class="warp_link">There are no favorite tables.</li></ul></div><div class="clearfloat"></div></div>
+--
+-- Table structure for table `bookmark`
+--
 
-<div class="clearfloat"></div>
+DROP TABLE IF EXISTS `bookmark`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `bookmark` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `create_at` datetime(6) NOT NULL DEFAULT current_timestamp(6),
+  `updated_at` datetime(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
+  `user` int(11) NOT NULL,
+  `place` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-<ul>
-  
-  <!-- CONTROLS START --><li id="navigation_controls_outer"><div id="navigation_controls"><a href="#" id="pma_navigation_collapse" title="Collapse all"><img src="themes/dot.gif" title="Collapse all" alt="Collapse all" class="icon ic_s_collapseall"></a><a href="#" id="pma_navigation_sync" title="Unlink from main panel"><img src="themes/dot.gif" title="Unlink from main panel" alt="Unlink from main panel" class="icon ic_s_link"></a></div></li><!-- CONTROLS ENDS -->
-</ul>
+--
+-- Dumping data for table `bookmark`
+--
 
+LOCK TABLES `bookmark` WRITE;
+/*!40000 ALTER TABLE `bookmark` DISABLE KEYS */;
+/*!40000 ALTER TABLE `bookmark` ENABLE KEYS */;
+UNLOCK TABLES;
 
+--
+-- Table structure for table `city`
+--
 
-<div id='pma_navigation_tree_content'>
-  <ul>
-    <li class="first new_database italics"><div class='block'><i class='first'></i></div><div class="block second"><a href='index.php?route=/server/databases&server=1'><img src="themes/dot.gif" title="" alt="" class="icon ic_b_newdb"></a></div><a class='hover_show_full' href='index.php?route=/server/databases&server=1' title='New'>New</a><div class="clearfloat"></div></li><li class="database"><div class='block'><i></i><b></b><a class="expander" href='#'><span class="hide paths_nav" data-apath="cm9vdA==.Y2hpcF90cmlw" data-vpath="cm9vdA==.Y2hpcF90cmlw" data-pos="0"></span><img src="themes/dot.gif" title="Expand/Collapse" alt="Expand/Collapse" class="icon ic_b_plus"></a></div><div class="block second"><a href='index.php?route=/database/operations&amp;server=1&amp;db=chip_trip&amp;'><img src="themes/dot.gif" title="Database operations" alt="Database operations" class="icon ic_s_db"></a></div><a class='hover_show_full' href='index.php?route=/database/structure&server=1&amp;db=chip_trip' title='Structure'>chip_trip</a><div class="clearfloat"></div></li><li class="database"><div class='block'><i></i><b></b><a class="expander" href='#'><span class="hide paths_nav" data-apath="cm9vdA==.aW5mb3JtYXRpb25fc2NoZW1h" data-vpath="cm9vdA==.aW5mb3JtYXRpb25fc2NoZW1h" data-pos="0"></span><img src="themes/dot.gif" title="Expand/Collapse" alt="Expand/Collapse" class="icon ic_b_plus"></a></div><div class="block second"><a href='index.php?route=/database/operations&amp;server=1&amp;db=information_schema&amp;'><img src="themes/dot.gif" title="Database operations" alt="Database operations" class="icon ic_s_db"></a></div><a class='hover_show_full' href='index.php?route=/database/structure&server=1&amp;db=information_schema' title='Structure'>information_schema</a><div class="clearfloat"></div></li><li class="database"><div class='block'><i></i><b></b><a class="expander" href='#'><span class="hide paths_nav" data-apath="cm9vdA==.bWZy" data-vpath="cm9vdA==.bWZy" data-pos="0"></span><img src="themes/dot.gif" title="Expand/Collapse" alt="Expand/Collapse" class="icon ic_b_plus"></a></div><div class="block second"><a href='index.php?route=/database/operations&amp;server=1&amp;db=mfr&amp;'><img src="themes/dot.gif" title="Database operations" alt="Database operations" class="icon ic_s_db"></a></div><a class='hover_show_full' href='index.php?route=/database/structure&server=1&amp;db=mfr' title='Structure'>mfr</a><div class="clearfloat"></div></li><li class="database"><div class='block'><i></i><b></b><a class="expander" href='#'><span class="hide paths_nav" data-apath="cm9vdA==.bXVzdWJlbGw=" data-vpath="cm9vdA==.bXVzdWJlbGw=" data-pos="0"></span><img src="themes/dot.gif" title="Expand/Collapse" alt="Expand/Collapse" class="icon ic_b_plus"></a></div><div class="block second"><a href='index.php?route=/database/operations&amp;server=1&amp;db=musubell&amp;'><img src="themes/dot.gif" title="Database operations" alt="Database operations" class="icon ic_s_db"></a></div><a class='hover_show_full' href='index.php?route=/database/structure&server=1&amp;db=musubell' title='Structure'>musubell</a><div class="clearfloat"></div></li><li class="database"><div class='block'><i></i><b></b><a class="expander" href='#'><span class="hide paths_nav" data-apath="cm9vdA==.bXlzcWw=" data-vpath="cm9vdA==.bXlzcWw=" data-pos="0"></span><img src="themes/dot.gif" title="Expand/Collapse" alt="Expand/Collapse" class="icon ic_b_plus"></a></div><div class="block second"><a href='index.php?route=/database/operations&amp;server=1&amp;db=mysql&amp;'><img src="themes/dot.gif" title="Database operations" alt="Database operations" class="icon ic_s_db"></a></div><a class='hover_show_full' href='index.php?route=/database/structure&server=1&amp;db=mysql' title='Structure'>mysql</a><div class="clearfloat"></div></li><li class="database"><div class='block'><i></i><b></b><a class="expander" href='#'><span class="hide paths_nav" data-apath="cm9vdA==.cGVyZm9ybWFuY2Vfc2NoZW1h" data-vpath="cm9vdA==.cGVyZm9ybWFuY2Vfc2NoZW1h" data-pos="0"></span><img src="themes/dot.gif" title="Expand/Collapse" alt="Expand/Collapse" class="icon ic_b_plus"></a></div><div class="block second"><a href='index.php?route=/database/operations&amp;server=1&amp;db=performance_schema&amp;'><img src="themes/dot.gif" title="Database operations" alt="Database operations" class="icon ic_s_db"></a></div><a class='hover_show_full' href='index.php?route=/database/structure&server=1&amp;db=performance_schema' title='Structure'>performance_schema</a><div class="clearfloat"></div></li><li class="database"><div class='block'><i></i><b></b><a class="expander" href='#'><span class="hide paths_nav" data-apath="cm9vdA==.cGhwbXlhZG1pbg==" data-vpath="cm9vdA==.cGhwbXlhZG1pbg==" data-pos="0"></span><img src="themes/dot.gif" title="Expand/Collapse" alt="Expand/Collapse" class="icon ic_b_plus"></a></div><div class="block second"><a href='index.php?route=/database/operations&amp;server=1&amp;db=phpmyadmin&amp;'><img src="themes/dot.gif" title="Database operations" alt="Database operations" class="icon ic_s_db"></a></div><a class='hover_show_full' href='index.php?route=/database/structure&server=1&amp;db=phpmyadmin' title='Structure'>phpmyadmin</a><div class="clearfloat"></div></li><li class="last database"><div class='block'><i></i><a class="expander" href='#'><span class="hide paths_nav" data-apath="cm9vdA==.dGVzdA==" data-vpath="cm9vdA==.dGVzdA==" data-pos="0"></span><img src="themes/dot.gif" title="Expand/Collapse" alt="Expand/Collapse" class="icon ic_b_plus"></a></div><div class="block second"><a href='index.php?route=/database/operations&amp;server=1&amp;db=test&amp;'><img src="themes/dot.gif" title="Database operations" alt="Database operations" class="icon ic_s_db"></a></div><a class='hover_show_full' href='index.php?route=/database/structure&server=1&amp;db=test' title='Structure'>test</a><div class="clearfloat"></div></li>
-  </ul>
-</div>
+DROP TABLE IF EXISTS `city`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `city` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `create_at` datetime(6) NOT NULL DEFAULT current_timestamp(6),
+  `updated_at` datetime(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
+  `name` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `countryId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_990b8a57ab901cb812e2b52fcf0` (`countryId`),
+  CONSTRAINT `FK_990b8a57ab901cb812e2b52fcf0` FOREIGN KEY (`countryId`) REFERENCES `country` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `city`
+--
 
-      </div>
+LOCK TABLES `city` WRITE;
+/*!40000 ALTER TABLE `city` DISABLE KEYS */;
+INSERT INTO `city` VALUES (1,'2022-04-04 10:55:20.981322','2022-04-04 10:55:20.981322','Thành phố Hà Nội','Thành phố Trung ương',1),(2,'2022-04-04 10:55:20.987038','2022-04-04 10:55:20.987038','Tỉnh Hà Giang','Tỉnh',1),(4,'2022-04-04 10:55:20.990400','2022-04-04 10:55:20.990400','Tỉnh Cao Bằng','Tỉnh',1),(6,'2022-04-04 10:55:20.992706','2022-04-04 10:55:20.992706','Tỉnh Bắc Kạn','Tỉnh',1),(8,'2022-04-04 10:55:20.994951','2022-04-04 10:55:20.994951','Tỉnh Tuyên Quang','Tỉnh',1),(10,'2022-04-04 10:55:20.997307','2022-04-04 10:55:20.997307','Tỉnh Lào Cai','Tỉnh',1),(11,'2022-04-04 10:55:20.999520','2022-04-04 10:55:20.999520','Tỉnh Điện Biên','Tỉnh',1),(12,'2022-04-04 10:55:21.001659','2022-04-04 10:55:21.001659','Tỉnh Lai Châu','Tỉnh',1),(14,'2022-04-04 10:55:21.003831','2022-04-04 10:55:21.003831','Tỉnh Sơn La','Tỉnh',1),(15,'2022-04-04 10:55:21.005870','2022-04-04 10:55:21.005870','Tỉnh Yên Bái','Tỉnh',1),(17,'2022-04-04 10:55:21.007848','2022-04-04 10:55:21.007848','Tỉnh Hoà Bình','Tỉnh',1),(19,'2022-04-04 10:55:21.009827','2022-04-04 10:55:21.009827','Tỉnh Thái Nguyên','Tỉnh',1),(20,'2022-04-04 10:55:21.011796','2022-04-04 10:55:21.011796','Tỉnh Lạng Sơn','Tỉnh',1),(22,'2022-04-04 10:55:21.013785','2022-04-04 10:55:21.013785','Tỉnh Quảng Ninh','Tỉnh',1),(24,'2022-04-04 10:55:21.015775','2022-04-04 10:55:21.015775','Tỉnh Bắc Giang','Tỉnh',1),(25,'2022-04-04 10:55:21.017920','2022-04-04 10:55:21.017920','Tỉnh Phú Thọ','Tỉnh',1),(26,'2022-04-04 10:55:21.019923','2022-04-04 10:55:21.019923','Tỉnh Vĩnh Phúc','Tỉnh',1),(27,'2022-04-04 10:55:21.021895','2022-04-04 10:55:21.021895','Tỉnh Bắc Ninh','Tỉnh',1),(30,'2022-04-04 10:55:21.023970','2022-04-04 10:55:21.023970','Tỉnh Hải Dương','Tỉnh',1),(31,'2022-04-04 10:55:21.026025','2022-04-04 10:55:21.026025','Thành phố Hải Phòng','Thành phố Trung ương',1),(33,'2022-04-04 10:55:21.028103','2022-04-04 10:55:21.028103','Tỉnh Hưng Yên','Tỉnh',1),(34,'2022-04-04 10:55:21.030071','2022-04-04 10:55:21.030071','Tỉnh Thái Bình','Tỉnh',1),(35,'2022-04-04 10:55:21.032037','2022-04-04 10:55:21.032037','Tỉnh Hà Nam','Tỉnh',1),(36,'2022-04-04 10:55:21.033997','2022-04-04 10:55:21.033997','Tỉnh Nam Định','Tỉnh',1),(37,'2022-04-04 10:55:21.036054','2022-04-04 10:55:21.036054','Tỉnh Ninh Bình','Tỉnh',1),(38,'2022-04-04 10:55:21.038109','2022-04-04 10:55:21.038109','Tỉnh Thanh Hóa','Tỉnh',1),(40,'2022-04-04 10:55:21.039970','2022-04-04 10:55:21.039970','Tỉnh Nghệ An','Tỉnh',1),(42,'2022-04-04 10:55:21.041826','2022-04-04 10:55:21.041826','Tỉnh Hà Tĩnh','Tỉnh',1),(44,'2022-04-04 10:55:21.043768','2022-04-04 10:55:21.043768','Tỉnh Quảng Bình','Tỉnh',1),(45,'2022-04-04 10:55:21.045696','2022-04-04 10:55:21.045696','Tỉnh Quảng Trị','Tỉnh',1),(46,'2022-04-04 10:55:21.047540','2022-04-04 10:55:21.047540','Tỉnh Thừa Thiên Huế','Tỉnh',1),(48,'2022-04-04 10:55:21.049391','2022-04-04 10:55:21.049391','Thành phố Đà Nẵng','Thành phố Trung ương',1),(49,'2022-04-04 10:55:21.051267','2022-04-04 10:55:21.051267','Tỉnh Quảng Nam','Tỉnh',1),(51,'2022-04-04 10:55:21.053111','2022-04-04 10:55:21.053111','Tỉnh Quảng Ngãi','Tỉnh',1),(52,'2022-04-04 10:55:21.055026','2022-04-04 10:55:21.055026','Tỉnh Bình Định','Tỉnh',1),(54,'2022-04-04 10:55:21.056928','2022-04-04 10:55:21.056928','Tỉnh Phú Yên','Tỉnh',1),(56,'2022-04-04 10:55:21.058782','2022-04-04 10:55:21.058782','Tỉnh Khánh Hòa','Tỉnh',1),(58,'2022-04-04 10:55:21.060628','2022-04-04 10:55:21.060628','Tỉnh Ninh Thuận','Tỉnh',1),(60,'2022-04-04 10:55:21.062470','2022-04-04 10:55:21.062470','Tỉnh Bình Thuận','Tỉnh',1),(62,'2022-04-04 10:55:21.064312','2022-04-04 10:55:21.064312','Tỉnh Kon Tum','Tỉnh',1),(64,'2022-04-04 10:55:21.066146','2022-04-04 10:55:21.066146','Tỉnh Gia Lai','Tỉnh',1),(66,'2022-04-04 10:55:21.068018','2022-04-04 10:55:21.068018','Tỉnh Đắk Lắk','Tỉnh',1),(67,'2022-04-04 10:55:21.070040','2022-04-04 10:55:21.070040','Tỉnh Đắk Nông','Tỉnh',1),(68,'2022-04-04 10:55:21.072105','2022-04-04 10:55:21.072105','Tỉnh Lâm Đồng','Tỉnh',1),(70,'2022-04-04 10:55:21.073987','2022-04-04 10:55:21.073987','Tỉnh Bình Phước','Tỉnh',1),(72,'2022-04-04 10:55:21.075855','2022-04-04 10:55:21.075855','Tỉnh Tây Ninh','Tỉnh',1),(74,'2022-04-04 10:55:21.077701','2022-04-04 10:55:21.077701','Tỉnh Bình Dương','Tỉnh',1),(75,'2022-04-04 10:55:21.079543','2022-04-04 10:55:21.079543','Tỉnh Đồng Nai','Tỉnh',1),(77,'2022-04-04 10:55:21.081390','2022-04-04 10:55:21.081390','Tỉnh Bà Rịa - Vũng Tàu','Tỉnh',1),(79,'2022-04-04 10:55:21.083251','2022-04-04 10:55:21.083251','Thành phố Hồ Chí Minh','Thành phố Trung ương',1),(80,'2022-04-04 10:55:21.085259','2022-04-04 10:55:21.085259','Tỉnh Long An','Tỉnh',1),(82,'2022-04-04 10:55:21.087177','2022-04-04 10:55:21.087177','Tỉnh Tiền Giang','Tỉnh',1),(83,'2022-04-04 10:55:21.089075','2022-04-04 10:55:21.089075','Tỉnh Bến Tre','Tỉnh',1),(84,'2022-04-04 10:55:21.090963','2022-04-04 10:55:21.090963','Tỉnh Trà Vinh','Tỉnh',1),(86,'2022-04-04 10:55:21.092850','2022-04-04 10:55:21.092850','Tỉnh Vĩnh Long','Tỉnh',1),(87,'2022-04-04 10:55:21.094752','2022-04-04 10:55:21.094752','Tỉnh Đồng Tháp','Tỉnh',1),(89,'2022-04-04 10:55:21.096658','2022-04-04 10:55:21.096658','Tỉnh An Giang','Tỉnh',1),(91,'2022-04-04 10:55:21.098589','2022-04-04 10:55:21.098589','Tỉnh Kiên Giang','Tỉnh',1),(92,'2022-04-04 10:55:21.100518','2022-04-04 10:55:21.100518','Thành phố Cần Thơ','Thành phố Trung ương',1),(93,'2022-04-04 10:55:21.102474','2022-04-04 10:55:21.102474','Tỉnh Hậu Giang','Tỉnh',1),(94,'2022-04-04 10:55:21.104392','2022-04-04 10:55:21.104392','Tỉnh Sóc Trăng','Tỉnh',1),(95,'2022-04-04 10:55:21.106292','2022-04-04 10:55:21.106292','Tỉnh Bạc Liêu','Tỉnh',1),(96,'2022-04-04 10:55:21.108153','2022-04-04 10:55:21.108153','Tỉnh Cà Mau','Tỉnh',1);
+/*!40000 ALTER TABLE `city` ENABLE KEYS */;
+UNLOCK TABLES;
 
-      <div id="pma_navi_settings_container">
-                  <div id="pma_navigation_settings"><div class="page_settings"><form method="post" action="index.php&#x3F;route&#x3D;&#x25;2Fexport&amp;server&#x3D;1" class="config-form disableAjax">
-  <input type="hidden" name="tab_hash" value="">
-      <input type="hidden" name="check_page_refresh" id="check_page_refresh" value="">
-    <input type="hidden" name="token" value="474440682d222f4c333f496a413e3e6c">
-  <input type="hidden" name="submit_save" value="Navi">
-<ul class="tabs responsivetable row">
-      <li><a href="#Navi_panel">Navigation panel</a></li>
-      <li><a href="#Navi_tree">Navigation tree</a></li>
-      <li><a href="#Navi_servers">Servers</a></li>
-      <li><a href="#Navi_databases">Databases</a></li>
-      <li><a href="#Navi_tables">Tables</a></li>
-  </ul>
-<div class="tabs_contents col">
-<fieldset class="optbox" id="Navi_panel">
-<legend>Navigation panel</legend>
-    <p>Customize appearance of the navigation panel.</p>
-<table class="pma-table" width="100%" cellspacing="0">
-<tr><th><label for="ShowDatabasesNavigationAsTree">Show databases navigation as tree</label><span class="doc"><a href="./doc/html/config.html#cfg_ShowDatabasesNavigationAsTree" target="documentation"><img src="themes/dot.gif" title="Documentation" alt="Documentation" class="icon ic_b_help"></a>
-</span><small>In the navigation panel, replaces the database tree with a selector</small></th><td><span class="checkbox"><input type="checkbox" name="ShowDatabasesNavigationAsTree" id="ShowDatabasesNavigationAsTree" checked="checked"></span><a class="restore-default hide" href="#ShowDatabasesNavigationAsTree" title="Restore default value"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_reload"></a></td></tr><tr><th><label for="NavigationLinkWithMainPanel">Link with main panel</label><span class="doc"><a href="./doc/html/config.html#cfg_NavigationLinkWithMainPanel" target="documentation"><img src="themes/dot.gif" title="Documentation" alt="Documentation" class="icon ic_b_help"></a>
-</span><small>Link with main panel by highlighting the current database or table.</small></th><td><span class="checkbox"><input type="checkbox" name="NavigationLinkWithMainPanel" id="NavigationLinkWithMainPanel" checked="checked"></span><a class="restore-default hide" href="#NavigationLinkWithMainPanel" title="Restore default value"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_reload"></a></td></tr><tr><th><label for="NavigationDisplayLogo">Display logo</label><span class="doc"><a href="./doc/html/config.html#cfg_NavigationDisplayLogo" target="documentation"><img src="themes/dot.gif" title="Documentation" alt="Documentation" class="icon ic_b_help"></a>
-</span><small>Show logo in navigation panel.</small></th><td><span class="checkbox"><input type="checkbox" name="NavigationDisplayLogo" id="NavigationDisplayLogo" checked="checked"></span><a class="restore-default hide" href="#NavigationDisplayLogo" title="Restore default value"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_reload"></a></td></tr><tr><th><label for="NavigationLogoLink">Logo link URL</label><span class="doc"><a href="./doc/html/config.html#cfg_NavigationLogoLink" target="documentation"><img src="themes/dot.gif" title="Documentation" alt="Documentation" class="icon ic_b_help"></a>
-</span><small>URL where logo in the navigation panel will point to.</small></th><td><input type="text" class="w-75" name="NavigationLogoLink" id="NavigationLogoLink" value="index.php"><a class="restore-default hide" href="#NavigationLogoLink" title="Restore default value"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_reload"></a></td></tr><tr><th><label for="NavigationLogoLinkWindow">Logo link target</label><span class="doc"><a href="./doc/html/config.html#cfg_NavigationLogoLinkWindow" target="documentation"><img src="themes/dot.gif" title="Documentation" alt="Documentation" class="icon ic_b_help"></a>
-</span><small>Open the linked page in the main window (<code>main</code>) or in a new one (<code>new</code>).</small></th><td><select class="w-75" name="NavigationLogoLinkWindow" id="NavigationLogoLinkWindow"><option value="main" selected="selected">main</option><option value="new">new</option></select><a class="restore-default hide" href="#NavigationLogoLinkWindow" title="Restore default value"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_reload"></a></td></tr><tr><th><label for="NavigationTreePointerEnable">Enable highlighting</label><span class="doc"><a href="./doc/html/config.html#cfg_NavigationTreePointerEnable" target="documentation"><img src="themes/dot.gif" title="Documentation" alt="Documentation" class="icon ic_b_help"></a>
-</span><small>Highlight server under the mouse cursor.</small></th><td><span class="checkbox"><input type="checkbox" name="NavigationTreePointerEnable" id="NavigationTreePointerEnable" checked="checked"></span><a class="restore-default hide" href="#NavigationTreePointerEnable" title="Restore default value"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_reload"></a></td></tr><tr><th><label for="FirstLevelNavigationItems">Maximum items on first level</label><span class="doc"><a href="./doc/html/config.html#cfg_FirstLevelNavigationItems" target="documentation"><img src="themes/dot.gif" title="Documentation" alt="Documentation" class="icon ic_b_help"></a>
-</span><small>The number of items that can be displayed on each page on the first level of the navigation tree.</small></th><td><input type="number" name="FirstLevelNavigationItems" id="FirstLevelNavigationItems" value="100"><a class="restore-default hide" href="#FirstLevelNavigationItems" title="Restore default value"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_reload"></a></td></tr><tr><th><label for="NavigationTreeDisplayItemFilterMinimum">Minimum number of items to display the filter box</label><span class="doc"><a href="./doc/html/config.html#cfg_NavigationTreeDisplayItemFilterMinimum" target="documentation"><img src="themes/dot.gif" title="Documentation" alt="Documentation" class="icon ic_b_help"></a>
-</span><small>Defines the minimum number of items (tables, views, routines and events) to display a filter box.</small></th><td><input type="number" name="NavigationTreeDisplayItemFilterMinimum" id="NavigationTreeDisplayItemFilterMinimum" value="30"><a class="restore-default hide" href="#NavigationTreeDisplayItemFilterMinimum" title="Restore default value"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_reload"></a></td></tr><tr><th><label for="NumRecentTables">Recently used tables</label><span class="doc"><a href="./doc/html/config.html#cfg_NumRecentTables" target="documentation"><img src="themes/dot.gif" title="Documentation" alt="Documentation" class="icon ic_b_help"></a>
-</span><small>Maximum number of recently used tables; set 0 to disable.</small></th><td><input type="number" name="NumRecentTables" id="NumRecentTables" value="10"><a class="restore-default hide" href="#NumRecentTables" title="Restore default value"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_reload"></a></td></tr><tr><th><label for="NumFavoriteTables">Favorite tables</label><span class="doc"><a href="./doc/html/config.html#cfg_NumFavoriteTables" target="documentation"><img src="themes/dot.gif" title="Documentation" alt="Documentation" class="icon ic_b_help"></a>
-</span><small>Maximum number of favorite tables; set 0 to disable.</small></th><td><input type="number" name="NumFavoriteTables" id="NumFavoriteTables" value="10"><a class="restore-default hide" href="#NumFavoriteTables" title="Restore default value"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_reload"></a></td></tr><tr><th><label for="NavigationWidth">Navigation panel width</label><span class="doc"><a href="./doc/html/config.html#cfg_NavigationWidth" target="documentation"><img src="themes/dot.gif" title="Documentation" alt="Documentation" class="icon ic_b_help"></a>
-</span><small>Set to 0 to collapse navigation panel.</small></th><td><input type="number" name="NavigationWidth" id="NavigationWidth" class="custom" value="521"><a class="restore-default hide" href="#NavigationWidth" title="Restore default value"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_reload"></a></td></tr></table>
-</fieldset>
-<fieldset class="optbox" id="Navi_tree">
-<legend>Navigation tree</legend>
-    <p>Customize the navigation tree.</p>
-<table class="pma-table" width="100%" cellspacing="0">
-<tr><th><label for="MaxNavigationItems">Maximum items in branch</label><span class="doc"><a href="./doc/html/config.html#cfg_MaxNavigationItems" target="documentation"><img src="themes/dot.gif" title="Documentation" alt="Documentation" class="icon ic_b_help"></a>
-</span><small>The number of items that can be displayed on each page of the navigation tree.</small></th><td><input type="number" name="MaxNavigationItems" id="MaxNavigationItems" value="50"><a class="restore-default hide" href="#MaxNavigationItems" title="Restore default value"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_reload"></a></td></tr><tr><th><label for="NavigationTreeEnableGrouping">Group items in the tree</label><span class="doc"><a href="./doc/html/config.html#cfg_NavigationTreeEnableGrouping" target="documentation"><img src="themes/dot.gif" title="Documentation" alt="Documentation" class="icon ic_b_help"></a>
-</span><small>Group items in the navigation tree (determined by the separator defined in the Databases and Tables tabs above).</small></th><td><span class="checkbox"><input type="checkbox" name="NavigationTreeEnableGrouping" id="NavigationTreeEnableGrouping" checked="checked"></span><a class="restore-default hide" href="#NavigationTreeEnableGrouping" title="Restore default value"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_reload"></a></td></tr><tr><th><label for="NavigationTreeEnableExpansion">Enable navigation tree expansion</label><span class="doc"><a href="./doc/html/config.html#cfg_NavigationTreeEnableExpansion" target="documentation"><img src="themes/dot.gif" title="Documentation" alt="Documentation" class="icon ic_b_help"></a>
-</span><small>Whether to offer the possibility of tree expansion in the navigation panel.</small></th><td><span class="checkbox"><input type="checkbox" name="NavigationTreeEnableExpansion" id="NavigationTreeEnableExpansion" checked="checked"></span><a class="restore-default hide" href="#NavigationTreeEnableExpansion" title="Restore default value"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_reload"></a></td></tr><tr><th><label for="NavigationTreeShowTables">Show tables in tree</label><span class="doc"><a href="./doc/html/config.html#cfg_NavigationTreeShowTables" target="documentation"><img src="themes/dot.gif" title="Documentation" alt="Documentation" class="icon ic_b_help"></a>
-</span><small>Whether to show tables under database in the navigation tree</small></th><td><span class="checkbox"><input type="checkbox" name="NavigationTreeShowTables" id="NavigationTreeShowTables" checked="checked"></span><a class="restore-default hide" href="#NavigationTreeShowTables" title="Restore default value"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_reload"></a></td></tr><tr><th><label for="NavigationTreeShowViews">Show views in tree</label><span class="doc"><a href="./doc/html/config.html#cfg_NavigationTreeShowViews" target="documentation"><img src="themes/dot.gif" title="Documentation" alt="Documentation" class="icon ic_b_help"></a>
-</span><small>Whether to show views under database in the navigation tree</small></th><td><span class="checkbox"><input type="checkbox" name="NavigationTreeShowViews" id="NavigationTreeShowViews" checked="checked"></span><a class="restore-default hide" href="#NavigationTreeShowViews" title="Restore default value"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_reload"></a></td></tr><tr><th><label for="NavigationTreeShowFunctions">Show functions in tree</label><span class="doc"><a href="./doc/html/config.html#cfg_NavigationTreeShowFunctions" target="documentation"><img src="themes/dot.gif" title="Documentation" alt="Documentation" class="icon ic_b_help"></a>
-</span><small>Whether to show functions under database in the navigation tree</small></th><td><span class="checkbox"><input type="checkbox" name="NavigationTreeShowFunctions" id="NavigationTreeShowFunctions" checked="checked"></span><a class="restore-default hide" href="#NavigationTreeShowFunctions" title="Restore default value"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_reload"></a></td></tr><tr><th><label for="NavigationTreeShowProcedures">Show procedures in tree</label><span class="doc"><a href="./doc/html/config.html#cfg_NavigationTreeShowProcedures" target="documentation"><img src="themes/dot.gif" title="Documentation" alt="Documentation" class="icon ic_b_help"></a>
-</span><small>Whether to show procedures under database in the navigation tree</small></th><td><span class="checkbox"><input type="checkbox" name="NavigationTreeShowProcedures" id="NavigationTreeShowProcedures" checked="checked"></span><a class="restore-default hide" href="#NavigationTreeShowProcedures" title="Restore default value"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_reload"></a></td></tr><tr><th><label for="NavigationTreeShowEvents">Show events in tree</label><span class="doc"><a href="./doc/html/config.html#cfg_NavigationTreeShowEvents" target="documentation"><img src="themes/dot.gif" title="Documentation" alt="Documentation" class="icon ic_b_help"></a>
-</span><small>Whether to show events under database in the navigation tree</small></th><td><span class="checkbox"><input type="checkbox" name="NavigationTreeShowEvents" id="NavigationTreeShowEvents" checked="checked"></span><a class="restore-default hide" href="#NavigationTreeShowEvents" title="Restore default value"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_reload"></a></td></tr><tr><th><label for="NavigationTreeAutoexpandSingleDb">Expand single database</label><span class="doc"><a href="./doc/html/config.html#cfg_NavigationTreeAutoexpandSingleDb" target="documentation"><img src="themes/dot.gif" title="Documentation" alt="Documentation" class="icon ic_b_help"></a>
-</span><small>Whether to expand single database in the navigation tree automatically.</small></th><td><span class="checkbox"><input type="checkbox" name="NavigationTreeAutoexpandSingleDb" id="NavigationTreeAutoexpandSingleDb" checked="checked"></span><a class="restore-default hide" href="#NavigationTreeAutoexpandSingleDb" title="Restore default value"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_reload"></a></td></tr></table>
-</fieldset>
-<fieldset class="optbox" id="Navi_servers">
-<legend>Servers</legend>
-    <p>Servers display options.</p>
-<table class="pma-table" width="100%" cellspacing="0">
-<tr><th><label for="NavigationDisplayServers">Display servers selection</label><span class="doc"><a href="./doc/html/config.html#cfg_NavigationDisplayServers" target="documentation"><img src="themes/dot.gif" title="Documentation" alt="Documentation" class="icon ic_b_help"></a>
-</span><small>Display server choice at the top of the navigation panel.</small></th><td><span class="checkbox"><input type="checkbox" name="NavigationDisplayServers" id="NavigationDisplayServers" checked="checked"></span><a class="restore-default hide" href="#NavigationDisplayServers" title="Restore default value"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_reload"></a></td></tr><tr><th><label for="DisplayServersList">Display servers as a list</label><span class="doc"><a href="./doc/html/config.html#cfg_DisplayServersList" target="documentation"><img src="themes/dot.gif" title="Documentation" alt="Documentation" class="icon ic_b_help"></a>
-</span><small>Show server listing as a list instead of a drop down.</small></th><td><span class="checkbox"><input type="checkbox" name="DisplayServersList" id="DisplayServersList"></span><a class="restore-default hide" href="#DisplayServersList" title="Restore default value"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_reload"></a></td></tr></table>
-</fieldset>
-<fieldset class="optbox" id="Navi_databases">
-<legend>Databases</legend>
-    <p>Databases display options.</p>
-<table class="pma-table" width="100%" cellspacing="0">
-<tr><th><label for="NavigationTreeDisplayDbFilterMinimum">Minimum number of databases to display the database filter box</label><span class="doc"><a href="./doc/html/config.html#cfg_NavigationTreeDisplayDbFilterMinimum" target="documentation"><img src="themes/dot.gif" title="Documentation" alt="Documentation" class="icon ic_b_help"></a>
-</span></th><td><input type="number" name="NavigationTreeDisplayDbFilterMinimum" id="NavigationTreeDisplayDbFilterMinimum" value="30"><a class="restore-default hide" href="#NavigationTreeDisplayDbFilterMinimum" title="Restore default value"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_reload"></a></td></tr><tr><th><label for="NavigationTreeDbSeparator">Database tree separator</label><span class="doc"><a href="./doc/html/config.html#cfg_NavigationTreeDbSeparator" target="documentation"><img src="themes/dot.gif" title="Documentation" alt="Documentation" class="icon ic_b_help"></a>
-</span><small>String that separates databases into different tree levels.</small></th><td><input type="text" size="25" name="NavigationTreeDbSeparator" id="NavigationTreeDbSeparator" value="_"><a class="restore-default hide" href="#NavigationTreeDbSeparator" title="Restore default value"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_reload"></a></td></tr></table>
-</fieldset>
-<fieldset class="optbox" id="Navi_tables">
-<legend>Tables</legend>
-    <p>Tables display options.</p>
-<table class="pma-table" width="100%" cellspacing="0">
-<tr><th><label for="NavigationTreeDefaultTabTable">Target for quick access icon</label><span class="doc"><a href="./doc/html/config.html#cfg_NavigationTreeDefaultTabTable" target="documentation"><img src="themes/dot.gif" title="Documentation" alt="Documentation" class="icon ic_b_help"></a>
-</span></th><td><select class="w-75" name="NavigationTreeDefaultTabTable" id="NavigationTreeDefaultTabTable"><option value="structure" selected="selected">Structure</option><option value="sql">SQL</option><option value="search">Search</option><option value="insert">Insert</option><option value="browse">Browse</option></select><a class="restore-default hide" href="#NavigationTreeDefaultTabTable" title="Restore default value"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_reload"></a></td></tr><tr><th><label for="NavigationTreeDefaultTabTable2">Target for second quick access icon</label><span class="doc"><a href="./doc/html/config.html#cfg_NavigationTreeDefaultTabTable2" target="documentation"><img src="themes/dot.gif" title="Documentation" alt="Documentation" class="icon ic_b_help"></a>
-</span></th><td><select class="w-75" name="NavigationTreeDefaultTabTable2" id="NavigationTreeDefaultTabTable2"><option value="" selected="selected"></option><option value="structure">Structure</option><option value="sql">SQL</option><option value="search">Search</option><option value="insert">Insert</option><option value="browse">Browse</option></select><a class="restore-default hide" href="#NavigationTreeDefaultTabTable2" title="Restore default value"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_reload"></a></td></tr><tr><th><label for="NavigationTreeTableSeparator">Table tree separator</label><span class="doc"><a href="./doc/html/config.html#cfg_NavigationTreeTableSeparator" target="documentation"><img src="themes/dot.gif" title="Documentation" alt="Documentation" class="icon ic_b_help"></a>
-</span><small>String that separates tables into different tree levels.</small></th><td><input type="text" size="25" name="NavigationTreeTableSeparator" id="NavigationTreeTableSeparator" value="__"><a class="restore-default hide" href="#NavigationTreeTableSeparator" title="Restore default value"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_reload"></a></td></tr><tr><th><label for="NavigationTreeTableLevel">Maximum table tree depth</label><span class="doc"><a href="./doc/html/config.html#cfg_NavigationTreeTableLevel" target="documentation"><img src="themes/dot.gif" title="Documentation" alt="Documentation" class="icon ic_b_help"></a>
-</span></th><td><input type="number" name="NavigationTreeTableLevel" id="NavigationTreeTableLevel" value="1"><a class="restore-default hide" href="#NavigationTreeTableLevel" title="Restore default value"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_reload"></a></td></tr></table>
-</fieldset>
-</div>
-</form>
-<script type="text/javascript">
-    if (typeof configInlineParams === 'undefined' || !Array.isArray(configInlineParams)) {
-        configInlineParams = [];
-    }
-    configInlineParams.push(function () {
-        registerFieldValidator('FirstLevelNavigationItems', 'validatePositiveNumber', true);
-registerFieldValidator('NavigationTreeDisplayItemFilterMinimum', 'validatePositiveNumber', true);
-registerFieldValidator('NumRecentTables', 'validateNonNegativeNumber', true);
-registerFieldValidator('NumFavoriteTables', 'validateNonNegativeNumber', true);
-registerFieldValidator('NavigationWidth', 'validateNonNegativeNumber', true);
-registerFieldValidator('MaxNavigationItems', 'validatePositiveNumber', true);
-registerFieldValidator('NavigationTreeTableLevel', 'validatePositiveNumber', true);
-$.extend(Messages, {
-	'error_nan_p': 'Not a positive number!',
-	'error_nan_nneg': 'Not a non-negative number!',
-	'error_incorrect_port': 'Not a valid port number!',
-	'error_invalid_value': 'Incorrect value!',
-	'error_value_lte': 'Value must be less than or equal to %s!'});
-$.extend(defaultValues, {
-	'ShowDatabasesNavigationAsTree': true,
-	'NavigationLinkWithMainPanel': true,
-	'NavigationDisplayLogo': true,
-	'NavigationLogoLink': 'index.php',
-	'NavigationLogoLinkWindow': ['main'],
-	'NavigationTreePointerEnable': true,
-	'FirstLevelNavigationItems': '100',
-	'NavigationTreeDisplayItemFilterMinimum': '30',
-	'NumRecentTables': '10',
-	'NumFavoriteTables': '10',
-	'NavigationWidth': '240',
-	'MaxNavigationItems': '50',
-	'NavigationTreeEnableGrouping': true,
-	'NavigationTreeEnableExpansion': true,
-	'NavigationTreeShowTables': true,
-	'NavigationTreeShowViews': true,
-	'NavigationTreeShowFunctions': true,
-	'NavigationTreeShowProcedures': true,
-	'NavigationTreeShowEvents': true,
-	'NavigationTreeAutoexpandSingleDb': true,
-	'NavigationDisplayServers': true,
-	'DisplayServersList': false,
-	'NavigationTreeDisplayDbFilterMinimum': '30',
-	'NavigationTreeDbSeparator': '_',
-	'NavigationTreeDefaultTabTable': ['structure'],
-	'NavigationTreeDefaultTabTable2': [''],
-	'NavigationTreeTableSeparator': '__',
-	'NavigationTreeTableLevel': '1'});
-    });
-    if (typeof configScriptLoaded !== 'undefined' && configInlineParams) {
-        loadInlineConfig();
-    }
-</script>
-</div></div>
-              </div>
-    </div>
+--
+-- Table structure for table `country`
+--
 
-          <div class="pma_drop_handler">
-        Drop files here      </div>
-      <div class="pma_sql_import_status">
-        <h2>
-          SQL upload          ( <span class="pma_import_count">0</span> )
-          <span class="close">x</span>
-          <span class="minimize">-</span>
-        </h2>
-        <div></div>
-      </div>
-      </div>
+DROP TABLE IF EXISTS `country`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `country` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `create_at` datetime(6) NOT NULL DEFAULT current_timestamp(6),
+  `updated_at` datetime(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-  
-  
+--
+-- Dumping data for table `country`
+--
 
-  
-      <noscript>
-      <div class="alert alert-danger" role="alert">
-  <img src="themes/dot.gif" title="" alt="" class="icon ic_s_error"> Javascript must be enabled past this point!
-</div>
+LOCK TABLES `country` WRITE;
+/*!40000 ALTER TABLE `country` DISABLE KEYS */;
+INSERT INTO `country` VALUES (1,'2022-04-04 10:55:53.551597','2022-04-04 10:55:53.551597','Việt Nam');
+/*!40000 ALTER TABLE `country` ENABLE KEYS */;
+UNLOCK TABLES;
 
-    </noscript>
-  
-      <div id="floating_menubar"></div>
-<nav id="server-breadcrumb" aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item">
-      <img src="themes/dot.gif" title="" alt="" class="icon ic_s_host">
-      <a href="index.php?route=/" data-raw-text="127.0.0.1">
-        Server:        127.0.0.1
-      </a>
-    </li>
+--
+-- Table structure for table `coupon`
+--
 
-      </ol>
-</nav>
-<div id="topmenucontainer" class="menucontainer">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-label="Toggle navigation" aria-controls="navbarNav" aria-expanded="false">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul id="topmenu" class="navbar-nav">
-                  <li class="nav-item">
-            <a class="nav-link text-nowrap" href="index.php?route=/server/databases">
-              <img src="themes/dot.gif" title="Databases" alt="Databases" class="icon ic_s_db">&nbsp;Databases
-                          </a>
-          </li>
-                  <li class="nav-item">
-            <a class="nav-link text-nowrap" href="index.php?route=/server/sql">
-              <img src="themes/dot.gif" title="SQL" alt="SQL" class="icon ic_b_sql">&nbsp;SQL
-                          </a>
-          </li>
-                  <li class="nav-item">
-            <a class="nav-link text-nowrap" href="index.php?route=/server/status">
-              <img src="themes/dot.gif" title="Status" alt="Status" class="icon ic_s_status">&nbsp;Status
-                          </a>
-          </li>
-                  <li class="nav-item">
-            <a class="nav-link text-nowrap" href="index.php?route=/server/privileges&viewing_mode=server">
-              <img src="themes/dot.gif" title="User accounts" alt="User accounts" class="icon ic_s_rights">&nbsp;User accounts
-                          </a>
-          </li>
-                  <li class="nav-item">
-            <a class="nav-link text-nowrap" href="index.php?route=/server/export">
-              <img src="themes/dot.gif" title="Export" alt="Export" class="icon ic_b_export">&nbsp;Export
-                          </a>
-          </li>
-                  <li class="nav-item">
-            <a class="nav-link text-nowrap" href="index.php?route=/server/import">
-              <img src="themes/dot.gif" title="Import" alt="Import" class="icon ic_b_import">&nbsp;Import
-                          </a>
-          </li>
-                  <li class="nav-item">
-            <a class="nav-link text-nowrap" href="index.php?route=/preferences/manage">
-              <img src="themes/dot.gif" title="Settings" alt="Settings" class="icon ic_b_tblops">&nbsp;Settings
-                          </a>
-          </li>
-                  <li class="nav-item">
-            <a class="nav-link text-nowrap" href="index.php?route=/server/replication">
-              <img src="themes/dot.gif" title="Replication" alt="Replication" class="icon ic_s_replication">&nbsp;Replication
-                          </a>
-          </li>
-                  <li class="nav-item">
-            <a class="nav-link text-nowrap" href="index.php?route=/server/variables">
-              <img src="themes/dot.gif" title="Variables" alt="Variables" class="icon ic_s_vars">&nbsp;Variables
-                          </a>
-          </li>
-                  <li class="nav-item">
-            <a class="nav-link text-nowrap" href="index.php?route=/server/collations">
-              <img src="themes/dot.gif" title="Charsets" alt="Charsets" class="icon ic_s_asci">&nbsp;Charsets
-                          </a>
-          </li>
-                  <li class="nav-item">
-            <a class="nav-link text-nowrap" href="index.php?route=/server/engines">
-              <img src="themes/dot.gif" title="Engines" alt="Engines" class="icon ic_b_engine">&nbsp;Engines
-                          </a>
-          </li>
-                  <li class="nav-item">
-            <a class="nav-link text-nowrap" href="index.php?route=/server/plugins">
-              <img src="themes/dot.gif" title="Plugins" alt="Plugins" class="icon ic_b_plugin">&nbsp;Plugins
-                          </a>
-          </li>
-              </ul>
-    </div>
-  </nav>
-</div>
+DROP TABLE IF EXISTS `coupon`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `coupon` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `create_at` datetime(6) NOT NULL DEFAULT current_timestamp(6),
+  `updated_at` datetime(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
+  `code` varchar(255) NOT NULL,
+  `discount` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-    <span id="page_nav_icons">
-      <span id="lock_page_icon"></span>
-      <span id="page_settings_icon">
-        <img src="themes/dot.gif" title="Page-related settings" alt="Page-related settings" class="icon ic_s_cog">
-      </span>
-      <a id="goto_pagetop" href="#"><img src="themes/dot.gif" title="Click on the bar to scroll to top of page" alt="Click on the bar to scroll to top of page" class="icon ic_s_top"></a>
-    </span>
-  
-  <div id="pma_console_container">
-    <div id="pma_console">
-                <div class="toolbar collapsed">
-                    <div class="switch_button console_switch">
-            <img src="themes/dot.gif" title="SQL Query Console" alt="SQL Query Console" class="icon ic_console">
-            <span>Console</span>
-        </div>
-                            <div class="button clear">
-            
-            <span>Clear</span>
-        </div>
-                            <div class="button history">
-            
-            <span>History</span>
-        </div>
-                            <div class="button options">
-            
-            <span>Options</span>
-        </div>
-                            <div class="button bookmarks">
-            
-            <span>Bookmarks</span>
-        </div>
-                            <div class="button debug hide">
-            
-            <span>Debug SQL</span>
-        </div>
-            </div>
-                <div class="content">
-            <div class="console_message_container">
-                <div class="message welcome">
-                    <span id="instructions-0">
-                        Press Ctrl+Enter to execute query                    </span>
-                    <span class="hide" id="instructions-1">
-                        Press Enter to execute query                    </span>
-                </div>
-                            </div><!-- console_message_container -->
-            <div class="query_input">
-                <span class="console_query_input"></span>
-            </div>
-        </div><!-- message end -->
-                <div class="mid_layer"></div>
-                <div class="card" id="debug_console">
-            <div class="toolbar ">
-                    <div class="button order order_asc">
-            
-            <span>ascending</span>
-        </div>
-                            <div class="button order order_desc">
-            
-            <span>descending</span>
-        </div>
-                            <div class="text">
-            
-            <span>Order:</span>
-        </div>
-                            <div class="switch_button">
-            
-            <span>Debug SQL</span>
-        </div>
-                            <div class="button order_by sort_count">
-            
-            <span>Count</span>
-        </div>
-                            <div class="button order_by sort_exec">
-            
-            <span>Execution order</span>
-        </div>
-                            <div class="button order_by sort_time">
-            
-            <span>Time taken</span>
-        </div>
-                            <div class="text">
-            
-            <span>Order by:</span>
-        </div>
-                            <div class="button group_queries">
-            
-            <span>Group queries</span>
-        </div>
-                            <div class="button ungroup_queries">
-            
-            <span>Ungroup queries</span>
-        </div>
-            </div>
-            <div class="content debug">
-                <div class="message welcome"></div>
-                <div class="debugLog"></div>
-            </div> <!-- Content -->
-            <div class="templates">
-                <div class="debug_query action_content">
-                    <span class="action collapse">
-            Collapse
-                    </span>
-                            <span class="action expand">
-            Expand
-                    </span>
-                            <span class="action dbg_show_trace">
-            Show trace
-                    </span>
-                            <span class="action dbg_hide_trace">
-            Hide trace
-                    </span>
-                            <span class="text count hide">
-            Count
-                    </span>
-                            <span class="text time">
-            Time taken
-                    </span>
-            </div>
-            </div> <!-- Template -->
-        </div> <!-- Debug SQL card -->
-                    <div class="card" id="pma_bookmarks">
-                <div class="toolbar ">
-                    <div class="switch_button">
-            
-            <span>Bookmarks</span>
-        </div>
-                            <div class="button refresh">
-            
-            <span>Refresh</span>
-        </div>
-                            <div class="button add">
-            
-            <span>Add</span>
-        </div>
-            </div>
-                <div class="content bookmark">
-                    <div class="message welcome">
-    <span>No bookmarks</span>
-</div>
+--
+-- Dumping data for table `coupon`
+--
 
-                </div>
-                <div class="mid_layer"></div>
-                <div class="card add">
-                    <div class="toolbar ">
-                    <div class="switch_button">
-            
-            <span>Add bookmark</span>
-        </div>
-            </div>
-                    <div class="content add_bookmark">
-                        <div class="options">
-                            <label>
-                                Label: <input type="text" name="label">
-                            </label>
-                            <label>
-                                Target database: <input type="text" name="targetdb">
-                            </label>
-                            <label>
-                                <input type="checkbox" name="shared">Share this bookmark                            </label>
-                            <button class="btn btn-primary" type="submit" name="submit">OK</button>
-                        </div> <!-- options -->
-                        <div class="query_input">
-                            <span class="bookmark_add_input"></span>
-                        </div>
-                    </div>
-                </div> <!-- Add bookmark card -->
-            </div> <!-- Bookmarks card -->
-                        <div class="card" id="pma_console_options">
-            <div class="toolbar ">
-                    <div class="switch_button">
-            
-            <span>Options</span>
-        </div>
-                            <div class="button default">
-            
-            <span>Set default</span>
-        </div>
-            </div>
-            <div class="content">
-                <label>
-                    <input type="checkbox" name="always_expand">Always expand query messages                </label>
-                <br>
-                <label>
-                    <input type="checkbox" name="start_history">Show query history at start                </label>
-                <br>
-                <label>
-                    <input type="checkbox" name="current_query">Show current browsing query                </label>
-                <br>
-                <label>
-                    <input type="checkbox" name="enter_executes">
-                        Execute queries on Enter and insert new line with Shift + Enter. To make this permanent, view settings.                </label>
-                <br>
-                <label>
-                    <input type="checkbox" name="dark_theme">Switch to dark theme                </label>
-                <br>
-            </div>
-        </div> <!-- Options card -->
-        <div class="templates">
-                        <div class="query_actions">
-                    <span class="action collapse">
-            Collapse
-                    </span>
-                            <span class="action expand">
-            Expand
-                    </span>
-                            <span class="action requery">
-            Requery
-                    </span>
-                            <span class="action edit">
-            Edit
-                    </span>
-                            <span class="action explain">
-            Explain
-                    </span>
-                            <span class="action profiling">
-            Profiling
-                    </span>
-                            <span class="action bookmark">
-            Bookmark
-                    </span>
-                            <span class="text failed">
-            Query failed
-                    </span>
-                            <span class="text targetdb">
-            Database
-                            : <span></span>
-                    </span>
-                            <span class="text query_time">
-            Queried time
-                            : <span></span>
-                    </span>
-            </div>
-        </div>
-    </div> <!-- #console end -->
-</div> <!-- #console_container end -->
+LOCK TABLES `coupon` WRITE;
+/*!40000 ALTER TABLE `coupon` DISABLE KEYS */;
+/*!40000 ALTER TABLE `coupon` ENABLE KEYS */;
+UNLOCK TABLES;
 
+--
+-- Table structure for table `place`
+--
 
-  <div id="page_content">
-    
+DROP TABLE IF EXISTS `place`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `place` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `create_at` datetime(6) NOT NULL DEFAULT current_timestamp(6),
+  `updated_at` datetime(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
+  `name` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `detail` varchar(255) NOT NULL,
+  `submit_status_id` int(11) DEFAULT NULL,
+  `country_id` int(11) DEFAULT NULL,
+  `city_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `place_type_id` int(11) DEFAULT NULL,
+  `area_id` int(11) DEFAULT NULL,
+  `policy_attribute` int(11) DEFAULT NULL,
+  `room_attribute` int(11) DEFAULT NULL,
+  `schedule_price_attribute` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `REL_3a4aae2a71bf3c4ea1dc5cd14f` (`policy_attribute`),
+  UNIQUE KEY `REL_fb7cbb8697af2f2218fa2cf7ea` (`room_attribute`),
+  UNIQUE KEY `REL_d28a2c877cd4d885bb9cf20f21` (`schedule_price_attribute`),
+  KEY `FK_f932bcc7e17e3673cf5da5d828c` (`user_id`),
+  KEY `FK_5af87e496597758bc9078d265a5` (`city_id`),
+  KEY `FK_dccab1c8fc4a7d7a4c93fc379e2` (`area_id`),
+  KEY `FK_b491e01200400cb7f2c507884cc` (`country_id`),
+  KEY `FK_5646df31e035fd7e36572cbeed5` (`submit_status_id`),
+  KEY `FK_87a1c48509c5b4c361ea6231459` (`place_type_id`),
+  CONSTRAINT `FK_3a4aae2a71bf3c4ea1dc5cd14f1` FOREIGN KEY (`policy_attribute`) REFERENCES `policy_attributes` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_5646df31e035fd7e36572cbeed5` FOREIGN KEY (`submit_status_id`) REFERENCES `submit_status` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_5af87e496597758bc9078d265a5` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_87a1c48509c5b4c361ea6231459` FOREIGN KEY (`place_type_id`) REFERENCES `room_type` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_b491e01200400cb7f2c507884cc` FOREIGN KEY (`country_id`) REFERENCES `country` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_d28a2c877cd4d885bb9cf20f212` FOREIGN KEY (`schedule_price_attribute`) REFERENCES `schedule_price_attributes` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_dccab1c8fc4a7d7a4c93fc379e2` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_f932bcc7e17e3673cf5da5d828c` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_fb7cbb8697af2f2218fa2cf7ea6` FOREIGN KEY (`room_attribute`) REFERENCES `room_attributes` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-    
-<!DOCTYPE HTML>
-<html lang="en" dir="ltr">
-<head>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <title>phpMyAdmin</title>
-    <meta charset="utf-8">
-    <style type="text/css">
-        html {
-            padding: 0;
-            margin: 0;
-        }
-        body  {
-            font-family: sans-serif;
-            font-size: small;
-            color: #000000;
-            background-color: #F5F5F5;
-            margin: 1em;
-        }
-        h1 {
-            margin: 0;
-            padding: 0.3em;
-            font-size: 1.4em;
-            font-weight: bold;
-            color: #ffffff;
-            background-color: #ff0000;
-        }
-        p {
-            margin: 0;
-            padding: 0.5em;
-            border: 0.1em solid red;
-            background-color: #ffeeee;
-        }
-    </style>
-</head>
-<body>
-<h1>phpMyAdmin - Error</h1>
-<p>index.php: Missing parameter: what<a href="./doc/html/faq.html#faqmissingparameters" target="documentation"><img src="themes/dot.gif" title="Documentation" alt="Documentation" class="icon ic_b_help"></a><br>index.php: Missing parameter: export_type<a href="./doc/html/faq.html#faqmissingparameters" target="documentation"><img src="themes/dot.gif" title="Documentation" alt="Documentation" class="icon ic_b_help"></a><br></p>
-</body>
-</html>
-  </div>
-  <div id="selflink" class="print_ignore"><a href="index.php?route=%2Fexport&amp;server=1" title="Open new phpMyAdmin window" target="_blank" rel="noopener noreferrer"><img src="themes/dot.gif" title="Open new phpMyAdmin window" alt="Open new phpMyAdmin window" class="icon ic_window-new"></a></div>
+--
+-- Dumping data for table `place`
+--
 
-  <div class="clearfloat" id="pma_errors">
-    
-  </div>
+LOCK TABLES `place` WRITE;
+/*!40000 ALTER TABLE `place` DISABLE KEYS */;
+INSERT INTO `place` VALUES (15,'2022-04-04 18:37:06.216818','2022-04-04 18:38:02.859971','nha ben canh nha em','xom 7, nghia trung, nghe an','Nha nay dep lam',3,1,1,1,1,1,7,5,1),(16,'2022-04-04 18:37:07.192100','2022-04-04 18:38:05.698522','nha ben canh nha em','xom 7, nghia trung, nghe an','Nha nay dep lam',3,1,1,1,1,1,8,6,2),(17,'2022-04-05 09:24:38.430811','2022-04-05 09:24:38.430811','nha ben canh nha em','xom 7, nghia trung, nghe an','Nha nay dep lam',1,1,1,1,1,1,9,7,3),(18,'2022-04-05 09:26:19.910825','2022-04-05 09:26:19.910825','nha ben canh nha em','xom 7, nghia trung, nghe an','Nha nay dep lam',1,1,1,1,1,1,10,8,4),(19,'2022-04-05 09:45:07.034825','2022-04-05 09:46:45.872874','nha ben canh nha em','xom 7, nghia trung, nghe an','Nha nay dep lam',3,1,1,1,1,1,11,9,5),(20,'2022-04-07 14:10:46.012743','2022-04-07 14:10:46.012743','nha ben canh nha em','xom 7, nghia trung, nghe an','Nha nay dep lam',1,1,1,1,1,1,12,10,6),(21,'2022-04-07 14:11:26.951304','2022-04-07 14:11:26.951304','nha ben canh nha em','xom 7, nghia trung, nghe an','Nha nay dep lam',1,1,1,1,1,1,13,11,7),(22,'2022-04-07 14:21:49.598378','2022-04-07 14:21:49.598378','nha ben canh nha em','xom 7, nghia trung, nghe an','Nha nay dep lam',1,1,1,1,1,1,14,12,8),(23,'2022-04-07 14:28:43.532322','2022-04-07 14:28:43.532322','nha ben canh nha em','xom 7, nghia trung, nghe an','Nha nay dep lam',1,1,1,1,1,1,15,13,9),(24,'2022-04-07 14:30:01.696187','2022-04-07 14:30:01.696187','nha ben canh nha em','xom 7, nghia trung, nghe an','Nha nay dep lam',1,1,1,1,1,1,16,14,10),(25,'2022-04-07 17:00:03.997752','2022-04-07 17:00:03.997752','nha ben canh nha em','xom 7, nghia trung, nghe an','Nha nay dep lam',1,1,1,1,1,1,17,15,11),(26,'2022-04-07 17:01:46.018464','2022-04-07 17:01:46.018464','nha ben canh nha em','xom 7, nghia trung, nghe an','Nha nay dep lam',1,1,1,1,1,1,18,16,12),(27,'2022-04-07 17:08:46.835551','2022-04-07 17:08:46.835551','nha ben canh nha em','xom 7, nghia trung, nghe an','Nha nay dep lam',1,1,1,1,1,1,19,17,13),(28,'2022-04-07 17:12:10.073966','2022-04-07 17:12:10.073966','nha ben canh nha em','xom 7, nghia trung, nghe an','Nha nay dep lam',1,1,1,1,1,1,20,18,14),(29,'2022-04-07 17:17:05.553424','2022-04-07 17:17:05.553424','nha ben canh nha em','xom 7, nghia trung, nghe an','Nha nay dep lam',1,1,1,1,1,1,21,19,15),(30,'2022-04-07 17:17:08.560882','2022-04-07 17:17:08.560882','nha ben canh nha em','xom 7, nghia trung, nghe an','Nha nay dep lam',1,1,1,1,1,1,22,20,16),(31,'2022-04-07 17:18:46.033137','2022-04-07 17:18:46.033137','nha ben canh nha em','xom 7, nghia trung, nghe an','Nha nay dep lam',1,1,1,1,1,1,23,21,17);
+/*!40000 ALTER TABLE `place` ENABLE KEYS */;
+UNLOCK TABLES;
 
-  
-<script data-cfasync="false" type="text/javascript">
-// <![CDATA[
-var debugSQLInfo = 'null';
+--
+-- Table structure for table `place_amenities_amenity`
+--
 
-// ]]>
-</script>
+DROP TABLE IF EXISTS `place_amenities_amenity`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `place_amenities_amenity` (
+  `placeId` int(11) NOT NULL,
+  `amenityId` int(11) NOT NULL,
+  PRIMARY KEY (`placeId`,`amenityId`),
+  KEY `IDX_79e6130e2b7aef592185881c06` (`placeId`),
+  KEY `IDX_4602daa1dbbfda345b7bab21bf` (`amenityId`),
+  CONSTRAINT `FK_4602daa1dbbfda345b7bab21bf7` FOREIGN KEY (`amenityId`) REFERENCES `amenity` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_79e6130e2b7aef592185881c068` FOREIGN KEY (`placeId`) REFERENCES `place` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `place_amenities_amenity`
+--
 
-  
-  
-  </body>
-</html>
+LOCK TABLES `place_amenities_amenity` WRITE;
+/*!40000 ALTER TABLE `place_amenities_amenity` DISABLE KEYS */;
+INSERT INTO `place_amenities_amenity` VALUES (19,1),(19,2),(19,3),(20,1),(20,2),(20,3),(21,1),(21,2),(21,3),(22,1),(22,2),(22,3),(23,1),(23,2),(23,3),(24,1),(24,2),(24,3),(25,1),(25,2),(25,3),(26,1),(26,2),(26,3),(27,1),(27,2),(27,3),(28,1),(28,2),(28,3),(29,1),(29,2),(29,3),(30,1),(30,2),(30,3),(31,1),(31,2),(31,3);
+/*!40000 ALTER TABLE `place_amenities_amenity` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `policy_attributes`
+--
+
+DROP TABLE IF EXISTS `policy_attributes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `policy_attributes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `create_at` datetime(6) NOT NULL DEFAULT current_timestamp(6),
+  `updated_at` datetime(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
+  `max_num_of_people` int(11) DEFAULT NULL,
+  `currency` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `policy_attributes`
+--
+
+LOCK TABLES `policy_attributes` WRITE;
+/*!40000 ALTER TABLE `policy_attributes` DISABLE KEYS */;
+INSERT INTO `policy_attributes` VALUES (1,'2022-04-04 17:58:06.455911','2022-04-05 14:01:16.782333',5,'usd'),(2,'2022-04-04 17:58:57.550366','2022-04-05 14:01:19.521316',5,'usd'),(3,'2022-04-04 18:07:19.836270','2022-04-05 14:01:21.728903',5,'usd'),(4,'2022-04-04 18:31:48.176474','2022-04-05 14:01:23.978531',5,'usd'),(5,'2022-04-04 18:36:33.538746','2022-04-05 14:01:26.147905',5,'usd'),(6,'2022-04-04 18:36:40.240762','2022-04-05 14:01:28.409763',5,'usd'),(7,'2022-04-04 18:37:06.215145','2022-04-05 14:01:30.431375',5,'usd'),(8,'2022-04-04 18:37:07.189637','2022-04-05 14:01:32.412789',5,'usd'),(9,'2022-04-05 09:24:38.429127','2022-04-05 14:01:34.429664',5,'usd'),(10,'2022-04-05 09:26:19.908947','2022-04-05 14:01:36.813657',5,'usd'),(11,'2022-04-05 09:45:07.032610','2022-04-05 14:01:38.872207',5,'usd'),(12,'2022-04-07 14:10:46.010875','2022-04-07 14:10:46.010875',5,'USD'),(13,'2022-04-07 14:11:26.950211','2022-04-07 14:11:26.950211',5,'USD'),(14,'2022-04-07 14:21:49.595259','2022-04-07 14:21:49.595259',5,'USD'),(15,'2022-04-07 14:28:43.530016','2022-04-07 14:28:43.530016',5,'USD'),(16,'2022-04-07 14:30:01.694294','2022-04-07 14:30:01.694294',5,'USD'),(17,'2022-04-07 17:00:03.995890','2022-04-07 17:00:03.995890',5,'USD'),(18,'2022-04-07 17:01:46.016265','2022-04-07 17:01:46.016265',5,'USD'),(19,'2022-04-07 17:08:46.834342','2022-04-07 17:08:46.834342',5,'USD'),(20,'2022-04-07 17:12:10.071533','2022-04-07 17:12:10.071533',5,'USD'),(21,'2022-04-07 17:17:05.551661','2022-04-07 17:17:05.551661',5,'USD'),(22,'2022-04-07 17:17:08.559624','2022-04-07 17:17:08.559624',5,'USD'),(23,'2022-04-07 17:18:46.031386','2022-04-07 17:18:46.031386',5,'USD');
+/*!40000 ALTER TABLE `policy_attributes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `review`
+--
+
+DROP TABLE IF EXISTS `review`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `review` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `create_at` datetime(6) NOT NULL DEFAULT current_timestamp(6),
+  `updated_at` datetime(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
+  `score` int(11) NOT NULL,
+  `comment` varchar(255) NOT NULL,
+  `place_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_d11650864e93b23444d1634d766` (`place_id`),
+  KEY `FK_81446f2ee100305f42645d4d6c2` (`user_id`),
+  CONSTRAINT `FK_81446f2ee100305f42645d4d6c2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_d11650864e93b23444d1634d766` FOREIGN KEY (`place_id`) REFERENCES `place` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `review`
+--
+
+LOCK TABLES `review` WRITE;
+/*!40000 ALTER TABLE `review` DISABLE KEYS */;
+INSERT INTO `review` VALUES (1,'2022-04-07 08:20:33.974476','2022-04-07 09:08:18.377616',3,'this is a comment',19,1),(2,'2022-04-07 09:23:16.790812','2022-04-07 09:23:16.790812',4,'This is a good comment',19,10);
+/*!40000 ALTER TABLE `review` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `room_attributes`
+--
+
+DROP TABLE IF EXISTS `room_attributes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `room_attributes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `create_at` datetime(6) NOT NULL DEFAULT current_timestamp(6),
+  `updated_at` datetime(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
+  `square` int(11) DEFAULT NULL,
+  `num_of_bedroom` int(11) DEFAULT NULL,
+  `num_of_bed` int(11) DEFAULT NULL,
+  `num_of_bathroom` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `room_attributes`
+--
+
+LOCK TABLES `room_attributes` WRITE;
+/*!40000 ALTER TABLE `room_attributes` DISABLE KEYS */;
+INSERT INTO `room_attributes` VALUES (1,'2022-04-04 18:07:19.832480','2022-04-04 18:07:19.832480',75,2,3,2),(2,'2022-04-04 18:31:48.170579','2022-04-04 18:31:48.170579',75,2,3,2),(3,'2022-04-04 18:36:33.531495','2022-04-04 18:36:33.531495',75,2,3,2),(4,'2022-04-04 18:36:40.237631','2022-04-04 18:36:40.237631',75,2,3,2),(5,'2022-04-04 18:37:06.213216','2022-04-04 18:37:06.213216',75,2,3,2),(6,'2022-04-04 18:37:07.186623','2022-04-04 18:37:07.186623',75,2,3,2),(7,'2022-04-05 09:24:38.427647','2022-04-05 09:24:38.427647',75,2,3,2),(8,'2022-04-05 09:26:19.906986','2022-04-05 09:26:19.906986',75,2,3,2),(9,'2022-04-05 09:45:07.030883','2022-04-05 09:45:07.030883',75,2,3,2),(10,'2022-04-07 14:10:46.008440','2022-04-07 14:10:46.008440',75,2,3,2),(11,'2022-04-07 14:11:26.947655','2022-04-07 14:11:26.947655',75,2,3,2),(12,'2022-04-07 14:21:49.594172','2022-04-07 14:21:49.594172',75,2,3,2),(13,'2022-04-07 14:28:43.528357','2022-04-07 14:28:43.528357',75,2,3,2),(14,'2022-04-07 14:30:01.692439','2022-04-07 14:30:01.692439',75,2,3,2),(15,'2022-04-07 17:00:03.993962','2022-04-07 17:00:03.993962',75,2,3,2),(16,'2022-04-07 17:01:46.013994','2022-04-07 17:01:46.013994',75,2,3,2),(17,'2022-04-07 17:08:46.832765','2022-04-07 17:08:46.832765',75,2,3,2),(18,'2022-04-07 17:12:10.068444','2022-04-07 17:12:10.068444',75,2,3,2),(19,'2022-04-07 17:17:05.549927','2022-04-07 17:17:05.549927',75,2,3,2),(20,'2022-04-07 17:17:08.558274','2022-04-07 17:17:08.558274',75,2,3,2),(21,'2022-04-07 17:18:46.029898','2022-04-07 17:18:46.029898',75,2,3,2);
+/*!40000 ALTER TABLE `room_attributes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `room_type`
+--
+
+DROP TABLE IF EXISTS `room_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `room_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `create_at` datetime(6) NOT NULL DEFAULT current_timestamp(6),
+  `updated_at` datetime(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `room_type`
+--
+
+LOCK TABLES `room_type` WRITE;
+/*!40000 ALTER TABLE `room_type` DISABLE KEYS */;
+INSERT INTO `room_type` VALUES (1,'2022-04-04 10:22:52.043653','2022-04-05 13:58:45.566787','apartment'),(2,'2022-04-04 10:23:01.068549','2022-04-05 13:58:50.099787','hostel'),(3,'2022-04-04 10:23:08.293048','2022-04-05 13:58:55.731317','homestay'),(4,'2022-04-04 10:23:18.007693','2022-04-05 13:59:00.052166','motel'),(5,'2022-04-04 10:23:28.707492','2022-04-05 13:59:02.917310','villa'),(6,'2022-04-04 10:26:18.301729','2022-04-05 13:59:09.512635','penthouse');
+/*!40000 ALTER TABLE `room_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `rule_attributes`
+--
+
+DROP TABLE IF EXISTS `rule_attributes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `rule_attributes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `create_at` datetime(6) NOT NULL DEFAULT current_timestamp(6),
+  `updated_at` datetime(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
+  `repay_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `rule_attributes`
+--
+
+LOCK TABLES `rule_attributes` WRITE;
+/*!40000 ALTER TABLE `rule_attributes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `rule_attributes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `schedule_price_attributes`
+--
+
+DROP TABLE IF EXISTS `schedule_price_attributes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `schedule_price_attributes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `create_at` datetime(6) NOT NULL DEFAULT current_timestamp(6),
+  `updated_at` datetime(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
+  `normal_day_price` int(11) DEFAULT NULL,
+  `weekend_price` int(11) DEFAULT NULL,
+  `cleaning_price` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `schedule_price_attributes`
+--
+
+LOCK TABLES `schedule_price_attributes` WRITE;
+/*!40000 ALTER TABLE `schedule_price_attributes` DISABLE KEYS */;
+INSERT INTO `schedule_price_attributes` VALUES (1,'2022-04-04 18:37:06.206744','2022-04-04 18:37:06.206744',300000,350000,50000),(2,'2022-04-04 18:37:07.185165','2022-04-04 18:37:07.185165',300000,350000,50000),(3,'2022-04-05 09:24:38.424898','2022-04-05 09:24:38.424898',300000,350000,50000),(4,'2022-04-05 09:26:19.900775','2022-04-05 09:26:19.900775',300000,350000,50000),(5,'2022-04-05 09:45:07.028259','2022-04-05 09:45:07.028259',300000,350000,50000),(6,'2022-04-07 14:10:46.005803','2022-04-07 14:10:46.005803',300000,350000,50000),(7,'2022-04-07 14:11:26.944329','2022-04-07 14:11:26.944329',300000,350000,50000),(8,'2022-04-07 14:21:49.592645','2022-04-07 14:21:49.592645',300000,350000,50000),(9,'2022-04-07 14:28:43.526023','2022-04-07 14:28:43.526023',300000,350000,50000),(10,'2022-04-07 14:30:01.689292','2022-04-07 14:30:01.689292',300000,350000,50000),(11,'2022-04-07 17:00:03.991074','2022-04-07 17:00:03.991074',300000,350000,50000),(12,'2022-04-07 17:01:46.009055','2022-04-07 17:01:46.009055',300000,350000,50000),(13,'2022-04-07 17:08:46.826897','2022-04-07 17:08:46.826897',300000,350000,50000),(14,'2022-04-07 17:12:10.066562','2022-04-07 17:12:10.066562',300000,350000,50000),(15,'2022-04-07 17:17:05.547128','2022-04-07 17:17:05.547128',300000,350000,50000),(16,'2022-04-07 17:17:08.556611','2022-04-07 17:17:08.556611',300000,350000,50000),(17,'2022-04-07 17:18:46.027706','2022-04-07 17:18:46.027706',300000,350000,50000);
+/*!40000 ALTER TABLE `schedule_price_attributes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `submit_status`
+--
+
+DROP TABLE IF EXISTS `submit_status`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `submit_status` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `create_at` datetime(6) NOT NULL DEFAULT current_timestamp(6),
+  `updated_at` datetime(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `submit_status`
+--
+
+LOCK TABLES `submit_status` WRITE;
+/*!40000 ALTER TABLE `submit_status` DISABLE KEYS */;
+INSERT INTO `submit_status` VALUES (1,'2022-04-04 14:27:33.080289','2022-04-04 14:27:33.080289','Proccessing'),(2,'2022-04-04 14:27:33.090756','2022-04-04 14:27:33.090756','Reject'),(3,'2022-04-04 14:27:33.097050','2022-04-04 14:27:33.097050','Approve');
+/*!40000 ALTER TABLE `submit_status` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `create_at` datetime(6) NOT NULL DEFAULT current_timestamp(6),
+  `updated_at` datetime(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `active` tinyint(4) NOT NULL DEFAULT 1,
+  `password` varchar(255) NOT NULL,
+  `phone_number` varchar(255) NOT NULL,
+  `avatar` varchar(255) NOT NULL DEFAULT '',
+  `address` varchar(255) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `additional_info` text DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `IDX_e12875dfb3b1d92d7d7c5377e2` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'2022-04-04 08:56:10.265900','2022-04-04 08:56:10.265900','Vo Luong','Bang',1,'$2b$10$l.tpr9j2qDOiLHAFKfoLzumJpV5N7o9DciZI9sPogdgntAI0gNAYC','0349582665','',NULL,'voluongbang20@gmail.com',NULL),(7,'2022-04-04 09:30:15.827582','2022-04-04 09:30:15.827582','Vo Luong','Bang',1,'$2b$10$9ocCzOJl5MDGeyiXfbohd.keWY7q.WoeT51fGr0mk0xolue6MV5my','0349582665','',NULL,'voluongbang@gmail.com',NULL),(10,'2022-04-07 09:21:35.030480','2022-04-07 09:21:35.030480','Luong On','Kham',1,'$2b$10$yil.pvXwD4XpViZyWIJpoeVy1RT7EIx/SbiVXiId5ycrUJutos4Ni','0349582665','',NULL,'khamluong@gmail.com',NULL);
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2022-04-08  9:40:58
