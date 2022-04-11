@@ -55,10 +55,10 @@ export class Place extends _BaseEntity {
   @JoinTable()
   amenities: Promise<Amenity[]>;
 
-  @OneToMany(() => Review, (review) => review.id)
+  @OneToMany(() => Review, (review) => review.place, {cascade: true})
   reviews: Review[];
 
-  @OneToMany(() => Photo, (photo) => photo.id)
+  @OneToMany(() => Photo, (photo) => photo.place, { cascade: true })
   photos: Photo[];
 
   @ManyToOne(() => PlaceType, (placeType) => placeType.id)

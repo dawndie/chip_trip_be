@@ -2,8 +2,10 @@ import express from "express";
 import { BaseController } from "../base";
 import { PlaceRepository } from "@/repositories/place.repository";
 import { Place } from "@/entities/place.entity";
+import { Photo } from "@/entities/photo.entity";
 import { Amenity } from "@/entities/amenity.entity";
 import { getCustomRepository } from "typeorm";
+import { PhotoRepository } from "@/repositories/photo.repository";
 import { FindOneOptions } from "typeorm";
 import { APPROVED_STATUS } from "@/const/common.const";
 // import fs from "fs";
@@ -28,13 +30,13 @@ class _PlaceController extends BaseController {
         "policyAttribute",
         "roomAttribute",
         "schedulePriceAttribute",
+        "photos",
       ],
     };
     try {
       const result = await placeRepository.findById(parseInt(placeId), option);
       if (result) {
         await result.amenities;
-        console.log(result);
         return this.success(req, res)(result);
       } else {
         return this.success(req, res)("Data not exists");
@@ -51,12 +53,12 @@ class _PlaceController extends BaseController {
     const s3 = new AWS.S3({
       accessKeyId: process.env.S3_ACCESS_KEY_ID,
       secretAccessKey: process.env.S3_SECRET_KEY,
+      region: process.env.S3_REGION,
     });
+    const imageList = req.body.dataUris;
+    // const base64Uri = req.body.dataUris[0];
 
-    const fileName = "D:/Chip_trip/chip_trip_be/src/controllers/logo.png";
-    const base64Uri = req.body.dataUris;
-    const Data = Buffer.from(base64Uri, "base64");
-    // const readStream = fs.readFileSync(fileName);
+    // const Data = Buffer.from(base64Uri, "base64");
 
     const amenities = req.body.amenities.map((element: number) => {
       const amenity = new Amenity();
@@ -78,18 +80,51 @@ class _PlaceController extends BaseController {
     place.schedulePriceAttribute = req.body.schedulePriceAttribute;
     try {
       const placeRepository = getCustomRepository(PlaceRepository);
-      const result = await placeRepository.manager.save(place);
-      const placeId = result.id;
-      const params = {
-        Bucket: process.env.S3_BUCKET || "photostore.voluongbang", // pass your bucket name
-        Key: "place_photo" + "/" + String(placeId), // file will be saved as testBucket/contacts.csv
-        Body: Data,
+      const savedPlace = await placeRepository.manager.save(place);
+      const placeId = savedPlace.id;
+      for (let i = 0; i < imageList.length; i++) {
+        const Data = Buffer.from(
+          req.body.dataUris[i].replace(/^data:image\/\w+;base64,/, ""),
+          "base64",
+        );
+        const params = {
+          Bucket: process.env.S3_BUCKET || "photostore.voluongbang", // pass your bucket name
+          Key: `place_photo/${String(placeId)}_${i}.png`, // file will be saved as testBucket/contacts.csv
+          Body: Data,
+        };
+        s3.upload(params, (s3Err: any, data: any) => {
+          if (s3Err) this.getManagedError(s3Err);
+          console.log(`File uploaded successfully at ${data.Key}`);
+        });
+        const photo = new Photo();
+        const getLinkParams = {
+          Bucket: process.env.S3_BUCKET || "photostore.voluongbang", // pass your bucket name
+          Key: `place_photo/${String(placeId)}_${i}.png`, // file will be saved as testBucket/contacts.csvs
+        };
+        const url = s3.getSignedUrl("getObject", getLinkParams);
+        console.log(url);
+
+        photo.url = url;
+        photo.place = savedPlace;
+        const photoRepository = getCustomRepository(PhotoRepository);
+        await photoRepository.save(photo);
+      }
+
+      const option: FindOneOptions<Place> = {
+        relations: [
+          "host",
+          "area",
+          "city",
+          "country",
+          "amenities",
+          "placeType",
+          "policyAttribute",
+          "roomAttribute",
+          "schedulePriceAttribute",
+          "photos",
+        ],
       };
-      s3.upload(params, (s3Err: any, data: any) => {
-        if (s3Err) this.getManagedError(s3Err);
-        console.log(`File uploaded successfully at ${data}`);
-      });
-      const s3Url = s3.getSignedUrl("putObject", params);
+      const result = await placeRepository.findById(savedPlace.id, option);
 
       return this.success(req, res)(result);
     } catch (error) {

@@ -4,7 +4,7 @@ import { Place } from "@/entities/place.entity";
 
 @Entity({ name: "photo" })
 export class Photo extends _BaseEntity {
-  @Column({ name: "url" })
+  @Column()
   url: string;
 
   @ManyToOne(() => Place, (place) => place.id)
