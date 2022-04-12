@@ -11,6 +11,7 @@ export const checkJwt = (req: Request, res: Response, next: NextFunction) => {
       const jwtPayload = <any>(
         jwt.verify(bearerToken, String(process.env.JWT_SECRET))
       );
+      res.locals.userId = String(jwtPayload.userId);
       next();
     } catch (e) {
       res.send({ code: 9000, result: null, message: e });

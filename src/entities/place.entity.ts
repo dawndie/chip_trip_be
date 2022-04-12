@@ -13,6 +13,7 @@ import { _BaseEntity } from "../base/base.entity";
 import { User } from "../entities/user.entity";
 import { City } from "../entities/city.entity";
 import { Area } from "../entities/area.entity";
+import { Photo } from "../entities/photo.entity";
 import { Country } from "../entities/country.entity";
 import { SubmitStatus } from "../entities/submitStatus.entity";
 import { Amenity } from "../entities/amenity.entity";
@@ -54,8 +55,11 @@ export class Place extends _BaseEntity {
   @JoinTable()
   amenities: Promise<Amenity[]>;
 
-  @OneToMany(() => Review, (review) => review.id)
+  @OneToMany(() => Review, (review) => review.place, {cascade: true})
   reviews: Review[];
+
+  @OneToMany(() => Photo, (photo) => photo.place, { cascade: true })
+  photos: Photo[];
 
   @ManyToOne(() => PlaceType, (placeType) => placeType.id)
   @JoinColumn({ name: "place_type_id" })
