@@ -10,6 +10,9 @@ export class City extends _BaseEntity {
   @Column()
   description: string;
 
+  @Column({ default: "hanoi" })
+  alias: string;
+
   @ManyToOne(() => Country, (country) => country.id)
   country: Country;
 }

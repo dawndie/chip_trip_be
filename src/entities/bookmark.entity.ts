@@ -1,11 +1,14 @@
-import { Column, Entity } from "typeorm";
+import { Entity, ManyToOne, JoinColumn } from "typeorm";
 import { _BaseEntity } from "../base/base.entity";
-
+import { Place } from "@/entities/place.entity";
+import { User } from "@/entities/user.entity";
 @Entity({ name: "bookmark" })
 export class Bookmark extends _BaseEntity {
-  @Column({ name: "user" })
-  user: number;
+  @ManyToOne(() => User, (user) => user.id)
+  @JoinColumn({ name: "user_id" })
+  user: User;
 
-  @Column({ name: "place" })
-  place: number;
+  @ManyToOne(() => Place, (place) => place.id)
+  @JoinColumn({ name: "place_id" })
+  place: Place;
 }

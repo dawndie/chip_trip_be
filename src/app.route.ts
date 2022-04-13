@@ -14,9 +14,10 @@ router.get("/", (req, res) =>
 const { getReviewsByPlaceId } = ReviewController;
 const { error, response } = TestController;
 const { createAccount } = UserController;
-const { getPlaceInformation, createPlace } = PlaceController;
+const { getPlaceInformation, createPlace, getRoomByPlace } = PlaceController;
 const { login } = AuthController;
-const { checkBookmark, createBookmark, removeBookmark } = BookmarkController;
+const { checkBookmark, createBookmark, removeBookmark, getBookmark } =
+  BookmarkController;
 //AUTH ROUTER
 router.post("/auth/signin", login);
 router.post("/auth/signup", createAccount);
@@ -24,10 +25,12 @@ router.post("/auth/signup", createAccount);
 router.get("/place/:id", getPlaceInformation);
 router.get("/place/:id/ratings", getReviewsByPlaceId);
 router.post("/place/create", checkJwt, createPlace);
+router.get("/place/search/:place/:page", getRoomByPlace);
 // BOOKMARK ROUTER
 router.post("/bookmark/check", checkJwt, checkBookmark);
 router.post("/bookmark/new", checkJwt, createBookmark);
-router.post("/bookmark/remove", checkJwt,   );
+router.delete("/bookmark/remove", checkJwt, removeBookmark);
+router.get("/bookmark", checkJwt, getBookmark);
 
 //CHECK ROUTER
 router.get("/error", checkJwt, error);

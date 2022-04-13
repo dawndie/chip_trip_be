@@ -4,7 +4,7 @@ import { PlaceRepository } from "@/repositories/place.repository";
 import { Place } from "@/entities/place.entity";
 import { Photo } from "@/entities/photo.entity";
 import { Amenity } from "@/entities/amenity.entity";
-import { getCustomRepository } from "typeorm";
+import { getCustomRepository, Like } from "typeorm";
 import { PhotoRepository } from "@/repositories/photo.repository";
 import { FindOneOptions } from "typeorm";
 import { APPROVED_STATUS } from "@/const/common.const";
@@ -82,32 +82,35 @@ class _PlaceController extends BaseController {
       const placeRepository = getCustomRepository(PlaceRepository);
       const savedPlace = await placeRepository.manager.save(place);
       const placeId = savedPlace.id;
-      for (let i = 0; i < imageList.length; i++) {
-        const Data = Buffer.from(
-          req.body.dataUris[i].replace(/^data:image\/\w+;base64,/, ""),
-          "base64",
-        );
-        const params = {
-          Bucket: process.env.S3_BUCKET || "photostore.voluongbang", // pass your bucket name
-          Key: `place_photo/${String(placeId)}_${i}.png`, // file will be saved as testBucket/contacts.csv
-          Body: Data,
-        };
-        s3.upload(params, (s3Err: any, data: any) => {
-          if (s3Err) this.getManagedError(s3Err);
-          console.log(`File uploaded successfully at ${data.Key}`);
-        });
-        const photo = new Photo();
-        const getLinkParams = {
-          Bucket: process.env.S3_BUCKET || "photostore.voluongbang", // pass your bucket name
-          Key: `place_photo/${String(placeId)}_${i}.png`, // file will be saved as testBucket/contacts.csvs
-        };
-        const url = s3.getSignedUrl("getObject", getLinkParams);
-        console.log(url);
+      if (imageList) {
+        for (let i = 0; i < imageList.length; i++) {
+          const Data = Buffer.from(
+            req.body.dataUris[i].replace(/^data:image\/\w+;base64,/, ""),
+            "base64",
+          );
+          const params = {
+            Bucket: process.env.S3_BUCKET || "photostore.voluongbang", // pass your bucket name
+            Key: `place_photo/${String(placeId)}_${i}.png`, // file will be saved as testBucket/contacts.csv
+            Body: Data,
+            Expires: new Date("2022-06-23"),
+          };
+          s3.upload(params, (s3Err: any, data: any) => {
+            if (s3Err) this.getManagedError(s3Err);
+            console.log(`File uploaded successfully at ${data.Key}`);
+          });
+          const photo = new Photo();
+          const getLinkParams = {
+            Bucket: process.env.S3_BUCKET || "photostore.voluongbang", // pass your bucket name
+            Key: `place_photo/${String(placeId)}_${i}.png`, // file will be saved as testBucket/contacts.csvs
+          };
+          const url = s3.getSignedUrl("getObject", getLinkParams);
+          console.log(url);
 
-        photo.url = url;
-        photo.place = savedPlace;
-        const photoRepository = getCustomRepository(PhotoRepository);
-        await photoRepository.save(photo);
+          photo.url = url;
+          photo.place = savedPlace;
+          const photoRepository = getCustomRepository(PhotoRepository);
+          await photoRepository.save(photo);
+        }
       }
 
       const option: FindOneOptions<Place> = {
@@ -141,6 +144,26 @@ class _PlaceController extends BaseController {
       const placeRepository = getCustomRepository(PlaceRepository);
       const result = await placeRepository.getReviewsByRoomId(
         parseInt(req.params.id),
+      );
+      return this.success(req, res)(result);
+    } catch (error) {
+      next(this.getManagedError(error));
+    }
+  }
+
+  async getRoomByPlace(
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction,
+  ) {
+    const index = req.params.place;
+
+    try {
+      const placeRepository = getCustomRepository(PlaceRepository);
+      const result = await placeRepository.getPlaceByLocation(
+        parseInt(req.params.page),
+        5,
+        index,
       );
       return this.success(req, res)(result);
     } catch (error) {

@@ -26,5 +26,4 @@ export class User extends _BaseEntity {
 
   @Column({ unique: true, name: "place_id" })
   placeId: number;
-
 }
