@@ -51,33 +51,45 @@ export class Place extends _BaseEntity {
   @JoinColumn({ name: "submit_status_id" })
   submitStatus: SubmitStatus;
 
-  @ManyToMany(() => Amenity, (amenity) => amenity.places, { cascade: true })
+  @ManyToMany(() => Amenity, (amenity) => amenity.places, {
+    cascade: true,
+    onDelete: "CASCADE",
+  })
   @JoinTable()
   amenities: Promise<Amenity[]>;
 
-  @OneToMany(() => Review, (review) => review.place, {cascade: true})
+  @OneToMany(() => Review, (review) => review.place, {
+    cascade: true,
+    onDelete: "CASCADE",
+  })
   reviews: Review[];
 
-  @OneToMany(() => Photo, (photo) => photo.place, { cascade: true })
+  @OneToMany(() => Photo, (photo) => photo.place, {
+    cascade: true,
+    onDelete: "CASCADE",
+  })
   photos: Photo[];
 
   @ManyToOne(() => PlaceType, (placeType) => placeType.id)
   @JoinColumn({ name: "place_type_id" })
   placeType: PlaceType;
 
-  @OneToOne(() => PolicyAttribute, { cascade: true })
+  @OneToOne(() => PolicyAttribute, { cascade: true, onDelete: "CASCADE" })
   @JoinColumn({ name: "policy_attribute" })
   policyAttribute: PolicyAttribute;
 
-  @OneToOne(() => RoomAttribute, { cascade: true })
+  @OneToOne(() => RoomAttribute, { cascade: true, onDelete: "CASCADE" })
   @JoinColumn({ name: "room_attribute" })
   roomAttribute: RoomAttribute;
 
-  @OneToOne(() => SchedulePriceAttribute, { cascade: true })
+  @OneToOne(() => SchedulePriceAttribute, {
+    cascade: true,
+    onDelete: "CASCADE",
+  })
   @JoinColumn({ name: "schedule_price_attribute" })
   schedulePriceAttribute: SchedulePriceAttribute;
 
-  @Column({ name: "detail" })
+  @Column({ type: "text", name: "detail" })
   detail: string;
 
   @BeforeInsert()

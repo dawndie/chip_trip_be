@@ -8,4 +8,7 @@ export class Amenity extends _BaseEntity {
 
   @ManyToMany(() => Place, (place) => place.amenities)
   places: Promise<Place[]>;
+
+  @Column()
+  icon: string;
 }

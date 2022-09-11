@@ -8,7 +8,7 @@ export class Bookmark extends _BaseEntity {
   @JoinColumn({ name: "user_id" })
   user: User;
 
-  @ManyToOne(() => Place, (place) => place.id)
+  @ManyToOne(() => Place, (place) => place.id, {onDelete: "CASCADE"})
   @JoinColumn({ name: "place_id" })
   place: Place;
 }

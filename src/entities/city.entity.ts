@@ -15,4 +15,7 @@ export class City extends _BaseEntity {
 
   @ManyToOne(() => Country, (country) => country.id)
   country: Country;
+
+  @Column()
+  total: number;
 }

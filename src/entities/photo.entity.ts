@@ -7,7 +7,7 @@ export class Photo extends _BaseEntity {
   @Column()
   url: string;
 
-  @ManyToOne(() => Place, (place) => place.id)
+  @ManyToOne(() => Place, (place) => place.id, { onDelete: "CASCADE" })
   @JoinColumn({ name: "place_id" })
   place: Place;
 }

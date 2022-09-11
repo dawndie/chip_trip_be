@@ -11,4 +11,7 @@ export class Area extends _BaseEntity {
 
   @ManyToOne(() => City, (city) => city.id)
   city: City;
+
+  @Column()
+  total: number;
 }

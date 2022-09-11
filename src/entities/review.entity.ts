@@ -5,7 +5,7 @@ import { User } from "@/entities/user.entity";
 @Entity({ name: "review" })
 export class Review extends _BaseEntity {
 
-  @ManyToOne(() => Place, (place) => place.id)
+  @ManyToOne(() => Place, (place) => place.id, {onDelete: "CASCADE"})
   @JoinColumn({ name: "place_id" })
   place: Place;
 

@@ -8,4 +8,7 @@ export class Coupon extends _BaseEntity {
 
   @Column({ name: "discount" })
   discount: number;
+
+  @Column({ name: "is_used", default: false })
+  isUsed: boolean;
 }

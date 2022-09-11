@@ -4,12 +4,16 @@ import { PlaceRepository } from "@/repositories/place.repository";
 import { Place } from "@/entities/place.entity";
 import { Photo } from "@/entities/photo.entity";
 import { Amenity } from "@/entities/amenity.entity";
-import { getCustomRepository, Like } from "typeorm";
+import { getCustomRepository, LessThan, MoreThan } from "typeorm";
 import { PhotoRepository } from "@/repositories/photo.repository";
+import { CityRepository } from "@/repositories/city.repository";
+import { AreaRepository } from "@/repositories/area.repository";
+import { BookingRepository } from "@/repositories/booking.repository";
 import { FindOneOptions } from "typeorm";
 import { APPROVED_STATUS } from "@/const/common.const";
 // import fs from "fs";
 import AWS from "aws-sdk";
+import { City } from "@/entities/city.entity";
 class _PlaceController extends BaseController {
   async getPlaceInformation(
     req: express.Request,
@@ -104,9 +108,10 @@ class _PlaceController extends BaseController {
             Key: `place_photo/${String(placeId)}_${i}.png`, // file will be saved as testBucket/contacts.csvs
           };
           const url = s3.getSignedUrl("getObject", getLinkParams);
-          console.log(url);
 
-          photo.url = url;
+          photo.url = `https://s3.ap-southeast-1.amazonaws.com/photostore.voluongbang/place_photo/${String(
+            placeId,
+          )}_${i}.png`;
           photo.place = savedPlace;
           const photoRepository = getCustomRepository(PhotoRepository);
           await photoRepository.save(photo);
@@ -162,9 +167,118 @@ class _PlaceController extends BaseController {
       const placeRepository = getCustomRepository(PlaceRepository);
       const result = await placeRepository.getPlaceByLocation(
         parseInt(req.params.page),
-        5,
+        10,
         index,
       );
+      return this.success(req, res)(result);
+    } catch (error) {
+      next(this.getManagedError(error));
+    }
+  }
+
+  async getRoomByPlaceAndTotalGuests(
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction,
+  ) {
+    const index = req.params.place;
+    const totalGuests = parseInt(req.params.totalGuests);
+
+    try {
+      const placeRepository = getCustomRepository(PlaceRepository);
+      const result = await placeRepository.getPlaceByLocationAndGuest(
+        parseInt(req.params.page),
+        10,
+        index,
+        totalGuests,
+      );
+      return this.success(req, res)(result);
+    } catch (error) {
+      next(this.getManagedError(error));
+    }
+  }
+
+  async getSuggestions(
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction,
+  ) {
+    const query = req.body.query;
+
+    try {
+      // const result = [{ id: 3, name: "nha o huyen", address: "nfdnfdf" }];
+      const cityRepository = getCustomRepository(CityRepository);
+      const city = await cityRepository
+        .createQueryBuilder("city")
+        .where("city.name like :name", { name: `%${query}%` })
+        .take(3)
+        .getMany();
+
+      const areaRepository = getCustomRepository(AreaRepository);
+      const area = await areaRepository
+        .createQueryBuilder("area")
+        .innerJoinAndMapOne("area.city", City, "city", "city.id = area.city")
+        .where("area.name like :name", { name: `%${query}%` })
+        .take(3)
+        .getMany();
+
+      const placeRepository = getCustomRepository(PlaceRepository);
+      const place = await placeRepository
+        .createQueryBuilder("place")
+        .where("place.name like :name", { name: `%${query}%` })
+        .take(3)
+        .getMany();
+
+      const result = { city, area, place };
+
+      return this.success(req, res)(result);
+    } catch (error) {
+      next(this.getManagedError(error));
+    }
+  }
+
+  async deleteById(
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction,
+  ) {
+    const inputId = parseInt(req.params.id);
+    try {
+      const placeRepository = getCustomRepository(PlaceRepository);
+      const result = await placeRepository.delete({ id: inputId });
+      return this.success(req, res)(result);
+    } catch (error) {
+      next(this.getManagedError(error));
+    }
+  }
+
+  async getRoomByPlaceandTime(
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction,
+  ) {
+    const index = req.params.place;
+
+    try {
+      const placeRepository = getCustomRepository(PlaceRepository);
+      const result = await placeRepository.getPlaceByLocation(
+        parseInt(req.params.page),
+        10,
+        index,
+      );
+      const bookingRepository = getCustomRepository(BookingRepository);
+      for (let i = 0; i < result.total; i++) {
+        const checkingBooking = await bookingRepository.find({
+          where: {
+            place: result.data[i],
+            startDate: LessThan(req.params.checkin),
+            endDate: MoreThan(req.params.checkout),
+          },
+        });
+        if (checkingBooking.length > 0) {
+          result.data.splice(i, 1);
+        }
+      }
       return this.success(req, res)(result);
     } catch (error) {
       next(this.getManagedError(error));
